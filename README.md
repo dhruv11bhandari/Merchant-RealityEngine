@@ -12,6 +12,10 @@ The project has two parts:
 
 ## Run it
 
+use start.sh for everyone in the team 
+
+for chaman chelesani :
+
 Requires Node.js 20 or later.
 
 ```bash
