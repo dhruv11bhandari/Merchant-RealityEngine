@@ -7,7 +7,7 @@ export function ArchitectureExplorer() {
   const [n, setN] = useState(1), m = LAYERS[n - 1];
   return (
     <div className="grid gap-6 lg:grid-cols-[320px_1fr]">
-      <div className="space-y-1.5" role="tablist" aria-label="Seven layers">
+      <div data-stagger className="space-y-1.5" role="tablist" aria-label="Seven layers">
         {LAYERS.map((l, i) => (
           <div key={l.n}>
             <button role="tab" aria-selected={n === l.n} onClick={() => setN(l.n)} className={cx('flex w-full items-center gap-3 rounded-md border px-3.5 py-3 text-left transition-colors', n === l.n ? 'border-cyan-400/60 bg-cyan-400/5' : 'border-line bg-panel hover:border-line2')}>

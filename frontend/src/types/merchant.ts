@@ -41,7 +41,7 @@ export type ScenarioId = 'bakery' | 'rotation' | 'fabricated' | 'diwali';
 export type Label = 'CONFIRMED_ILLICIT' | 'ADJUDICATED_BENIGN' | 'UNRESOLVED';
 
 export interface Scenario {
-  id: ScenarioId;
+  id: ScenarioId | 'custom';
   title: string;
   subtitle: string;
   blurb: string;
@@ -61,4 +61,9 @@ export interface Scenario {
   bankCredits: { amount: number; beneficiaryHash: string }[];
   graph: GraphSpec;
   synthetic: string;                // plain-language list of injected signals
+  /** Optional business-footprint feed (supplier payments, GST turnover), monthly INR. */
+  footprint?: { supplierPaymentsMonthly: number; gstTurnoverMonthly: number } | null;
+  /** Optional outside-in sightings: where this merchant's payment IDs were seen advertised. */
+  sightings?: Sighting[];
 }
+export interface Sighting { source: string; place: string; paymentRef: string; seenAt: string; note?: string }
