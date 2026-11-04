@@ -3,7 +3,7 @@
 ## Seven layers
 
 | Layer | Job | Code |
-|---    |---  |---  |
+|---|---|---|
 | L1 Ingest & Lineage | Normalise feeds into `PaymentEvent`, classify, separate timestamps, link refunds, hash identifiers, build the coverage map | `data/transactions.ts`, `engines/investigationEngine.ts` (`layer1`), `layers/L1Ingestion` |
 | L2 Merchant Profile | Declared profile and three baselines (anchored, seasonal, rolling) | `engines/residualEngine.ts`, `engines/cusumEngine.ts`, `layers/L2MerchantProfile` |
 | L3 Detection | Transparent detectors over nine families, emitting `EvidenceItem` | `engines/detectors.ts`, `engines/cohortContinuity.ts` |

@@ -12,10 +12,6 @@ The project has two parts:
 
 ## Run it
 
-start.sh for everyone 
-
-for chomu chelesani :---------
-
 Requires Node.js 20 or later.
 
 ```bash
@@ -56,8 +52,8 @@ Use the **Fast** toggle in the demo header to shorten the simulated processing t
 
 ## How it works in brief
 
-1. Deterministic generators (`src/data/transactions.ts`) create event stores from fixed seeds.
-2. `runInvestigation` (`src/engines/investigationEngine.ts`) is a pure function: same scenario in, same result out.
+1. Deterministic generators (`frontend/src/data/transactions.ts`) create event stores from fixed seeds.
+2. `runInvestigation` (`frontend/src/engines/investigationEngine.ts`) is a pure function: same scenario in, same result out.
 3. Detectors compute their results from the records (residuals, CUSUM, round-number heaping, geographic mismatch, pre-match funding lift against a same-clock-time control, refund reconciliation, beneficiary changes, cohort continuity and more). Nothing about the final verdict is hard-coded.
 4. Fusion collapses correlated signals, excludes UNKNOWN, weights by reliability and fake difficulty, applies the two-independent-family gate and ranks four mechanism hypotheses.
 5. The UI reveals layer results progressively; the analyst, response and learning steps respond to your inputs.
@@ -65,7 +61,10 @@ Use the **Fast** toggle in the demo header to shorten the simulated processing t
 ## Project layout
 
 ```
-src/
+frontend/
+  index.html
+  public/       static assets
+  src/
   data/        merchants, scenarios, graphs, synthetic transaction generators, layer metadata
   engines/     residual, CUSUM, cohort continuity, detectors, fusion, analyst, response, learning
   layers/      L1–L7 views
@@ -73,6 +72,7 @@ src/
   components/  ui, charts, graphs (React Flow), navigation, common
   hooks/       investigation context (orchestration and user state)
   types/       payment, merchant, evidence, investigation
+backend/       reserved for a future API; this prototype has no backend
 docs/          ARCHITECTURE, DEMO_GUIDE, DATA_MODEL, FUTURE_BACKEND
 scripts/       selftest.ts
 ```
