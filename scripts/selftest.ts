@@ -11,4 +11,5 @@ for (const id of SCENARIO_IDS) {
   console.log('mechanisms', f.mechanisms.map(m => `${m.id}:${m.score.toFixed(2)}`).join(' '));
   console.log('legit', a.review.legitStatus, '| recommended', a.review.recommended, '| fit', a.review.frontFit.toFixed(2));
   console.log('residuals', a.l2.rows.slice(-3).map(r => r.rSeasonal?.toFixed(2)).join(' '), 'cusum', a.l2.cusum.map(c => c.s.toFixed(2)).slice(-3).join(' '));
+  
 }

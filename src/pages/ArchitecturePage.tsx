@@ -13,6 +13,7 @@ const IMPL: [string, string, string][] = [
   ['L6 Governed Response', 'Six levels, authority gate, simulated HoldRecord, action audit', 'Integration with payment rails, legal workflow, maker-checker'],
   ['L7 Audit & Learning', 'Labels, indicators, reliability updates, hash-chained audit', 'Immutable store, backtesting, model governance'],
 ];
+
 export function ArchitecturePage() {
   return (
     <div className="min-h-screen bg-bg"><PublicNav />

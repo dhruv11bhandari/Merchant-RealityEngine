@@ -12,6 +12,7 @@ const Section = ({ id, title, lead, children }: { id: string; title: string; lea
     <h2 className="max-w-3xl text-3xl font-semibold tracking-tight md:text-4xl">{title}</h2>{lead && <p className="mt-3 max-w-2xl text-base text-mute">{lead}</p>}<div className="mt-10">{children}</div></div></section>
 );
 
+
 function Bars({ data, color, hi }: { data: number[]; color: string; hi?: number[] }) {
   const m = Math.max(...data);
   return <div className="flex h-24 items-end gap-1.5">{data.map((v, i) => <div key={i} className="flex-1 rounded-t" style={{ height: `${(v / m) * 100}%`, background: hi?.includes(i) ? '#f87171' : color, opacity: 0.85 }} />)}</div>;
