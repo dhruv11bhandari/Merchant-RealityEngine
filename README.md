@@ -12,6 +12,10 @@ The project has two parts:
 
 ## Run it
 
+start.sh for everyone 
+
+for chomu chelesani :---------
+
 Requires Node.js 20 or later.
 
 ```bash
