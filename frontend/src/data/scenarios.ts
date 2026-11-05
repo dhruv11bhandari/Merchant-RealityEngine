@@ -21,6 +21,8 @@ const builders: Record<ScenarioId, () => Scenario> = {
     tone: 'illicit', expectedOutcome: 'Case opened. Legitimate chain fails. Targeted link restriction recommended; in-store terminal stays live.', scriptedLabel: 'CONFIRMED_ILLICIT',
     weekly: weeklySeries(11, 180000, [...ones(12), 1.25, 1.8, 2.9, 3.0], [...ones(12), 1.2, 1.6, 2.0, 2.0]),
     coverage: cov({}), verification: null,
+    footprint: { supplierPaymentsMonthly: 52000, gstTurnoverMonthly: 310000 },
+    sightings: [{ source: 'Telegram', place: 'public channel “IPL Sure Win 24×7” (synthetic)', paymentRef: 'PL-SCB-07', seenAt: '2026-10-21', note: 'Pinned post: “deposit here, instant ID”' }],
     synthetic: '3× UPI collections · ₹500/1,000/2,000 heaping · payers from 9 states · funding before match starts · refunds with no original sale · refunds to different destinations · payment link on a betting deposit page · order and bank data missing',
   }),
   rotation: () => make('rotation', genRotation(), {
@@ -37,6 +39,7 @@ const builders: Record<ScenarioId, () => Scenario> = {
     tone: 'illicit', expectedOutcome: 'Case opened on four independent families. Adjudication stays unresolved until the merchant responds.', scriptedLabel: 'UNRESOLVED',
     weekly: weeklySeries(33, 150000, [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.1, 1.2, 1.4, 1.9, 2.3, 2.4], ones(16)),
     coverage: cov({ orders: 'AVAILABLE', fulfillment: 'AVAILABLE', verification: 'AVAILABLE', calendar: 'MISSING' }), verification: { contacted: 12, confirmed: 3 },
+    footprint: { supplierPaymentsMonthly: 31000, gstTurnoverMonthly: 140000 },
     synthetic: '41% of payments match an order · 22% of orders verified delivered · tracking IDs reused · duplicated catalogue imagery · 3 of 12 sampled purchasers confirm buying',
   }),
   diwali: () => make('diwali', genDiwali(), {
@@ -45,6 +48,7 @@ const builders: Record<ScenarioId, () => Scenario> = {
     tone: 'benign', expectedOutcome: 'No illicit case opened. The volume alarm is explained; the seasonal profile is refreshed.', scriptedLabel: 'ADJUDICATED_BENIGN',
     weekly: weeklySeries(44, 160000, [...ones(12), 1.25, 1.8, 2.9, 3.0], [...ones(12), 1.2, 1.6, 2.0, 2.0]),
     coverage: cov({ orders: 'AVAILABLE', bank: 'AVAILABLE', fulfillment: 'AVAILABLE', verification: 'AVAILABLE' }), verification: { contacted: 10, confirmed: 10 },
+    footprint: { supplierPaymentsMonthly: 220000, gstTurnoverMonthly: 520000 },
     synthetic: '3× festival volume · 96% local customers · menu-fit baskets · 98% of payments match orders · deliveries verified · settlements reconcile to bank credits',
   }),
 };

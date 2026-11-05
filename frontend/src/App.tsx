@@ -1,4 +1,7 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Navigate, Route, Routes } from 'react-router-dom';
+
+// Hash routing is used for static previews where the server cannot rewrite deep links.
+const Router = import.meta.env.VITE_HASH_ROUTER === '1' ? HashRouter : BrowserRouter;
 import { InvestigationProvider } from './hooks/useInvestigation';
 import { DemoShell } from './components/navigation/DemoShell';
 import { HomePage } from './pages/HomePage';
@@ -11,14 +14,19 @@ import { DetectionPage } from './pages/DetectionPage';
 import { AnalystPage } from './pages/AnalystPage';
 import { ResponsePage } from './pages/ResponsePage';
 import { AuditPage } from './pages/AuditPage';
+import { UploadPage } from './pages/UploadPage';
+import { PatternsPage } from './pages/PatternsPage';
+import { PortfolioPage } from './pages/PortfolioPage';
+import { CasePage } from './pages/CasePage';
+import { PortfolioProvider } from './hooks/usePortfolio';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/architecture" element={<ArchitecturePage />} />
-        <Route path="/demo" element={<InvestigationProvider><DemoShell /></InvestigationProvider>}>
+        <Route path="/demo" element={<PortfolioProvider><InvestigationProvider><DemoShell /></InvestigationProvider></PortfolioProvider>}>
           <Route index element={<DemoPage />} />
           <Route path="merchant" element={<MerchantPage />} />
           <Route path="investigations" element={<InvestigationPage />} />
@@ -27,9 +35,13 @@ export default function App() {
           <Route path="analyst" element={<AnalystPage />} />
           <Route path="response" element={<ResponsePage />} />
           <Route path="audit" element={<AuditPage />} />
+          <Route path="upload" element={<UploadPage />} />
+          <Route path="portfolio" element={<PortfolioPage />} />
+          <Route path="portfolio/:key" element={<CasePage />} />
+          <Route path="patterns" element={<PatternsPage />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }

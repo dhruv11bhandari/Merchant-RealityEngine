@@ -1,0 +1,154 @@
+{
+  "format": "mre-dataset/v1",
+  "title": "Template — replace with your merchant",
+  "description": "Minimal valid file. Replace the values and add transactions.",
+  "merchant": {
+    "id": "M-0001",
+    "name": "Your Merchant",
+    "city": "City, India",
+    "mcc": "5462",
+    "category": "Bakeries",
+    "products": [
+      "Bread"
+    ],
+    "ticketMin": 100,
+    "ticketMax": 1000,
+    "hours": [
+      8,
+      21
+    ],
+    "catchment": "LOCAL",
+    "localStates": [
+      "KA"
+    ],
+    "expectedRoundShare": 0.06,
+    "seasonalPeak": 1,
+    "baselineWeekly": 100000,
+    "accountAgeDays": 400,
+    "declaredDomains": [
+      "yourmerchant.example"
+    ],
+    "declaredChannels": [
+      "In-store POS"
+    ],
+    "declaredActivity": [
+      "In-store purchases"
+    ]
+  },
+  "weeklySales": [
+    {
+      "week": "W1",
+      "actual": 100000,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W2",
+      "actual": 100000,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W3",
+      "actual": 100000,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W4",
+      "actual": 100000,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W5",
+      "actual": 100000,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W6",
+      "actual": 100000,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W7",
+      "actual": 100000,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W8",
+      "actual": 100000,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W9",
+      "actual": 100000,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W10",
+      "actual": 100000,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W11",
+      "actual": 100000,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W12",
+      "actual": 100000,
+      "seasonalMultiplier": 1
+    }
+  ],
+  "transactions": [
+    {
+      "id": "T1",
+      "merchantId": "M-0001",
+      "type": "SALE",
+      "amount": 240,
+      "time": "2026-10-20T09:15:00+05:30",
+      "payerId": "cust1@upi",
+      "payerState": "KA",
+      "channel": "POS",
+      "paymentLinkId": "TERM-01"
+    },
+    {
+      "id": "T2",
+      "merchantId": "M-0001",
+      "type": "SALE",
+      "amount": 410,
+      "time": "2026-10-20T18:05:00+05:30",
+      "payerId": "cust2@upi",
+      "payerState": "KA",
+      "channel": "UPI_LINK",
+      "paymentLinkId": "PL-01"
+    },
+    {
+      "id": "T3",
+      "merchantId": "M-0001",
+      "type": "REFUND",
+      "amount": 240,
+      "time": "2026-10-20T19:00:00+05:30",
+      "payerId": "cust1@upi",
+      "payerState": "KA",
+      "channel": "POS",
+      "refundOfTransactionId": "T1"
+    },
+    {
+      "id": "T4",
+      "merchantId": "M-0001",
+      "type": "SETTLEMENT",
+      "amount": 410,
+      "time": "2026-10-21T11:00:00+05:30",
+      "channel": "BANK",
+      "beneficiaryAccount": "BEN-001"
+    }
+  ],
+  "matchFixtures": [],
+  "dataAvailability": {
+    "acquiring": "AVAILABLE",
+    "website": "MISSING",
+    "orders": "MISSING",
+    "bank": "MISSING",
+    "fulfillment": "MISSING",
+    "calendar": "MISSING",
+    "verification": "MISSING"
+  }
+}

@@ -22,13 +22,14 @@ export function PublicNav() {
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
           {ITEMS.map(([l, id]) => <button key={id} onClick={() => go(id)} className="rounded px-3 py-1.5 text-sm text-mute hover:text-ink">{l}</button>)}
           <Link to="/architecture" className="rounded px-3 py-1.5 text-sm text-mute hover:text-ink">Architecture</Link>
-          <Link to="/demo" className="rounded px-3 py-1.5 text-sm text-mute hover:text-ink">Live Demo</Link>
+          <Link to="/demo/portfolio" className="rounded px-3 py-1.5 text-sm text-mute hover:text-ink">Demo</Link>
+          <Link to="/demo" className="rounded px-3 py-1.5 text-sm text-mute hover:text-ink">Live System</Link>
         </nav>
-        <div className="flex items-center gap-2"><Link to="/demo"><Btn variant="primary" size="sm">Launch Demo</Btn></Link>
+        <div className="flex items-center gap-2"><Link to="/demo/portfolio"><Btn variant="primary" size="sm">Try the demo</Btn></Link>
           <button className="rounded p-1.5 text-mute md:hidden" onClick={() => setOpen(o => !o)} aria-label="Menu" aria-expanded={open}>{open ? <X size={20} /> : <Menu size={20} />}</button></div>
       </div>
       {open && <div className="border-t border-line px-5 py-3 md:hidden">{ITEMS.map(([l, id]) => <button key={id} onClick={() => { setOpen(false); go(id); }} className="block w-full py-2 text-left text-sm text-mute">{l}</button>)}
-        <Link to="/architecture" className="block py-2 text-sm text-mute" onClick={() => setOpen(false)}>Architecture</Link><Link to="/demo" className="block py-2 text-sm text-mute" onClick={() => setOpen(false)}>Live Demo</Link></div>}
+        <Link to="/architecture" className="block py-2 text-sm text-mute" onClick={() => setOpen(false)}>Architecture</Link><Link to="/demo/portfolio" className="block py-2 text-sm text-mute" onClick={() => setOpen(false)}>Demo</Link><Link to="/demo" className="block py-2 text-sm text-mute" onClick={() => setOpen(false)}>Live System</Link></div>}
     </header>
   );
 }

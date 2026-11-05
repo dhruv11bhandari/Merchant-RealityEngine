@@ -1,0 +1,2735 @@
+{
+  "format": "mre-dataset/v1",
+  "title": "Aarav Home Decor Online — fabricated commercial substance",
+  "description": "Aarav Home Decor Online has a plausible storefront, but fewer than half of payments link to orders, shipment records reuse tracking IDs, catalogue images are shared with other stores, and most sampled purchasers deny buying.",
+  "merchant": {
+    "id": "M-AHD-310",
+    "name": "Aarav Home Decor Online",
+    "city": "Jaipur, India",
+    "mcc": "5712",
+    "category": "Furniture and home furnishings",
+    "products": [
+      "Furniture",
+      "Lighting",
+      "Wall decor"
+    ],
+    "ticketMin": 800,
+    "ticketMax": 9000,
+    "hours": [
+      0,
+      24
+    ],
+    "catchment": "NATIONAL",
+    "localStates": [],
+    "expectedRoundShare": 0.04,
+    "seasonalPeak": 1,
+    "baselineWeekly": 150000,
+    "accountAgeDays": 240,
+    "declaredDomains": [
+      "aaravhome.example"
+    ],
+    "declaredChannels": [
+      "Online store (national shipping)"
+    ],
+    "declaredActivity": [
+      "Home decor e-commerce"
+    ]
+  },
+  "peers": [],
+  "weeklySales": [
+    {
+      "week": "W1",
+      "actual": 150457,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W2",
+      "actual": 152155,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W3",
+      "actual": 151081,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W4",
+      "actual": 145648,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W5",
+      "actual": 149519,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W6",
+      "actual": 152870,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W7",
+      "actual": 147894,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W8",
+      "actual": 150829,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W9",
+      "actual": 152610,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W10",
+      "actual": 154165,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W11",
+      "actual": 163242,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W12",
+      "actual": 180000,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W13",
+      "actual": 210000,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W14",
+      "actual": 285000,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W15",
+      "actual": 345000,
+      "seasonalMultiplier": 1
+    },
+    {
+      "week": "W16",
+      "actual": 360000,
+      "seasonalMultiplier": 1
+    }
+  ],
+  "transactions": [
+    {
+      "id": "TX0001",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 899,
+      "time": "2026-10-19T15:16:43+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-20T11:00:00+05:30",
+      "payerId": "buyer0031@upi",
+      "payerState": "DL",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0002",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2799,
+      "time": "2026-10-19T19:20:18+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-20T11:00:00+05:30",
+      "payerId": "buyer0077@upi",
+      "payerState": "MP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0003",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2399,
+      "time": "2026-10-19T21:10:43+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-20T11:00:00+05:30",
+      "payerId": "buyer0018@upi",
+      "payerState": "HR",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0004",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 899,
+      "time": "2026-10-20T08:16:48+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-21T11:00:00+05:30",
+      "payerId": "buyer0017@upi",
+      "payerState": "MP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5007",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0005",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 6499,
+      "time": "2026-10-20T09:04:34+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-21T11:00:00+05:30",
+      "payerId": "buyer0005@upi",
+      "payerState": "TN",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0006",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 1299,
+      "time": "2026-10-20T09:35:10+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-21T11:00:00+05:30",
+      "payerId": "buyer0114@upi",
+      "payerState": "KA",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5040",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0007",
+      "merchantId": "M-AHD-310",
+      "type": "SETTLEMENT",
+      "amount": 6097,
+      "time": "2026-10-20T11:00:00+05:30",
+      "channel": "BANK",
+      "beneficiaryAccount": "BEN-001",
+      "sourceFeed": "settlement.ledger"
+    },
+    {
+      "id": "TX0008",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 7999,
+      "time": "2026-10-20T11:47:18+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-21T11:00:00+05:30",
+      "payerId": "buyer0070@upi",
+      "payerState": "MH",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0009",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 3899,
+      "time": "2026-10-20T12:01:52+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-21T11:00:00+05:30",
+      "payerId": "buyer0081@upi",
+      "payerState": "DL",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0010",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 999,
+      "time": "2026-10-20T13:32:51+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-21T11:00:00+05:30",
+      "payerId": "buyer0122@upi",
+      "payerState": "MP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5043",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0011",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 4999,
+      "time": "2026-10-20T16:32:44+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-21T11:00:00+05:30",
+      "payerId": "buyer0092@upi",
+      "payerState": "MP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0012",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2799,
+      "time": "2026-10-20T17:12:37+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-21T11:00:00+05:30",
+      "payerId": "buyer0048@upi",
+      "payerState": "TN",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0013",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2199,
+      "time": "2026-10-20T19:36:16+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-21T11:00:00+05:30",
+      "payerId": "buyer0001@upi",
+      "payerState": "MH",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0014",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 7999,
+      "time": "2026-10-20T19:49:12+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-21T11:00:00+05:30",
+      "payerId": "buyer0050@upi",
+      "payerState": "GJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0015",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 7999,
+      "time": "2026-10-20T22:36:16+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-21T11:00:00+05:30",
+      "payerId": "buyer0022@upi",
+      "payerState": "HR",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0016",
+      "merchantId": "M-AHD-310",
+      "type": "SETTLEMENT",
+      "amount": 47589,
+      "time": "2026-10-21T11:00:00+05:30",
+      "channel": "BANK",
+      "beneficiaryAccount": "BEN-001",
+      "sourceFeed": "settlement.ledger"
+    },
+    {
+      "id": "TX0017",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 6499,
+      "time": "2026-10-21T14:13:12+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-22T11:00:00+05:30",
+      "payerId": "buyer0068@upi",
+      "payerState": "HR",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0018",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2199,
+      "time": "2026-10-21T15:34:12+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-22T11:00:00+05:30",
+      "payerId": "buyer0036@upi",
+      "payerState": "UP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5014",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0019",
+      "merchantId": "M-AHD-310",
+      "type": "REFUND",
+      "amount": 2799,
+      "time": "2026-10-21T17:12:37+05:30",
+      "channel": "ONLINE",
+      "payerId": "buyer0048@upi",
+      "payerState": "TN",
+      "refundOfTransactionId": "TX0012",
+      "sourceFeed": "acquirer.refund"
+    },
+    {
+      "id": "TX0020",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 5499,
+      "time": "2026-10-21T19:16:43+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-22T11:00:00+05:30",
+      "payerId": "buyer0012@upi",
+      "payerState": "MP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0021",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 899,
+      "time": "2026-10-21T22:02:43+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-22T11:00:00+05:30",
+      "payerId": "buyer0063@upi",
+      "payerState": "UP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0022",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 3899,
+      "time": "2026-10-21T22:12:18+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-22T11:00:00+05:30",
+      "payerId": "buyer0116@upi",
+      "payerState": "MP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5041",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0023",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 3899,
+      "time": "2026-10-22T08:09:15+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-23T11:00:00+05:30",
+      "payerId": "buyer0087@upi",
+      "payerState": "RJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0024",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 7999,
+      "time": "2026-10-22T10:18:10+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-23T11:00:00+05:30",
+      "payerId": "buyer0090@upi",
+      "payerState": "WB",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0025",
+      "merchantId": "M-AHD-310",
+      "type": "SETTLEMENT",
+      "amount": 18995,
+      "time": "2026-10-22T11:00:00+05:30",
+      "channel": "BANK",
+      "beneficiaryAccount": "BEN-001",
+      "sourceFeed": "settlement.ledger"
+    },
+    {
+      "id": "TX0026",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 3899,
+      "time": "2026-10-22T12:24:32+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-23T11:00:00+05:30",
+      "payerId": "buyer0094@upi",
+      "payerState": "GJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0027",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 999,
+      "time": "2026-10-22T14:33:51+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-23T11:00:00+05:30",
+      "payerId": "buyer0069@upi",
+      "payerState": "DL",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5028",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0028",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 7999,
+      "time": "2026-10-22T16:36:34+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-23T11:00:00+05:30",
+      "payerId": "buyer0028@upi",
+      "payerState": "KA",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5011",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0029",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 7999,
+      "time": "2026-10-22T17:43:03+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-23T11:00:00+05:30",
+      "payerId": "buyer0015@upi",
+      "payerState": "RJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5005",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0030",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2799,
+      "time": "2026-10-22T18:03:59+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-23T11:00:00+05:30",
+      "payerId": "buyer0080@upi",
+      "payerState": "MP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5030",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0031",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 6499,
+      "time": "2026-10-22T22:37:39+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-23T11:00:00+05:30",
+      "payerId": "buyer0098@upi",
+      "payerState": "DL",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5033",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0032",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 7999,
+      "time": "2026-10-22T22:39:55+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-23T11:00:00+05:30",
+      "payerId": "buyer0079@upi",
+      "payerState": "WB",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0033",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 899,
+      "time": "2026-10-23T08:14:57+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-24T11:00:00+05:30",
+      "payerId": "buyer0021@upi",
+      "payerState": "DL",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0034",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 3299,
+      "time": "2026-10-23T09:26:53+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-24T11:00:00+05:30",
+      "payerId": "buyer0084@upi",
+      "payerState": "TN",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0035",
+      "merchantId": "M-AHD-310",
+      "type": "SETTLEMENT",
+      "amount": 50091,
+      "time": "2026-10-23T11:00:00+05:30",
+      "channel": "BANK",
+      "beneficiaryAccount": "BEN-001",
+      "sourceFeed": "settlement.ledger"
+    },
+    {
+      "id": "TX0036",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2799,
+      "time": "2026-10-23T11:12:50+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-24T11:00:00+05:30",
+      "payerId": "buyer0086@upi",
+      "payerState": "MP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0037",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 4999,
+      "time": "2026-10-23T12:03:10+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-24T11:00:00+05:30",
+      "payerId": "buyer0124@upi",
+      "payerState": "DL",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5045",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0038",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 6499,
+      "time": "2026-10-23T12:27:03+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-24T11:00:00+05:30",
+      "payerId": "buyer0095@upi",
+      "payerState": "MP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0039",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 899,
+      "time": "2026-10-23T14:21:03+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-24T11:00:00+05:30",
+      "payerId": "buyer0046@upi",
+      "payerState": "UP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0040",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 6499,
+      "time": "2026-10-23T17:58:31+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-24T11:00:00+05:30",
+      "payerId": "buyer0106@upi",
+      "payerState": "HR",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5037",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0041",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 999,
+      "time": "2026-10-23T20:09:22+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-24T11:00:00+05:30",
+      "payerId": "buyer0115@upi",
+      "payerState": "KA",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0042",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 5499,
+      "time": "2026-10-24T08:40:07+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-25T11:00:00+05:30",
+      "payerId": "buyer0104@upi",
+      "payerState": "GJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5036",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0043",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 5499,
+      "time": "2026-10-24T10:40:38+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-25T11:00:00+05:30",
+      "payerId": "buyer0010@upi",
+      "payerState": "RJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5003",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0044",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 3899,
+      "time": "2026-10-24T10:48:32+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-25T11:00:00+05:30",
+      "payerId": "buyer0111@upi",
+      "payerState": "GJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0045",
+      "merchantId": "M-AHD-310",
+      "type": "SETTLEMENT",
+      "amount": 26892,
+      "time": "2026-10-24T11:00:00+05:30",
+      "channel": "BANK",
+      "beneficiaryAccount": "BEN-001",
+      "sourceFeed": "settlement.ledger"
+    },
+    {
+      "id": "TX0046",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2199,
+      "time": "2026-10-24T11:26:30+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-25T11:00:00+05:30",
+      "payerId": "buyer0097@upi",
+      "payerState": "KA",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0047",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 6499,
+      "time": "2026-10-24T11:52:16+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-25T11:00:00+05:30",
+      "payerId": "buyer0062@upi",
+      "payerState": "RJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0048",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 4999,
+      "time": "2026-10-24T11:55:27+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-25T11:00:00+05:30",
+      "payerId": "buyer0078@upi",
+      "payerState": "GJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0049",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 1899,
+      "time": "2026-10-24T13:06:56+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-25T11:00:00+05:30",
+      "payerId": "buyer0009@upi",
+      "payerState": "HR",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0050",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 5499,
+      "time": "2026-10-24T13:47:10+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-25T11:00:00+05:30",
+      "payerId": "buyer0055@upi",
+      "payerState": "GJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5021",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0051",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 7999,
+      "time": "2026-10-24T15:39:23+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-25T11:00:00+05:30",
+      "payerId": "buyer0047@upi",
+      "payerState": "MH",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5018",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0052",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2799,
+      "time": "2026-10-24T17:49:08+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-25T11:00:00+05:30",
+      "payerId": "buyer0003@upi",
+      "payerState": "MH",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0053",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 5499,
+      "time": "2026-10-24T18:30:22+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-25T11:00:00+05:30",
+      "payerId": "buyer0118@upi",
+      "payerState": "DL",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0054",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 4999,
+      "time": "2026-10-24T22:07:58+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-25T11:00:00+05:30",
+      "payerId": "buyer0089@upi",
+      "payerState": "DL",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0055",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 3299,
+      "time": "2026-10-25T08:27:23+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-26T11:00:00+05:30",
+      "payerId": "buyer0103@upi",
+      "payerState": "GJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5035",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0056",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2399,
+      "time": "2026-10-25T10:00:23+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-26T11:00:00+05:30",
+      "payerId": "buyer0060@upi",
+      "payerState": "HR",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0057",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 899,
+      "time": "2026-10-25T10:48:58+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-26T11:00:00+05:30",
+      "payerId": "buyer0035@upi",
+      "payerState": "TN",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0058",
+      "merchantId": "M-AHD-310",
+      "type": "SETTLEMENT",
+      "amount": 57288,
+      "time": "2026-10-25T11:00:00+05:30",
+      "channel": "BANK",
+      "beneficiaryAccount": "BEN-001",
+      "sourceFeed": "settlement.ledger"
+    },
+    {
+      "id": "TX0059",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 1499,
+      "time": "2026-10-25T11:59:36+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-26T11:00:00+05:30",
+      "payerId": "buyer0008@upi",
+      "payerState": "UP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0060",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 3299,
+      "time": "2026-10-25T12:45:39+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-26T11:00:00+05:30",
+      "payerId": "buyer0074@upi",
+      "payerState": "WB",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5029",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0061",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2399,
+      "time": "2026-10-25T15:21:42+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-26T11:00:00+05:30",
+      "payerId": "buyer0119@upi",
+      "payerState": "TN",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0062",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 3899,
+      "time": "2026-10-25T16:08:21+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-26T11:00:00+05:30",
+      "payerId": "buyer0076@upi",
+      "payerState": "UP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0063",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 1499,
+      "time": "2026-10-25T17:07:02+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-26T11:00:00+05:30",
+      "payerId": "buyer0093@upi",
+      "payerState": "GJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0064",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 1499,
+      "time": "2026-10-25T18:42:44+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-26T11:00:00+05:30",
+      "payerId": "buyer0043@upi",
+      "payerState": "MH",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0065",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2799,
+      "time": "2026-10-25T19:58:49+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-26T11:00:00+05:30",
+      "payerId": "buyer0123@upi",
+      "payerState": "MH",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5044",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0066",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 899,
+      "time": "2026-10-25T20:22:23+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-26T11:00:00+05:30",
+      "payerId": "buyer0108@upi",
+      "payerState": "DL",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5038",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0067",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 7999,
+      "time": "2026-10-25T20:48:26+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-26T11:00:00+05:30",
+      "payerId": "buyer0053@upi",
+      "payerState": "WB",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5019",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0068",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 3299,
+      "time": "2026-10-26T08:47:19+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-27T11:00:00+05:30",
+      "payerId": "buyer0085@upi",
+      "payerState": "UP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0069",
+      "merchantId": "M-AHD-310",
+      "type": "SETTLEMENT",
+      "amount": 32388,
+      "time": "2026-10-26T11:00:00+05:30",
+      "channel": "BANK",
+      "beneficiaryAccount": "BEN-001",
+      "sourceFeed": "settlement.ledger"
+    },
+    {
+      "id": "TX0070",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 4999,
+      "time": "2026-10-26T11:23:42+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-27T11:00:00+05:30",
+      "payerId": "buyer0025@upi",
+      "payerState": "TN",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0071",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 5499,
+      "time": "2026-10-26T12:31:13+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-27T11:00:00+05:30",
+      "payerId": "buyer0033@upi",
+      "payerState": "MP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0072",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 1899,
+      "time": "2026-10-26T12:46:47+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-27T11:00:00+05:30",
+      "payerId": "buyer0016@upi",
+      "payerState": "RJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5006",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0073",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 4999,
+      "time": "2026-10-26T16:06:46+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-27T11:00:00+05:30",
+      "payerId": "buyer0091@upi",
+      "payerState": "MH",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5031",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0074",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 1299,
+      "time": "2026-10-26T16:17:07+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-27T11:00:00+05:30",
+      "payerId": "buyer0121@upi",
+      "payerState": "DL",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0075",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2799,
+      "time": "2026-10-26T17:54:14+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-27T11:00:00+05:30",
+      "payerId": "buyer0067@upi",
+      "payerState": "DL",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5027",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0076",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 4999,
+      "time": "2026-10-26T20:48:30+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-27T11:00:00+05:30",
+      "payerId": "buyer0075@upi",
+      "payerState": "MH",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0077",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 3899,
+      "time": "2026-10-26T21:11:13+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-27T11:00:00+05:30",
+      "payerId": "buyer0020@upi",
+      "payerState": "MP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0078",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 4999,
+      "time": "2026-10-26T21:16:16+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-27T11:00:00+05:30",
+      "payerId": "buyer0056@upi",
+      "payerState": "MP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0079",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 899,
+      "time": "2026-10-26T21:55:13+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-27T11:00:00+05:30",
+      "payerId": "buyer0026@upi",
+      "payerState": "KA",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0080",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2399,
+      "time": "2026-10-27T09:35:58+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-28T11:00:00+05:30",
+      "payerId": "buyer0082@upi",
+      "payerState": "UP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0081",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 4999,
+      "time": "2026-10-27T10:55:42+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-28T11:00:00+05:30",
+      "payerId": "buyer0107@upi",
+      "payerState": "TN",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0082",
+      "merchantId": "M-AHD-310",
+      "type": "SETTLEMENT",
+      "amount": 39589,
+      "time": "2026-10-27T11:00:00+05:30",
+      "channel": "BANK",
+      "beneficiaryAccount": "BEN-001",
+      "sourceFeed": "settlement.ledger"
+    },
+    {
+      "id": "TX0083",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 6499,
+      "time": "2026-10-27T11:39:49+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-28T11:00:00+05:30",
+      "payerId": "buyer0113@upi",
+      "payerState": "DL",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0084",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 3899,
+      "time": "2026-10-27T13:23:30+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-28T11:00:00+05:30",
+      "payerId": "buyer0044@upi",
+      "payerState": "UP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0085",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 1299,
+      "time": "2026-10-27T15:45:24+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-28T11:00:00+05:30",
+      "payerId": "buyer0112@upi",
+      "payerState": "UP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0086",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 4999,
+      "time": "2026-10-27T16:08:20+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-28T11:00:00+05:30",
+      "payerId": "buyer0001@upi",
+      "payerState": "WB",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5046",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0087",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 7999,
+      "time": "2026-10-27T20:34:14+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-28T11:00:00+05:30",
+      "payerId": "buyer0064@upi",
+      "payerState": "MP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0088",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 7999,
+      "time": "2026-10-27T21:28:14+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-28T11:00:00+05:30",
+      "payerId": "buyer0037@upi",
+      "payerState": "MP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5015",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0089",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 7999,
+      "time": "2026-10-28T08:54:10+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-29T11:00:00+05:30",
+      "payerId": "buyer0006@upi",
+      "payerState": "MP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0090",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 999,
+      "time": "2026-10-28T10:11:43+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-29T11:00:00+05:30",
+      "payerId": "buyer0034@upi",
+      "payerState": "GJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0091",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2399,
+      "time": "2026-10-28T10:26:31+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-29T11:00:00+05:30",
+      "payerId": "buyer0039@upi",
+      "payerState": "UP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0092",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 1299,
+      "time": "2026-10-28T10:35:27+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-29T11:00:00+05:30",
+      "payerId": "buyer0117@upi",
+      "payerState": "HR",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5042",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0093",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 1899,
+      "time": "2026-10-28T10:56:37+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-29T11:00:00+05:30",
+      "payerId": "buyer0013@upi",
+      "payerState": "GJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5004",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0094",
+      "merchantId": "M-AHD-310",
+      "type": "SETTLEMENT",
+      "amount": 40092,
+      "time": "2026-10-28T11:00:00+05:30",
+      "channel": "BANK",
+      "beneficiaryAccount": "BEN-001",
+      "sourceFeed": "settlement.ledger"
+    },
+    {
+      "id": "TX0095",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 1299,
+      "time": "2026-10-28T11:25:59+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-29T11:00:00+05:30",
+      "payerId": "buyer0041@upi",
+      "payerState": "KA",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0096",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2199,
+      "time": "2026-10-28T14:22:22+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-29T11:00:00+05:30",
+      "payerId": "buyer0042@upi",
+      "payerState": "MP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0097",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 4999,
+      "time": "2026-10-28T16:04:38+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-29T11:00:00+05:30",
+      "payerId": "buyer0040@upi",
+      "payerState": "TN",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0098",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 999,
+      "time": "2026-10-28T16:33:03+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-29T11:00:00+05:30",
+      "payerId": "buyer0101@upi",
+      "payerState": "MH",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0099",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 7999,
+      "time": "2026-10-28T16:36:21+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-29T11:00:00+05:30",
+      "payerId": "buyer0061@upi",
+      "payerState": "WB",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0100",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 6499,
+      "time": "2026-10-28T16:51:50+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-29T11:00:00+05:30",
+      "payerId": "buyer0096@upi",
+      "payerState": "MH",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5032",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0101",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 899,
+      "time": "2026-10-28T17:03:28+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-29T11:00:00+05:30",
+      "payerId": "buyer0011@upi",
+      "payerState": "MH",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0102",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 7999,
+      "time": "2026-10-28T17:21:13+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-29T11:00:00+05:30",
+      "payerId": "buyer0006@upi",
+      "payerState": "HR",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5001",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0103",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2399,
+      "time": "2026-10-28T17:59:09+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-29T11:00:00+05:30",
+      "payerId": "buyer0030@upi",
+      "payerState": "MP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0104",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 6499,
+      "time": "2026-10-28T20:55:23+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-29T11:00:00+05:30",
+      "payerId": "buyer0051@upi",
+      "payerState": "WB",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0105",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 6499,
+      "time": "2026-10-28T21:27:16+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-29T11:00:00+05:30",
+      "payerId": "buyer0003@upi",
+      "payerState": "MP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5048",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0106",
+      "merchantId": "M-AHD-310",
+      "type": "SETTLEMENT",
+      "amount": 62884,
+      "time": "2026-10-29T11:00:00+05:30",
+      "channel": "BANK",
+      "beneficiaryAccount": "BEN-001",
+      "sourceFeed": "settlement.ledger"
+    },
+    {
+      "id": "TX0107",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2799,
+      "time": "2026-10-29T13:08:02+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-30T11:00:00+05:30",
+      "payerId": "buyer0102@upi",
+      "payerState": "RJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5034",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0108",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 5499,
+      "time": "2026-10-29T13:13:24+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-30T11:00:00+05:30",
+      "payerId": "buyer0059@upi",
+      "payerState": "DL",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5024",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0109",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 4999,
+      "time": "2026-10-29T14:42:06+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-30T11:00:00+05:30",
+      "payerId": "buyer0065@upi",
+      "payerState": "UP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5025",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0110",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 1499,
+      "time": "2026-10-29T15:24:11+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-30T11:00:00+05:30",
+      "payerId": "buyer0083@upi",
+      "payerState": "DL",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0111",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 5499,
+      "time": "2026-10-29T15:34:27+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-30T11:00:00+05:30",
+      "payerId": "buyer0002@upi",
+      "payerState": "TN",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5000",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0112",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 6499,
+      "time": "2026-10-29T16:00:07+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-30T11:00:00+05:30",
+      "payerId": "buyer0045@upi",
+      "payerState": "UP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5017",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0113",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 999,
+      "time": "2026-10-29T18:14:59+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-30T11:00:00+05:30",
+      "payerId": "buyer0099@upi",
+      "payerState": "GJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0114",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 6499,
+      "time": "2026-10-29T19:20:41+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-30T11:00:00+05:30",
+      "payerId": "buyer0008@upi",
+      "payerState": "MH",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5002",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0115",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 1899,
+      "time": "2026-10-29T19:56:00+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-30T11:00:00+05:30",
+      "payerId": "buyer0049@upi",
+      "payerState": "HR",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0116",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 1899,
+      "time": "2026-10-29T21:56:32+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-30T11:00:00+05:30",
+      "payerId": "buyer0024@upi",
+      "payerState": "TN",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5010",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0117",
+      "merchantId": "M-AHD-310",
+      "type": "SETTLEMENT",
+      "amount": 38090,
+      "time": "2026-10-30T11:00:00+05:30",
+      "channel": "BANK",
+      "beneficiaryAccount": "BEN-001",
+      "sourceFeed": "settlement.ledger"
+    },
+    {
+      "id": "TX0118",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 5499,
+      "time": "2026-10-30T11:59:01+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-31T11:00:00+05:30",
+      "payerId": "buyer0007@upi",
+      "payerState": "MH",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0119",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 3299,
+      "time": "2026-10-30T13:10:32+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-31T11:00:00+05:30",
+      "payerId": "buyer0007@upi",
+      "payerState": "WB",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5050",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0120",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 1299,
+      "time": "2026-10-30T13:33:44+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-31T11:00:00+05:30",
+      "payerId": "buyer0038@upi",
+      "payerState": "GJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5016",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0121",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2799,
+      "time": "2026-10-30T15:17:07+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-31T11:00:00+05:30",
+      "payerId": "buyer0066@upi",
+      "payerState": "RJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5026",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0122",
+      "merchantId": "M-AHD-310",
+      "type": "REFUND",
+      "amount": 6499,
+      "time": "2026-10-30T19:20:41+05:30",
+      "channel": "ONLINE",
+      "payerId": "buyer0008@upi",
+      "payerState": "MH",
+      "refundOfTransactionId": "TX0114",
+      "sourceFeed": "acquirer.refund"
+    },
+    {
+      "id": "TX0123",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 3299,
+      "time": "2026-10-30T19:27:32+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-31T11:00:00+05:30",
+      "payerId": "buyer0014@upi",
+      "payerState": "MP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0124",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 6499,
+      "time": "2026-10-30T19:56:32+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-31T11:00:00+05:30",
+      "payerId": "buyer0071@upi",
+      "payerState": "RJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0125",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 4999,
+      "time": "2026-10-30T22:28:55+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-10-31T11:00:00+05:30",
+      "payerId": "buyer0027@upi",
+      "payerState": "RJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0126",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2399,
+      "time": "2026-10-31T08:44:37+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-11-01T11:00:00+05:30",
+      "payerId": "buyer0023@upi",
+      "payerState": "MP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5009",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0127",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 1299,
+      "time": "2026-10-31T09:52:26+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-11-01T11:00:00+05:30",
+      "payerId": "buyer0054@upi",
+      "payerState": "UP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5020",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0128",
+      "merchantId": "M-AHD-310",
+      "type": "SETTLEMENT",
+      "amount": 27693,
+      "time": "2026-10-31T11:00:00+05:30",
+      "channel": "BANK",
+      "beneficiaryAccount": "BEN-001",
+      "sourceFeed": "settlement.ledger"
+    },
+    {
+      "id": "TX0129",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2199,
+      "time": "2026-10-31T13:01:45+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-11-01T11:00:00+05:30",
+      "payerId": "buyer0110@upi",
+      "payerState": "RJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5039",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0130",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 3299,
+      "time": "2026-10-31T13:08:35+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-11-01T11:00:00+05:30",
+      "payerId": "buyer0072@upi",
+      "payerState": "GJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0131",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 4999,
+      "time": "2026-10-31T14:13:49+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-11-01T11:00:00+05:30",
+      "payerId": "buyer0029@upi",
+      "payerState": "KA",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5012",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0132",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 2399,
+      "time": "2026-10-31T15:36:02+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-11-01T11:00:00+05:30",
+      "payerId": "buyer0002@upi",
+      "payerState": "GJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5047",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0133",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 3299,
+      "time": "2026-10-31T16:50:13+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-11-01T11:00:00+05:30",
+      "payerId": "buyer0004@upi",
+      "payerState": "KA",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0134",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 7999,
+      "time": "2026-10-31T17:31:29+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-11-01T11:00:00+05:30",
+      "payerId": "buyer0088@upi",
+      "payerState": "DL",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0135",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 7999,
+      "time": "2026-10-31T18:31:28+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-11-01T11:00:00+05:30",
+      "payerId": "buyer0109@upi",
+      "payerState": "UP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0136",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 999,
+      "time": "2026-10-31T18:40:32+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-11-01T11:00:00+05:30",
+      "payerId": "buyer0105@upi",
+      "payerState": "MP",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0137",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 1499,
+      "time": "2026-10-31T20:01:52+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-11-01T11:00:00+05:30",
+      "payerId": "buyer0052@upi",
+      "payerState": "WB",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0138",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 899,
+      "time": "2026-10-31T21:45:13+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-11-01T11:00:00+05:30",
+      "payerId": "buyer0005@upi",
+      "payerState": "KA",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5049",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0139",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 1299,
+      "time": "2026-10-31T22:17:30+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-11-01T11:00:00+05:30",
+      "payerId": "buyer0120@upi",
+      "payerState": "TN",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0140",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 4999,
+      "time": "2026-10-31T22:29:16+05:30",
+      "channel": "ONLINE",
+      "settledAt": "2026-11-01T11:00:00+05:30",
+      "payerId": "buyer0019@upi",
+      "payerState": "KA",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5008",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0141",
+      "merchantId": "M-AHD-310",
+      "type": "SETTLEMENT",
+      "amount": 45586,
+      "time": "2026-11-01T11:00:00+05:30",
+      "channel": "BANK",
+      "beneficiaryAccount": "BEN-001",
+      "sourceFeed": "settlement.ledger"
+    },
+    {
+      "id": "TX0142",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 7999,
+      "time": "2026-11-01T15:42:39+05:30",
+      "channel": "ONLINE",
+      "payerId": "buyer0032@upi",
+      "payerState": "RJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5013",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0143",
+      "merchantId": "M-AHD-310",
+      "type": "REFUND",
+      "amount": 3299,
+      "time": "2026-11-01T16:50:13+05:30",
+      "channel": "ONLINE",
+      "payerId": "buyer0004@upi",
+      "payerState": "KA",
+      "refundOfTransactionId": "TX0133",
+      "sourceFeed": "acquirer.refund"
+    },
+    {
+      "id": "TX0144",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 1499,
+      "time": "2026-11-01T16:53:35+05:30",
+      "channel": "ONLINE",
+      "payerId": "buyer0073@upi",
+      "payerState": "MH",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0145",
+      "merchantId": "M-AHD-310",
+      "type": "REFUND",
+      "amount": 7999,
+      "time": "2026-11-01T17:31:29+05:30",
+      "channel": "ONLINE",
+      "payerId": "buyer0088@upi",
+      "payerState": "DL",
+      "refundOfTransactionId": "TX0134",
+      "sourceFeed": "acquirer.refund"
+    },
+    {
+      "id": "TX0146",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 1899,
+      "time": "2026-11-01T18:22:09+05:30",
+      "channel": "ONLINE",
+      "payerId": "buyer0057@upi",
+      "payerState": "RJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5022",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0147",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 3899,
+      "time": "2026-11-01T20:09:20+05:30",
+      "channel": "ONLINE",
+      "payerId": "buyer0058@upi",
+      "payerState": "RJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": "ORD-5023",
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0148",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 1899,
+      "time": "2026-11-01T21:36:06+05:30",
+      "channel": "ONLINE",
+      "payerId": "buyer0004@upi",
+      "payerState": "RJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    },
+    {
+      "id": "TX0149",
+      "merchantId": "M-AHD-310",
+      "type": "SALE",
+      "amount": 6499,
+      "time": "2026-11-01T21:49:06+05:30",
+      "channel": "ONLINE",
+      "payerId": "buyer0100@upi",
+      "payerState": "GJ",
+      "paymentLinkId": "CHK-AHD-01",
+      "orderId": null,
+      "sourceFeed": "acquirer.upi"
+    }
+  ],
+  "matchFixtures": [],
+  "dataAvailability": {
+    "acquiring": "AVAILABLE",
+    "website": "AVAILABLE",
+    "orders": "AVAILABLE",
+    "bank": "MISSING",
+    "fulfillment": "AVAILABLE",
+    "calendar": "MISSING",
+    "verification": "AVAILABLE"
+  },
+  "website": {
+    "catalogue": [
+      {
+        "sku": "AHD-1",
+        "price": 1499,
+        "inCategory": true,
+        "name": "Teak console table",
+        "dupImage": true
+      },
+      {
+        "sku": "AHD-2",
+        "price": 2399,
+        "inCategory": false,
+        "name": "Smart LED earbuds",
+        "dupImage": true
+      },
+      {
+        "sku": "AHD-3",
+        "price": 3299,
+        "inCategory": true,
+        "name": "Linen cushion set",
+        "dupImage": true
+      },
+      {
+        "sku": "AHD-4",
+        "price": 899,
+        "inCategory": false,
+        "name": "Designer sneakers",
+        "dupImage": true
+      },
+      {
+        "sku": "AHD-5",
+        "price": 1899,
+        "inCategory": true,
+        "name": "Brass pendant lamp",
+        "dupImage": true
+      },
+      {
+        "sku": "AHD-6",
+        "price": 4999,
+        "inCategory": false,
+        "name": "Fitness tracker",
+        "dupImage": true
+      },
+      {
+        "sku": "AHD-7",
+        "price": 2799,
+        "inCategory": true,
+        "name": "Wall mirror",
+        "dupImage": true
+      },
+      {
+        "sku": "AHD-8",
+        "price": 1299,
+        "inCategory": false,
+        "name": "Bluetooth speaker",
+        "dupImage": true
+      },
+      {
+        "sku": "AHD-9",
+        "price": 6499,
+        "inCategory": true,
+        "name": "Walnut bookshelf",
+        "dupImage": true
+      },
+      {
+        "sku": "AHD-10",
+        "price": 3899,
+        "inCategory": false,
+        "name": "Leather handbag",
+        "dupImage": false
+      },
+      {
+        "sku": "AHD-11",
+        "price": 2199,
+        "inCategory": true,
+        "name": "Table lamp",
+        "dupImage": false
+      },
+      {
+        "sku": "AHD-12",
+        "price": 999,
+        "inCategory": false,
+        "name": "Phone gimbal",
+        "dupImage": false
+      },
+      {
+        "sku": "AHD-13",
+        "price": 5499,
+        "inCategory": true,
+        "name": "Accent armchair",
+        "dupImage": false
+      },
+      {
+        "sku": "AHD-14",
+        "price": 7999,
+        "inCategory": false,
+        "name": "Gaming headset",
+        "dupImage": false
+      }
+    ],
+    "embeds": [
+      {
+        "id": "EMB-201",
+        "merchantId": "M-AHD-310",
+        "linkId": "CHK-AHD-01",
+        "host": "aaravhome.example",
+        "path": "/checkout",
+        "category": "own",
+        "pageType": "checkout",
+        "firstSeen": "2026-03-11"
+      }
+    ]
+  },
+  "orders": [
+    {
+      "orderId": "ORD-5000",
+      "saleId": "f-2",
+      "status": "SHIPPED",
+      "trackingId": "TRK-003"
+    },
+    {
+      "orderId": "ORD-5001",
+      "saleId": "f-6",
+      "status": "DELIVERED",
+      "trackingId": "TRK-101"
+    },
+    {
+      "orderId": "ORD-5002",
+      "saleId": "f-8",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5003",
+      "saleId": "f-10",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5004",
+      "saleId": "f-13",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5005",
+      "saleId": "f-15",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5006",
+      "saleId": "f-16",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5007",
+      "saleId": "f-17",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5008",
+      "saleId": "f-19",
+      "status": "DELIVERED",
+      "trackingId": "TRK-005"
+    },
+    {
+      "orderId": "ORD-5009",
+      "saleId": "f-23",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5010",
+      "saleId": "f-24",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5011",
+      "saleId": "f-28",
+      "status": "SHIPPED",
+      "trackingId": "TRK-002"
+    },
+    {
+      "orderId": "ORD-5012",
+      "saleId": "f-29",
+      "status": "SHIPPED",
+      "trackingId": "TRK-005"
+    },
+    {
+      "orderId": "ORD-5013",
+      "saleId": "f-32",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5014",
+      "saleId": "f-36",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5015",
+      "saleId": "f-37",
+      "status": "SHIPPED",
+      "trackingId": "TRK-003"
+    },
+    {
+      "orderId": "ORD-5016",
+      "saleId": "f-38",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5017",
+      "saleId": "f-45",
+      "status": "DELIVERED",
+      "trackingId": "TRK-001"
+    },
+    {
+      "orderId": "ORD-5018",
+      "saleId": "f-47",
+      "status": "DELIVERED",
+      "trackingId": "TRK-118"
+    },
+    {
+      "orderId": "ORD-5019",
+      "saleId": "f-53",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5020",
+      "saleId": "f-54",
+      "status": "SHIPPED",
+      "trackingId": "TRK-120"
+    },
+    {
+      "orderId": "ORD-5021",
+      "saleId": "f-55",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5022",
+      "saleId": "f-57",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5023",
+      "saleId": "f-58",
+      "status": "SHIPPED",
+      "trackingId": "TRK-005"
+    },
+    {
+      "orderId": "ORD-5024",
+      "saleId": "f-59",
+      "status": "DELIVERED",
+      "trackingId": "TRK-005"
+    },
+    {
+      "orderId": "ORD-5025",
+      "saleId": "f-65",
+      "status": "SHIPPED",
+      "trackingId": "TRK-125"
+    },
+    {
+      "orderId": "ORD-5026",
+      "saleId": "f-66",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5027",
+      "saleId": "f-67",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5028",
+      "saleId": "f-69",
+      "status": "SHIPPED",
+      "trackingId": "TRK-128"
+    },
+    {
+      "orderId": "ORD-5029",
+      "saleId": "f-74",
+      "status": "SHIPPED",
+      "trackingId": "TRK-129"
+    },
+    {
+      "orderId": "ORD-5030",
+      "saleId": "f-80",
+      "status": "SHIPPED",
+      "trackingId": "TRK-130"
+    },
+    {
+      "orderId": "ORD-5031",
+      "saleId": "f-91",
+      "status": "DELIVERED",
+      "trackingId": "TRK-005"
+    },
+    {
+      "orderId": "ORD-5032",
+      "saleId": "f-96",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5033",
+      "saleId": "f-98",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5034",
+      "saleId": "f-102",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5035",
+      "saleId": "f-103",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5036",
+      "saleId": "f-104",
+      "status": "DELIVERED",
+      "trackingId": "TRK-136"
+    },
+    {
+      "orderId": "ORD-5037",
+      "saleId": "f-106",
+      "status": "DELIVERED",
+      "trackingId": "TRK-002"
+    },
+    {
+      "orderId": "ORD-5038",
+      "saleId": "f-108",
+      "status": "SHIPPED",
+      "trackingId": "TRK-004"
+    },
+    {
+      "orderId": "ORD-5039",
+      "saleId": "f-110",
+      "status": "DELIVERED",
+      "trackingId": "TRK-003"
+    },
+    {
+      "orderId": "ORD-5040",
+      "saleId": "f-114",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5041",
+      "saleId": "f-116",
+      "status": "SHIPPED",
+      "trackingId": "TRK-005"
+    },
+    {
+      "orderId": "ORD-5042",
+      "saleId": "f-117",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5043",
+      "saleId": "f-122",
+      "status": "SHIPPED",
+      "trackingId": "TRK-001"
+    },
+    {
+      "orderId": "ORD-5044",
+      "saleId": "f-123",
+      "status": "SHIPPED",
+      "trackingId": "TRK-004"
+    },
+    {
+      "orderId": "ORD-5045",
+      "saleId": "f-124",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5046",
+      "saleId": "f-125",
+      "status": "DELIVERED",
+      "trackingId": "TRK-002"
+    },
+    {
+      "orderId": "ORD-5047",
+      "saleId": "f-126",
+      "status": "NONE"
+    },
+    {
+      "orderId": "ORD-5048",
+      "saleId": "f-127",
+      "status": "DELIVERED",
+      "trackingId": "TRK-148"
+    },
+    {
+      "orderId": "ORD-5049",
+      "saleId": "f-129",
+      "status": "SHIPPED",
+      "trackingId": "TRK-002"
+    },
+    {
+      "orderId": "ORD-5050",
+      "saleId": "f-131",
+      "status": "NONE"
+    }
+  ],
+  "bankCredits": [],
+  "purchaserVerification": {
+    "contacted": 12,
+    "confirmed": 3
+  },
+  "businessFootprint": {
+    "supplierPaymentsMonthly": 31000,
+    "gstTurnoverMonthly": 140000
+  },
+  "externalSightings": [],
+  "graph": {
+    "nodes": [
+      {
+        "id": "m1",
+        "type": "merchant",
+        "label": "Aarav Home Decor Online",
+        "sub": "MCC 5712 · Jaipur"
+      },
+      {
+        "id": "w1",
+        "type": "website",
+        "label": "aaravhome.example",
+        "sub": "storefront"
+      },
+      {
+        "id": "pl1",
+        "type": "link",
+        "label": "Checkout CHK-AHD-01"
+      },
+      {
+        "id": "p1",
+        "type": "payer",
+        "label": "Payers with matching orders",
+        "sub": "≈54 sales"
+      },
+      {
+        "id": "p2",
+        "type": "payer",
+        "label": "Payers with no order",
+        "sub": "≈78 sales"
+      },
+      {
+        "id": "p3",
+        "type": "payer",
+        "label": "Purchaser sample",
+        "sub": "12 contacted · 3 confirmed"
+      },
+      {
+        "id": "d1",
+        "type": "device",
+        "label": "Reused tracking IDs",
+        "sub": "5 IDs on many orders"
+      },
+      {
+        "id": "d2",
+        "type": "device",
+        "label": "Stock-image set SIS-77",
+        "sub": "images reused across stores"
+      },
+      {
+        "id": "m2",
+        "type": "peer",
+        "label": "Urban Nest Interiors",
+        "sub": "uses the same images"
+      },
+      {
+        "id": "m3",
+        "type": "peer",
+        "label": "Palace Lamps Co",
+        "sub": "uses the same images"
+      },
+      {
+        "id": "b1",
+        "type": "beneficiary",
+        "label": "BEN_AHD_MAIN",
+        "sub": "stable settlement"
+      }
+    ],
+    "edges": [
+      {
+        "id": "e38",
+        "source": "m1",
+        "target": "w1",
+        "type": "WEBSITE_LINK",
+        "label": "declared storefront",
+        "evidence": []
+      },
+      {
+        "id": "e39",
+        "source": "w1",
+        "target": "pl1",
+        "type": "WEBSITE_LINK",
+        "label": "checkout",
+        "evidence": []
+      },
+      {
+        "id": "e40",
+        "source": "p1",
+        "target": "pl1",
+        "type": "PAYMENT_FLOW",
+        "label": "sales with orders",
+        "evidence": [
+          "D10"
+        ]
+      },
+      {
+        "id": "e41",
+        "source": "p2",
+        "target": "pl1",
+        "type": "PAYMENT_FLOW",
+        "label": "sales without orders",
+        "evidence": [
+          "D10"
+        ]
+      },
+      {
+        "id": "e42",
+        "source": "pl1",
+        "target": "m1",
+        "type": "PAYMENT_FLOW",
+        "label": "collections",
+        "evidence": []
+      },
+      {
+        "id": "e43",
+        "source": "m1",
+        "target": "b1",
+        "type": "SETTLEMENT_RELATIONSHIP",
+        "label": "settled to",
+        "evidence": []
+      },
+      {
+        "id": "e44",
+        "source": "m1",
+        "target": "d1",
+        "type": "SHARED_INFRASTRUCTURE",
+        "label": "orders share tracking IDs",
+        "evidence": [
+          "F7"
+        ]
+      },
+      {
+        "id": "e45",
+        "source": "w1",
+        "target": "d2",
+        "type": "SHARED_INFRASTRUCTURE",
+        "label": "catalogue images",
+        "evidence": [
+          "G2"
+        ]
+      },
+      {
+        "id": "e46",
+        "source": "m2",
+        "target": "d2",
+        "type": "SHARED_INFRASTRUCTURE",
+        "label": "catalogue images",
+        "evidence": [
+          "G2"
+        ]
+      },
+      {
+        "id": "e47",
+        "source": "m3",
+        "target": "d2",
+        "type": "SHARED_INFRASTRUCTURE",
+        "label": "catalogue images",
+        "evidence": [
+          "G2"
+        ],
+        "note": "Shared stock imagery is common among small sellers. It lowers confidence in the catalogue; it does not link ownership."
+      },
+      {
+        "id": "e48",
+        "source": "p3",
+        "target": "m1",
+        "type": "BEHAVIOURAL_SIMILARITY",
+        "label": "purchaser verification",
+        "evidence": [
+          "B9"
+        ],
+        "note": "The sample result is a verification outcome, not a similarity measure; shown here to place it in the case."
+      }
+    ]
+  }
+}
