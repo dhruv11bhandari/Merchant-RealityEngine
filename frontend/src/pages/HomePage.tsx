@@ -1,5 +1,7 @@
-import { useEffect, type ReactNode } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { gsap } from 'gsap';
+import { MathUtils, Vector2 } from 'three';
 import { ArrowUpRight, ArrowRight, Activity, Boxes, Fingerprint, GitBranch, Layers, Network, Radar, Scale, SearchCheck, ShieldCheck, Waypoints } from 'lucide-react';
 import { PublicNav, Footer } from '../components/navigation/PublicNav';
 import { ArchitectureExplorer } from '../components/common/ArchitectureExplorer';
@@ -55,17 +57,50 @@ const svgp = { viewBox: '0 0 300 110', className: 'h-28 w-full' };
 
 export function HomePage() {
   const loc = useLocation();
+  const heroRef = useRef<HTMLElement>(null);
+  const noteRef = useRef<HTMLImageElement>(null);
+  const coinRef = useRef<HTMLImageElement>(null);
   useEffect(() => { const id = (loc.state as { scroll?: string } | null)?.scroll; if (id) setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }), 50); }, [loc]);
+  useEffect(() => {
+    const hero = heroRef.current, note = noteRef.current, coin = coinRef.current;
+    if (!hero || !note || !coin || !window.matchMedia('(hover: hover) and (pointer: fine)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const pointer = new Vector2();
+    const quick = (target: HTMLElement, property: string) => gsap.quickTo(target, property, { duration: 0.65, ease: 'power3.out' });
+    const noteX = quick(note, 'x'), noteY = quick(note, 'y');
+    const noteTiltX = quick(note, 'rotationX'), noteTiltY = quick(note, 'rotationY');
+    const coinX = quick(coin, 'x'), coinY = quick(coin, 'y');
+    const coinTiltX = quick(coin, 'rotationX'), coinTiltY = quick(coin, 'rotationY');
+
+    const move = (event: PointerEvent) => {
+      const bounds = hero.getBoundingClientRect();
+      pointer.set(
+        MathUtils.clamp(((event.clientX - bounds.left) / bounds.width) * 2 - 1, -1, 1),
+        MathUtils.clamp(((event.clientY - bounds.top) / bounds.height) * 2 - 1, -1, 1),
+      );
+      noteX(pointer.x * 12); noteY(pointer.y * 10);
+      noteTiltX(pointer.y * -5); noteTiltY(pointer.x * 6);
+      coinX(pointer.x * 18); coinY(pointer.y * 14);
+      coinTiltX(pointer.y * -7); coinTiltY(pointer.x * 9);
+    };
+    const reset = () => {
+      noteX(0); noteY(0); noteTiltX(0); noteTiltY(0);
+      coinX(0); coinY(0); coinTiltX(0); coinTiltY(0);
+    };
+    hero.addEventListener('pointermove', move, { passive: true });
+    hero.addEventListener('pointerleave', reset);
+    return () => { hero.removeEventListener('pointermove', move); hero.removeEventListener('pointerleave', reset); gsap.killTweensOf([note, coin]); };
+  }, []);
   return (
     <div className="mre-page min-h-screen bg-black text-white">
       <PublicNav landing />
-      <section className="mre-hero relative isolate flex min-h-[calc(100svh-60px)] flex-col justify-center overflow-hidden px-5 pb-20 pt-12 md:px-10 md:pb-10 md:pt-4">
+      <section ref={heroRef} className="mre-hero relative isolate flex min-h-[calc(100svh-60px)] flex-col justify-center overflow-hidden px-5 pb-20 pt-12 md:px-10 md:pb-10 md:pt-4">
         <div className="mre-metric mre-metric-left"><span>TRANSACTIONS</span><strong>12.4M+</strong></div>
         <div className="mre-metric mre-metric-right"><span>MERCHANTS</span><strong>2.1M+</strong></div>
-        <img className="mre-note" src="/images/rupee-500-note.png" alt="Floating Indian five hundred rupee note" />
+        <img ref={noteRef} className="mre-note" src="/images/rupee-500-note.png" alt="Floating Indian five hundred rupee note" />
         <div className="relative z-10 mx-auto w-full max-w-[1080px]">
           <h1 className="mre-title"><span>FOLLOW THE</span><span>MONEY.</span></h1>
-          <img className="mre-coin" src="/images/rupee-10-coin.png" alt="Gold and silver ten rupee coin" />
+          <img ref={coinRef} className="mre-coin" src="/images/rupee-10-coin.png" alt="Gold and silver ten rupee coin" />
           <p className="mre-tagline">DISCOVER THE REALITY BEHIND EVERY MERCHANT.</p>
           <Link to="/demo" className="mre-cta">ENTER THE ENGINE <ArrowUpRight size={18} strokeWidth={2.5} /></Link>
         </div>

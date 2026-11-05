@@ -31,12 +31,12 @@ body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; lette
 }
 .glow { background: radial-gradient(60% 60% at 50% 0%, rgba(255,255,255,.08), transparent 70%); }
 
-.mre-hero { background: #000; }
+.mre-hero { background: #000; perspective: 1400px; }
 .mre-title { display: flex; flex-direction: column; font-size: clamp(3.7rem, 10.8vw, 10.4rem); font-weight: 900; line-height: .82; letter-spacing: -.075em; white-space: nowrap; }
 .mre-title span:first-child { align-self: center; }
 .mre-title span:last-child { align-self: center; }
-.mre-note { position: absolute; z-index: 0; width: min(34vw, 490px); top: 0%; right: 10%; transform: rotate(-3deg); filter: drop-shadow(0 18px 24px #000b); }
-.mre-coin { position: absolute; z-index: 20; width: clamp(140px, 19vw, 260px); left: clamp(72px, 9vw, 145px); top: 52%; transform: rotate(-13deg); filter: drop-shadow(0 12px 20px #000c); pointer-events: none; }
+.mre-note { position: absolute; z-index: 0; width: min(34vw, 490px); top: 0%; right: 10%; rotate: -3deg; transform-style: preserve-3d; will-change: transform; filter: drop-shadow(0 18px 24px #000b); }
+.mre-coin { position: absolute; z-index: 20; width: clamp(140px, 19vw, 260px); left: clamp(72px, 9vw, 145px); top: 52%; rotate: -13deg; transform-style: preserve-3d; will-change: transform; filter: drop-shadow(0 12px 20px #000c); pointer-events: none; }
 .mre-tagline { margin: 28px auto 0; transform: translateX(clamp(30px, 7vw, 96px)); text-align: center; font-size: clamp(.64rem, 1.2vw, .92rem); font-weight: 600; letter-spacing: .22em; color: #d6d6d6; }
 .mre-cta { display: flex; width: fit-content; align-items: center; justify-content: center; gap: 9px; margin: 48px auto 0; border: 1.5px solid #f4f4f4; border-radius: 999px; padding: 13px 30px; font-size: .8rem; font-weight: 700; letter-spacing: .2em; transition: background .2s, color .2s, transform .2s; }
 .mre-cta:hover { background: #fff; color: #000; transform: translateY(-2px); }
