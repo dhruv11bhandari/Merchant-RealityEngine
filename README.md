@@ -14,7 +14,7 @@ The project has two parts:
 
 use start.sh for everyone in the team 
 
-for chaman chelesani :
+for chaman chelesani ( windows user ) :
 
 Requires Node.js 20 or later.
 
