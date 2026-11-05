@@ -72,7 +72,7 @@ export function HomePage() {
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-bg to-transparent" /></>
           : <div className="glow absolute inset-0" />}
         <div className="pointer-events-none relative mx-auto grid max-w-7xl items-center gap-8 px-5 py-16 lg:grid-cols-[1.05fr_1fr] lg:py-24">
-          <div className="pointer-events-auto"><div data-hero-in className="mb-5 inline-flex items-center gap-2 rounded-full border border-zinc-300/25 bg-zinc-400/[0.06] px-3 py-1 font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-200"><span className="h-1.5 w-1.5 rounded-full bg-zinc-300" />Merchant intelligence for payment aggregators</div>
+          <div className="pointer-events-auto">
             <h1 data-hero-in className="text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl">Your merchant’s identity is not its <span className="bg-gradient-to-r from-zinc-200 via-zinc-300 to-stone-300 bg-clip-text text-transparent">reality.</span></h1>
             <p data-hero-in className="mt-6 max-w-xl text-lg leading-relaxed text-mute">Merchant Reality Engine connects financial, operational and digital evidence to uncover disguised merchant activity, detect transaction laundering and distinguish legitimate businesses from fraudulent fronts.</p>
             <div data-hero-in className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-2">
