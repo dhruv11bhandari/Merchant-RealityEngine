@@ -42,7 +42,7 @@ export function useHomeMotion(scope: RefObject<HTMLElement | null>) {
         const hot = bars.filter(b => b.dataset.hi === 'true');
         const t = gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
         t.from(bars, { scaleY: 0, transformOrigin: 'bottom', duration: 0.7, stagger: 0.05, ease: 'power3.out' });
-        if (hot.length) t.fromTo(hot, { boxShadow: '0 0 0 rgba(248,113,113,0)' }, { boxShadow: '0 0 18px rgba(248,113,113,0.85)', duration: 0.35, yoyo: true, repeat: 1, stagger: 0.12 }, '-=0.1');
+        if (hot.length) t.fromTo(hot, { boxShadow: '0 0 0 rgba(142, 142, 142,0)' }, { boxShadow: '0 0 18px rgba(142, 142, 142,0.85)', duration: 0.35, yoyo: true, repeat: 1, stagger: 0.12 }, '-=0.1');
       });
 
       // Recalculate trigger positions once fonts/images have settled.

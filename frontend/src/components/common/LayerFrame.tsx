@@ -16,7 +16,7 @@ export function LayerFrame({ n, children, evidenceCount, evidenceLabel, summary 
     <div className="space-y-4">
       <Card>
         <div className="flex flex-wrap items-center gap-3 px-4 py-3">
-          <span className="flex h-8 w-10 items-center justify-center rounded border border-cyan-400/40 bg-cyan-400/10 font-mono text-sm font-semibold text-cyan-300">{m.code}</span>
+          <span className="flex h-8 w-10 items-center justify-center rounded border border-zinc-400/40 bg-zinc-400/10 font-mono text-sm font-semibold text-zinc-300">{m.code}</span>
           <div className="min-w-0 flex-1"><div className="text-base font-semibold">{m.name}</div><div className="text-xs text-mute">{m.tagline}</div></div>
           {st === 'done' ? <Badge tone="ok"><Check size={11} />Complete · {total} ms simulated</Badge> : st === 'running' ? <Badge tone="info"><Loader2 size={11} className="animate-spin" />Running</Badge> : <Badge>Pending</Badge>}
           <button onClick={() => setOpen(o => !o)} className="flex items-center gap-1 text-xs text-mute hover:text-ink" aria-expanded={open}>{open ? <ChevronDown size={14} /> : <ChevronRight size={14} />}Inputs, processing and timeline</button>
@@ -34,7 +34,7 @@ export function LayerFrame({ n, children, evidenceCount, evidenceLabel, summary 
               <div className="space-y-1.5">{tl.map((t, i) => { const before = tl.slice(0, i).reduce((s, x) => s + x.ms, 0); return (
                 <div key={t.op} className="grid grid-cols-[1fr_60px] items-center gap-3 text-[13px] md:grid-cols-[320px_1fr_60px]">
                   <span className="text-ink/90">{t.op}</span>
-                  <div className="relative hidden h-1.5 rounded-full bg-line md:block"><div className={cx('absolute h-full rounded-full', st === 'done' ? 'bg-cyan-400/80' : 'bg-line2')} style={{ left: `${(before / total) * 100}%`, width: `${(t.ms / total) * 100}%` }} /></div>
+                  <div className="relative hidden h-1.5 rounded-full bg-line md:block"><div className={cx('absolute h-full rounded-full', st === 'done' ? 'bg-zinc-400/80' : 'bg-line2')} style={{ left: `${(before / total) * 100}%`, width: `${(t.ms / total) * 100}%` }} /></div>
                   <span className="text-right font-mono text-xs text-dim">{t.ms} ms</span></div>); })}</div>
               <div className="mt-3 text-xs text-dim">Next layer: {m.next}</div></div>
           </div>

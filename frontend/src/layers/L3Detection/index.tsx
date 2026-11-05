@@ -17,16 +17,16 @@ export function L3View() {
   const ev = r.evidence.filter(e => (fam === 'ALL' || e.family === fam) && (st === 'ALL' || e.status === st));
   const sales = r.events.filter(e => e.type === 'SALE'), pk = r.l2.peak, cnt = (s: EvidenceStatus) => r.evidence.filter(e => e.status === s).length;
   return (
-    <LayerFrame n={3} summary={<>{r.evidence.length} detectors ran across 9 families: <b className="text-red-300">{cnt('ILLICIT')} support illicit</b>, <b className="text-emerald-300">{cnt('BENIGN')} support benign</b>, <b className="text-slate-300">{cnt('UNKNOWN')} UNKNOWN</b>.</>}>
+    <LayerFrame n={3} summary={<>{r.evidence.length} detectors ran across 9 families: <b className="text-neutral-300">{cnt('ILLICIT')} support illicit</b>, <b className="text-gray-300">{cnt('BENIGN')} support benign</b>, <b className="text-slate-300">{cnt('UNKNOWN')} UNKNOWN</b>.</>}>
       <div className="grid gap-4 lg:grid-cols-2">
         <Panel title="Residual: how far from expectation?" subtitle="Computed from the weekly values in L2.">
-          <div className="rounded border border-line2 bg-bg px-4 py-3 text-center font-mono text-[15px] text-cyan-200">R<sub>t</sub> = (V<sub>t</sub> − E<sub>t</sub>) / max(E<sub>t</sub>, ε)</div>
+          <div className="rounded border border-line2 bg-bg px-4 py-3 text-center font-mono text-[15px] text-zinc-200">R<sub>t</sub> = (V<sub>t</sub> − E<sub>t</sub>) / max(E<sub>t</sub>, ε)</div>
           {pk && pk.actual !== null ? (
             <div className="mt-3 space-y-1.5 text-[13px]">
               <div className="flex justify-between"><span className="text-mute">V (actual, {pk.week})</span><span className="font-mono">{inrK(pk.actual)}</span></div>
               <div className="flex justify-between"><span className="text-mute">E (seasonal expectation)</span><span className="font-mono">{inrK(pk.seasonal)}</span></div>
               <div className="flex justify-between"><span className="text-mute">ε (floor)</span><span className="font-mono">{EPSILON}</span></div>
-              <div className="flex justify-between border-t border-line pt-1.5"><span>R = ({inrK(pk.actual)} − {inrK(pk.seasonal)}) / {inrK(pk.seasonal)}</span><span className="font-mono text-amber-300">{pct(pk.rSeasonal!)}</span></div>
+              <div className="flex justify-between border-t border-line pt-1.5"><span>R = ({inrK(pk.actual)} − {inrK(pk.seasonal)}) / {inrK(pk.seasonal)}</span><span className="font-mono text-stone-300">{pct(pk.rSeasonal!)}</span></div>
               <p className="pt-1 text-xs text-mute">The anchored baseline alone would give {pct(pk.rAnchored!)}. Attributing the festival to the season leaves a {pct(pk.rSeasonal!)} residual that the season does not explain.</p>
             </div>) : null}
         </Panel>
@@ -39,10 +39,10 @@ export function L3View() {
         <div className="grid gap-2 sm:grid-cols-3 lg:grid-cols-9">
           {FAMILIES.map(f => {
             const x = r.evidence.filter(e => e.family === f.id), il = x.filter(e => e.status === 'ILLICIT').length, be = x.filter(e => e.status === 'BENIGN').length, un = x.filter(e => e.status === 'UNKNOWN').length;
-            return <button key={f.id} onClick={() => setFam(fam === f.id ? 'ALL' : f.id)} aria-pressed={fam === f.id} className={cx('rounded border p-2.5 text-left transition-colors', fam === f.id ? 'border-cyan-400 bg-cyan-400/5' : 'border-line bg-panel2 hover:border-line2')}>
-              <div className="flex items-center justify-between"><span className="font-mono text-sm font-semibold text-cyan-300">{f.id}</span><span className="text-[10px] text-dim">{x.length}/{f.patterns}</span></div>
+            return <button key={f.id} onClick={() => setFam(fam === f.id ? 'ALL' : f.id)} aria-pressed={fam === f.id} className={cx('rounded border p-2.5 text-left transition-colors', fam === f.id ? 'border-zinc-400 bg-zinc-400/5' : 'border-line bg-panel2 hover:border-line2')}>
+              <div className="flex items-center justify-between"><span className="font-mono text-sm font-semibold text-zinc-300">{f.id}</span><span className="text-[10px] text-dim">{x.length}/{f.patterns}</span></div>
               <div className="mt-1 text-[11px] leading-tight text-mute">{f.short}</div>
-              <div className="mt-2 flex gap-1 text-[10px]"><span className="text-red-300">{il}</span><span className="text-dim">·</span><span className="text-emerald-300">{be}</span><span className="text-dim">·</span><span className="text-slate-400">{un}</span></div></button>;
+              <div className="mt-2 flex gap-1 text-[10px]"><span className="text-neutral-300">{il}</span><span className="text-dim">·</span><span className="text-gray-300">{be}</span><span className="text-dim">·</span><span className="text-slate-400">{un}</span></div></button>;
           })}
         </div>
         <div className="mt-2 text-[11px] text-dim">Counts: supports illicit · supports benign · UNKNOWN. Chip shows live detectors / designed patterns.</div>
@@ -58,7 +58,7 @@ export function L3View() {
           <div key={e.id} className="border-t border-line first:border-t-0">
             <button onClick={() => setOpen(open === e.id ? null : e.id)} className="grid w-full grid-cols-[18px_44px_1fr_auto] items-center gap-3 px-4 py-2.5 text-left hover:bg-panel2/60 md:grid-cols-[18px_44px_240px_130px_90px_1fr]" aria-expanded={open === e.id}>
               {open === e.id ? <ChevronDown size={14} className="text-mute" /> : <ChevronRight size={14} className="text-mute" />}
-              <Mono className="text-cyan-300">{e.id}</Mono><span className="text-[13px] font-medium">{e.name}</span>
+              <Mono className="text-zinc-300">{e.id}</Mono><span className="text-[13px] font-medium">{e.name}</span>
               <span className="hidden md:block"><StatusBadge s={e.status} /></span>
               <span className="hidden items-center gap-2 md:flex"><Bar className="w-12" value={e.strength} tone={statusTone(e.status)} /><span className="font-mono text-[11px] text-dim">{e.strength.toFixed(2)}</span></span>
               <span className="truncate text-xs text-mute md:block">{e.observed}</span>

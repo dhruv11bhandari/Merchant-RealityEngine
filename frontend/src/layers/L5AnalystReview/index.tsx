@@ -21,12 +21,12 @@ const GAPS: Record<string, [string, string]> = { orders: ['D10', 'Would show whe
 
 function Chain({ title, tone, items, mode, sel, onSel }: { title: string; tone: Tone; items: ChainItem[]; mode: 'legit' | 'front'; sel: string | null; onSel: (l: string) => void }) {
   return (
-    <div className={cx('rounded-md border bg-panel', tone === 'ok' ? 'border-emerald-400/25' : 'border-red-400/25')}>
+    <div className={cx('rounded-md border bg-panel', tone === 'ok' ? 'border-gray-400/25' : 'border-neutral-400/25')}>
       <div className="border-b border-line px-4 py-3"><div className="text-sm font-semibold">{title}</div></div>
       <ol className="divide-y divide-line">
         {items.map((it, i) => (
           <li key={it.label}><button onClick={() => onSel(it.label)} className={cx('flex w-full items-start gap-3 px-4 py-3 text-left hover:bg-panel2/60', sel === it.label && 'bg-panel2')}>
-            <span className="relative mt-0.5 flex flex-col items-center"><span className={cx('h-2.5 w-2.5 rounded-full', vTone[mode][it.verdict] === 'bad' ? 'bg-red-400' : vTone[mode][it.verdict] === 'ok' ? 'bg-emerald-400' : vTone[mode][it.verdict] === 'warn' ? 'bg-amber-400' : 'bg-slate-500')} />{i < items.length - 1 && <span className="absolute top-3 h-8 w-px bg-line2" />}</span>
+            <span className="relative mt-0.5 flex flex-col items-center"><span className={cx('h-2.5 w-2.5 rounded-full', vTone[mode][it.verdict] === 'bad' ? 'bg-neutral-400' : vTone[mode][it.verdict] === 'ok' ? 'bg-gray-400' : vTone[mode][it.verdict] === 'warn' ? 'bg-stone-400' : 'bg-slate-500')} />{i < items.length - 1 && <span className="absolute top-3 h-8 w-px bg-line2" />}</span>
             <span className="min-w-0 flex-1"><span className="block text-[13px] font-medium">{it.label}</span><span className="block text-xs text-mute">{it.detail}</span><span className="mt-1 block text-[11px] text-dim">Tests: {it.evidenceIds.join(', ')}</span></span>
             <Badge tone={vTone[mode][it.verdict]}>{vLabel[mode][it.verdict]}</Badge></button></li>))}
       </ol>
@@ -50,18 +50,18 @@ export function L5View() {
         <Chain title="Potential front chain" tone="bad" items={rv.front} mode="front" sel={sel} onSel={setSel} />
       </div>
       <Panel title="Analyst reasoning" subtitle="Generated from the evidence; the analyst can accept or override it.">
-        <ul className="space-y-2 text-[13px]">{rv.reasoning.map((t, i) => <li key={i} className="flex gap-2"><ShieldCheck size={15} className="mt-0.5 shrink-0 text-cyan-300" /><span className="text-ink/90">{t}</span></li>)}</ul>
+        <ul className="space-y-2 text-[13px]">{rv.reasoning.map((t, i) => <li key={i} className="flex gap-2"><ShieldCheck size={15} className="mt-0.5 shrink-0 text-zinc-300" /><span className="text-ink/90">{t}</span></li>)}</ul>
         {rv.legitStatus === 'FAILED' && r.scenario.id === 'bakery' && <div className="mt-3"><Callout tone="warn" title="Why the legitimate chain fails here">Checkout provenance (G6) shows the payment link on an undeclared betting deposit page, and refund destinations (D9) do not match the original payers. These come from different data sources and are both hard to explain away with a bakery story.</Callout></div>}
       </Panel>
       <Panel title="Evidence inspection" subtitle={item ? `Showing evidence for “${item.label}”. Select another link or clear.` : 'Showing all informative signals. Select a link above to focus.'} right={item && <Btn size="sm" variant="ghost" onClick={() => setSel(null)}>Clear</Btn>}>
         <Tabs<Tool> value={tool} onChange={setTool} tabs={[{ id: 'signals', label: 'Signals and records' }, { id: 'links', label: 'Payment links' }, { id: 'refunds', label: 'Refund reconciliation' }, { id: 'domain', label: 'Domain provenance' }, { id: 'gaps', label: `Coverage gaps (${gaps.length})` }]} />
         <div className="pt-4">
-          {tool === 'signals' && <div className="space-y-4">{evs.map(e => <div key={e.id} className="rounded border border-line bg-panel2 p-3"><div className="flex flex-wrap items-center gap-2"><Mono className="text-cyan-300">{e.id}</Mono><span className="text-[13px] font-medium">{e.name}</span><StatusBadge s={e.status} /></div><div className="mt-1 text-xs text-mute">{e.observed}</div><div className="mt-2"><RecordPeek r={r} ids={e.records} max={5} /></div></div>)}{evs.length === 0 && <div className="text-sm text-mute">No signals for this link.</div>}</div>}
+          {tool === 'signals' && <div className="space-y-4">{evs.map(e => <div key={e.id} className="rounded border border-line bg-panel2 p-3"><div className="flex flex-wrap items-center gap-2"><Mono className="text-zinc-300">{e.id}</Mono><span className="text-[13px] font-medium">{e.name}</span><StatusBadge s={e.status} /></div><div className="mt-1 text-xs text-mute">{e.observed}</div><div className="mt-2"><RecordPeek r={r} ids={e.records} max={5} /></div></div>)}{evs.length === 0 && <div className="text-sm text-mute">No signals for this link.</div>}</div>}
           {tool === 'links' && (
             <div className="overflow-x-auto"><table className={tableCls}><thead><tr><Th>Link</Th><Th>Merchant</Th><Th>Embedded on</Th><Th>Category</Th><Th>Verification</Th></tr></thead>
               <tbody>{sc.web.embeds.map(e => (
                 <tr key={e.id} className={rowCls}><Td><Mono>{e.linkId}</Mono></Td><Td className="text-xs">{e.merchantId === sc.primaryMerchantId ? 'This merchant' : e.merchantId}</Td><Td className="font-mono text-xs">{e.host}{e.path}</Td><Td><Badge tone={e.category === 'own' ? 'ok' : e.category === 'gambling' ? 'bad' : 'warn'}>{e.category}</Badge></Td>
-                  <Td>{verified[e.id] ? <span className="text-xs text-emerald-300">{verified[e.id]}</span> : <Btn size="sm" onClick={() => setVerified(v => ({ ...v, [e.id]: e.category === 'own' ? 'Confirmed: link is on the merchant’s declared domain.' : `Confirmed: ${e.pageType} on ${e.host} posts payments to ${e.linkId}.` }))}>Verify link</Btn>}</Td></tr>))}</tbody></table>
+                  <Td>{verified[e.id] ? <span className="text-xs text-gray-300">{verified[e.id]}</span> : <Btn size="sm" onClick={() => setVerified(v => ({ ...v, [e.id]: e.category === 'own' ? 'Confirmed: link is on the merchant’s declared domain.' : `Confirmed: ${e.pageType} on ${e.host} posts payments to ${e.linkId}.` }))}>Verify link</Btn>}</Td></tr>))}</tbody></table>
               <p className="mt-2 text-xs text-dim">Verification here replays the stored synthetic crawler snapshot. No external site is contacted.</p></div>)}
           {tool === 'refunds' && (refunds.length === 0 ? <div className="text-sm text-mute">No refunds in this window.</div> : (
             <div className="overflow-x-auto"><table className={tableCls}><thead><tr><Th>Refund</Th><Th>Amount</Th><Th>Original sale</Th><Th>Original payer</Th><Th>Refund destination</Th><Th>Reconciles</Th></tr></thead>
@@ -77,14 +77,14 @@ export function L5View() {
       </Panel>
       <Panel title="Record findings" subtitle="Your inputs are written to the audit trail and carried into L6 and L7.">
         <div className="grid gap-4 md:grid-cols-2">
-          <label className="block text-sm"><span className="mb-1 block text-xs text-mute">Investigation findings</span><textarea value={user.notes} onChange={e => { patch({ notes: e.target.value }); setSaved(false); }} rows={4} placeholder="What did you verify? What remains open?" className="w-full rounded border border-line2 bg-bg px-3 py-2 text-sm outline-none focus:border-cyan-400" /></label>
-          <label className="block text-sm"><span className="mb-1 block text-xs text-mute">Merchant clarification (optional)</span><textarea value={user.clarification} onChange={e => { patch({ clarification: e.target.value }); setSaved(false); }} rows={4} placeholder="Paste or summarise the merchant’s explanation." className="w-full rounded border border-line2 bg-bg px-3 py-2 text-sm outline-none focus:border-cyan-400" /></label>
+          <label className="block text-sm"><span className="mb-1 block text-xs text-mute">Investigation findings</span><textarea value={user.notes} onChange={e => { patch({ notes: e.target.value }); setSaved(false); }} rows={4} placeholder="What did you verify? What remains open?" className="w-full rounded border border-line2 bg-bg px-3 py-2 text-sm outline-none focus:border-zinc-400" /></label>
+          <label className="block text-sm"><span className="mb-1 block text-xs text-mute">Merchant clarification (optional)</span><textarea value={user.clarification} onChange={e => { patch({ clarification: e.target.value }); setSaved(false); }} rows={4} placeholder="Paste or summarise the merchant’s explanation." className="w-full rounded border border-line2 bg-bg px-3 py-2 text-sm outline-none focus:border-zinc-400" /></label>
         </div>
         <div className="mt-4 flex flex-wrap items-end gap-4">
           <label className="block text-sm"><span className="mb-1 block text-xs text-mute">Recommended action</span>
-            <select value={level} onChange={e => { setLevel(e.target.value as typeof level); setSaved(false); }} className="rounded border border-line2 bg-bg px-3 py-2 text-sm outline-none focus:border-cyan-400">{RESPONSE_LEVELS.map(l => <option key={l.id} value={l.id}>{l.id} · {l.name}{l.id === rv.recommended ? ' (system suggestion)' : ''}</option>)}</select></label>
+            <select value={level} onChange={e => { setLevel(e.target.value as typeof level); setSaved(false); }} className="rounded border border-line2 bg-bg px-3 py-2 text-sm outline-none focus:border-zinc-400">{RESPONSE_LEVELS.map(l => <option key={l.id} value={l.id}>{l.id} · {l.name}{l.id === rv.recommended ? ' (system suggestion)' : ''}</option>)}</select></label>
           <Btn variant="primary" onClick={() => { note('Review recorded', `Recommended ${level}. ${user.notes ? 'Findings: ' + user.notes.slice(0, 120) : 'No free-text findings.'}`); if (user.clarification) note('Merchant clarification added', user.clarification.slice(0, 160)); setSaved(true); }}>Record review</Btn>
-          {saved && <span className="flex items-center gap-1.5 text-sm text-emerald-300"><CheckCircle2 size={15} />Recorded in audit trail</span>}
+          {saved && <span className="flex items-center gap-1.5 text-sm text-gray-300"><CheckCircle2 size={15} />Recorded in audit trail</span>}
         </div>
         <p className="mt-3 text-xs text-dim">The recommendation sets the starting level in L6. It does not execute anything.</p>
       </Panel>

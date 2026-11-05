@@ -56,14 +56,14 @@ export function UploadPage() {
     <>
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div><h1 className="text-2xl font-semibold tracking-tight">Analyze a dataset</h1>
-          <p className="mt-1 max-w-2xl text-sm text-mute">Upload a merchant’s data in the <span className="font-mono text-cyan-300">mre-dataset/v1</span> format. It runs through the same seven layers as the built-in cases and returns every flag, the verdict and a proportionate response.</p></div>
+          <p className="mt-1 max-w-2xl text-sm text-mute">Upload a merchant’s data in the <span className="font-mono text-zinc-300">mre-dataset/v1</span> format. It runs through the same seven layers as the built-in cases and returns every flag, the verdict and a proportionate response.</p></div>
         <div className="flex gap-2"><a href={`${BASE}samples/DATASET_FORMAT.md`} download><Btn size="sm"><FileJson size={14} />Format guide</Btn></a><a href={`${BASE}samples/mre-dataset-template.json`} download><Btn size="sm"><Download size={14} />Empty template</Btn></a></div>
       </div>
 
       <div className="grid gap-4 lg:grid-cols-[1.1fr_1fr]">
         <div onDragOver={e => { e.preventDefault(); setOver(true); }} onDragLeave={() => setOver(false)} onDrop={drop}
-          className={cx('flex min-h-[220px] flex-col items-center justify-center gap-3 rounded-lg border-2 border-dashed p-6 text-center transition-colors', over ? 'border-cyan-400 bg-cyan-400/5' : 'border-line2 bg-panel')}>
-          <FileUp className="text-cyan-300" size={30} />
+          className={cx('flex min-h-[220px] flex-col items-center justify-center gap-3 rounded-lg border-2 border-dashed p-6 text-center transition-colors', over ? 'border-zinc-400 bg-zinc-400/5' : 'border-line2 bg-panel')}>
+          <FileUp className="text-zinc-300" size={30} />
           <div className="text-sm font-medium">Drop a dataset (.json) here</div>
           <div className="text-xs text-mute">or</div>
           <Btn variant="primary" onClick={() => input.current?.click()}>Choose file</Btn>
@@ -73,7 +73,7 @@ export function UploadPage() {
 
         <Panel title="Sample datasets" subtitle="Generated synthetic data in the upload format. Load one, or download it and edit it to test the engine.">
           <div className="space-y-1.5">{SAMPLES.map(x => (
-            <div key={x.file} className={cx('flex items-center gap-3 rounded border px-3 py-2', fileName === x.file ? 'border-cyan-400/60 bg-cyan-400/5' : 'border-line')}>
+            <div key={x.file} className={cx('flex items-center gap-3 rounded border px-3 py-2', fileName === x.file ? 'border-zinc-400/60 bg-zinc-400/5' : 'border-line')}>
               <div className="min-w-0 flex-1"><div className="flex items-center gap-2 text-sm"><span className="truncate">{x.name}</span><Badge tone={x.kind.startsWith('Genuine') ? 'ok' : 'bad'}>{x.kind}</Badge></div><div className="truncate text-xs text-mute">{x.note}</div></div>
               <Btn size="sm" disabled={busy} onClick={() => loadSample(x.file)}>Load</Btn>
               <a href={`${BASE}samples/${x.file}`} download aria-label={`Download ${x.name}`}><Btn size="sm" variant="ghost"><Download size={13} /></Btn></a>
@@ -82,9 +82,9 @@ export function UploadPage() {
       </div>
 
       {parsed && (
-        <Panel title={<span className="flex items-center gap-2"><FileJson size={15} className="text-cyan-300" />{fileName}</span>}
+        <Panel title={<span className="flex items-center gap-2"><FileJson size={15} className="text-zinc-300" />{fileName}</span>}
           right={parsed.ok ? <Btn variant="primary" onClick={analyse}><Play size={14} />Run all seven layers</Btn> : <Badge tone="bad">Cannot run</Badge>}>
-          {!parsed.ok && <div className="space-y-1.5">{parsed.errors.map(e => <div key={e} className="flex gap-2 text-sm text-red-300"><X size={15} className="mt-0.5 shrink-0" />{e}</div>)}</div>}
+          {!parsed.ok && <div className="space-y-1.5">{parsed.errors.map(e => <div key={e} className="flex gap-2 text-sm text-neutral-300"><X size={15} className="mt-0.5 shrink-0" />{e}</div>)}</div>}
           {s && (
             <div className="grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-4">
               <div><div className="text-xs text-mute">Merchant</div><div className="font-medium">{s.merchant}</div><div className="text-xs text-mute">{s.city} · {s.category}</div></div>
@@ -92,16 +92,16 @@ export function UploadPage() {
               <div><div className="text-xs text-mute">Window</div><div className="font-medium">{s.from} → {s.to}</div><div className="text-xs text-mute">{s.weeks} weeks of history · {s.fixtures} match fixtures</div></div>
               <div><div className="text-xs text-mute">Data available</div><div className="flex flex-wrap gap-1">{s.available.map(k => <Badge key={k} tone="ok">{k}</Badge>)}{s.missing.map(k => <Badge key={k} tone="mute">{k}: missing</Badge>)}</div></div>
             </div>)}
-          {parsed.warnings.length > 0 && <div className="mt-3 space-y-1">{parsed.warnings.map(w => <div key={w} className="flex gap-2 text-xs text-amber-300"><AlertTriangle size={13} className="mt-0.5 shrink-0" />{w}</div>)}</div>}
+          {parsed.warnings.length > 0 && <div className="mt-3 space-y-1">{parsed.warnings.map(w => <div key={w} className="flex gap-2 text-xs text-stone-300"><AlertTriangle size={13} className="mt-0.5 shrink-0" />{w}</div>)}</div>}
         </Panel>)}
 
       {showResult && pack && (
         <div id="verdict" className="scroll-mt-20 space-y-6">
-          <div className={cx('rounded-lg border p-5', fu.decision === 'OPEN_CASE' ? 'border-red-400/50 bg-red-400/[0.06]' : 'border-emerald-400/50 bg-emerald-400/[0.06]')}>
+          <div className={cx('rounded-lg border p-5', fu.decision === 'OPEN_CASE' ? 'border-neutral-400/50 bg-neutral-400/[0.06]' : 'border-gray-400/50 bg-gray-400/[0.06]')}>
             <div className="flex flex-wrap items-start gap-4">
-              {fu.decision === 'OPEN_CASE' ? <ShieldAlert className="text-red-300" size={34} /> : <ShieldCheck className="text-emerald-300" size={34} />}
+              {fu.decision === 'OPEN_CASE' ? <ShieldAlert className="text-neutral-300" size={34} /> : <ShieldCheck className="text-gray-300" size={34} />}
               <div className="min-w-0 flex-1">
-                <div className={cx('text-xl font-semibold', fu.decision === 'OPEN_CASE' ? 'text-red-200' : 'text-emerald-200')}>{fu.decision === 'OPEN_CASE' ? `Case opened · ${fu.priority} priority` : 'No case opened'}</div>
+                <div className={cx('text-xl font-semibold', fu.decision === 'OPEN_CASE' ? 'text-neutral-200' : 'text-gray-200')}>{fu.decision === 'OPEN_CASE' ? `Case opened · ${fu.priority} priority` : 'No case opened'}</div>
                 <div className="mt-1 text-sm text-mute">{fu.gateReason}</div>
                 <div className="mt-3 grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-4">
                   <div><div className="text-xs text-mute">Leading hypothesis</div><div className="font-medium">{fu.decision === 'OPEN_CASE' ? `${MECHANISMS.find(m => m.id === top.id)!.name} (${top.score.toFixed(2)})` : 'None: alarm explained'}</div></div>

@@ -28,7 +28,7 @@ export function DemoPage() {
       <Panel title="Launch a new investigation" subtitle="Four deterministic scenarios. Re-running the same scenario always gives the same result.">
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
           {SCENARIO_IDS.map(id => { const s = getScenario(id), on = id === scenarioId; return (
-            <div key={id} className={cx('flex flex-col rounded-md border p-4', on ? 'border-cyan-400/50 bg-cyan-400/5' : 'border-line bg-panel2')}>
+            <div key={id} className={cx('flex flex-col rounded-md border p-4', on ? 'border-zinc-400/50 bg-zinc-400/5' : 'border-line bg-panel2')}>
               <div className="flex items-start justify-between gap-2"><div className="text-sm font-semibold">{s.title}</div><Badge tone={s.tone === 'benign' ? 'ok' : 'bad'}>{s.tone === 'benign' ? 'Legitimate' : 'Suspicious'}</Badge></div>
               <p className="mt-1.5 flex-1 text-xs leading-relaxed text-mute">{s.blurb}</p>
               <div className="mt-3 text-[11px] text-dim">Expected: {s.expectedOutcome}</div>
@@ -40,12 +40,12 @@ export function DemoPage() {
         <Panel title="Recent investigations" subtitle="Earlier rows are synthetic history." bodyClass="p-0 overflow-x-auto">
           <table className={tableCls}><thead><tr><Th>Case</Th><Th>Merchant</Th><Th>Leading hypothesis</Th><Th>Priority</Th><Th>Outcome</Th></tr></thead>
             <tbody>
-              {started && <tr className={cx(rowCls, 'bg-cyan-400/5')}><Td><Mono>This run</Mono></Td><Td>{result.scenario.profile.name}</Td><Td className="text-mute">{status[4] === 'done' ? (result.fusion.decision === 'OPEN_CASE' ? result.fusion.mechanisms[0].id : 'None (no case opened)') : 'Processing…'}</Td><Td>{status[4] === 'done' ? result.fusion.priority : '—'}</Td><Td><Badge tone={user.label ? tone(user.label) : 'warn'}>{user.label ?? (allDone ? 'AWAITING' : 'IN PROGRESS')}</Badge></Td></tr>}
+              {started && <tr className={cx(rowCls, 'bg-zinc-400/5')}><Td><Mono>This run</Mono></Td><Td>{result.scenario.profile.name}</Td><Td className="text-mute">{status[4] === 'done' ? (result.fusion.decision === 'OPEN_CASE' ? result.fusion.mechanisms[0].id : 'None (no case opened)') : 'Processing…'}</Td><Td>{status[4] === 'done' ? result.fusion.priority : '—'}</Td><Td><Badge tone={user.label ? tone(user.label) : 'warn'}>{user.label ?? (allDone ? 'AWAITING' : 'IN PROGRESS')}</Badge></Td></tr>}
               {HISTORY.map(h => <tr key={h[0]} className={rowCls}><Td><Mono>{h[0]}</Mono></Td><Td>{h[1]}</Td><Td className="text-mute">{h[2]}</Td><Td>{h[3]}</Td><Td><Badge tone={tone(h[4])}>{h[4]}</Badge></Td></tr>)}</tbody></table>
         </Panel>
         <Panel title="Pipeline status" subtitle={started ? result.scenario.title : 'Not started'}>
-          <ol className="space-y-2">{LAYERS.map(l => <li key={l.n} className="flex items-center gap-3 text-[13px]"><span className={cx('flex h-6 w-8 items-center justify-center rounded font-mono text-xs', status[l.n] === 'done' ? 'bg-emerald-400/15 text-emerald-300' : status[l.n] === 'running' ? 'bg-cyan-400/15 text-cyan-300' : 'bg-panel2 text-dim')}>{l.code}</span><span className={status[l.n] === 'pending' ? 'text-dim' : ''}>{l.name}</span><span className="ml-auto text-xs text-dim">{status[l.n] === 'done' ? 'done' : status[l.n] === 'running' ? 'running' : ''}</span></li>)}</ol>
-          {started && <Link to="/demo/investigations" className="mt-4 inline-flex items-center gap-1.5 text-sm text-cyan-300 hover:underline">Open investigation <ArrowRight size={14} /></Link>}
+          <ol className="space-y-2">{LAYERS.map(l => <li key={l.n} className="flex items-center gap-3 text-[13px]"><span className={cx('flex h-6 w-8 items-center justify-center rounded font-mono text-xs', status[l.n] === 'done' ? 'bg-gray-400/15 text-gray-300' : status[l.n] === 'running' ? 'bg-zinc-400/15 text-zinc-300' : 'bg-panel2 text-dim')}>{l.code}</span><span className={status[l.n] === 'pending' ? 'text-dim' : ''}>{l.name}</span><span className="ml-auto text-xs text-dim">{status[l.n] === 'done' ? 'done' : status[l.n] === 'running' ? 'running' : ''}</span></li>)}</ol>
+          {started && <Link to="/demo/investigations" className="mt-4 inline-flex items-center gap-1.5 text-sm text-zinc-300 hover:underline">Open investigation <ArrowRight size={14} /></Link>}
         </Panel>
       </div>
     </>

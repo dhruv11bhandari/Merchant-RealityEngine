@@ -1,34 +1,35 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #05080f;
-  --color-panel: #0a101b;
-  --color-panel2: #0e1626;
-  --color-line: #1a2538;
-  --color-line2: #26354f;
-  --color-ink: #e6edf7;
-  --color-mute: #8a99b3;
-  --color-dim: #5b6b86;
-  --color-cy: #22d3ee;
-  --color-sky: #38bdf8;
-  --color-ok: #34d399;
-  --color-warn: #f59e0b;
-  --color-bad: #f87171;
+  --color-bg: #080808;
+  --color-panel: #101010;
+  --color-panel2: #151515;
+  --color-line: #242424;
+  --color-line2: #343434;
+  --color-ink: #ececec;
+  --color-mute: #989898;
+  --color-dim: #6a6a6a;
+  --color-cy: #afafaf;
+  --color-sky: #a5a5a5;
+  --color-ok: #adadad;
+  --color-warn: #a6a6a6;
+  --color-bad: #8e8e8e;
   --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
 }
 
 html, body, #root { min-height: 100%; background: var(--color-bg); color: var(--color-ink); }
+/* All app accents use neutral values so every route, including the demo, stays monochrome. */
 body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; letter-spacing: -0.005em; }
-::selection { background: rgba(34,211,238,.3); }
-* { scrollbar-width: thin; scrollbar-color: #26354f transparent; }
+::selection { background: rgba(175, 175, 175,.3); }
+* { scrollbar-width: thin; scrollbar-color: #343434 transparent; }
 :focus-visible { outline: 2px solid var(--color-cy); outline-offset: 2px; }
 
 .grid-bg {
-  background-image: linear-gradient(rgba(56,189,248,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,.045) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(165, 165, 165,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(165, 165, 165,.045) 1px, transparent 1px);
   background-size: 44px 44px;
 }
-.glow { background: radial-gradient(60% 60% at 50% 0%, rgba(34,211,238,.13), transparent 70%); }
+.glow { background: radial-gradient(60% 60% at 50% 0%, rgba(175, 175, 175,.13), transparent 70%); }
 
 @keyframes dash { to { stroke-dashoffset: -24; } }
 @keyframes pulseRing { 0% { r: 6; opacity: .7; } 100% { r: 22; opacity: 0; } }
@@ -40,7 +41,7 @@ body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; lette
 .fade-in { animation: fadeIn .35s ease both; }
 .blink { animation: blink 1.1s ease-in-out infinite; }
 .scanbar { position: relative; overflow: hidden; }
-.scanbar::after { content: ""; position: absolute; inset: 0; width: 35%; background: linear-gradient(90deg, transparent, rgba(34,211,238,.55), transparent); animation: scan 1.2s linear infinite; }
+.scanbar::after { content: ""; position: absolute; inset: 0; width: 35%; background: linear-gradient(90deg, transparent, rgba(175, 175, 175,.55), transparent); animation: scan 1.2s linear infinite; }
 
 @media (prefers-reduced-motion: reduce) {
   .anim-dash, .anim-pulse, .blink, .scanbar::after, .fade-in { animation: none !important; }
@@ -48,7 +49,7 @@ body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; lette
 
 .react-flow__attribution { display: none; }
 .react-flow { --xy-background-color: transparent; }
-.react-flow__controls button { background: #0e1626; color: #cbd5e1; border-bottom: 1px solid #1a2538; }
-.react-flow__controls button:hover { background: #16213a; }
+.react-flow__controls button { background: #151515; color: #d4d4d4; border-bottom: 1px solid #242424; }
+.react-flow__controls button:hover { background: #202020; }
 .react-flow__controls button svg { fill: currentColor; }
-.react-flow__minimap { background: #0a101b !important; border: 1px solid #1a2538; }
+.react-flow__minimap { background: #101010 !important; border: 1px solid #242424; }

@@ -23,21 +23,21 @@ export function DemoShell() {
     <div className="flex min-h-screen bg-bg">
       <aside className="sticky top-0 hidden h-screen w-60 shrink-0 flex-col border-r border-line bg-panel/60 lg:flex">
         <Link to="/" className="flex h-14 items-center border-b border-line px-4" aria-label="Back to site"><Logo small /></Link>
-        <nav className="flex-1 space-y-0.5 p-2" aria-label="Demo">{NAV.map(n => <NavLink key={n.to} to={n.to} end={n.end} className={({ isActive }) => cx('flex items-center gap-2.5 rounded px-3 py-2 text-sm transition-colors', isActive ? 'bg-cyan-400/10 text-cyan-200' : 'text-mute hover:bg-panel2 hover:text-ink')}><n.icon size={16} />{n.label}</NavLink>)}</nav>
+        <nav className="flex-1 space-y-0.5 p-2" aria-label="Demo">{NAV.map(n => <NavLink key={n.to} to={n.to} end={n.end} className={({ isActive }) => cx('flex items-center gap-2.5 rounded px-3 py-2 text-sm transition-colors', isActive ? 'bg-zinc-400/10 text-zinc-200' : 'text-mute hover:bg-panel2 hover:text-ink')}><n.icon size={16} />{n.label}</NavLink>)}</nav>
         <div className="border-t border-line p-4 text-xs text-dim">Synthetic data only. No real merchants, payments or evidence.</div>
       </aside>
       <div className="min-w-0 flex-1">
         <header className="sticky top-0 z-30 flex flex-wrap items-center gap-3 border-b border-line bg-bg/90 px-5 py-2.5 backdrop-blur">
           {consoleBar ? <>
           <label className="flex items-center gap-2 text-xs text-mute">Scenario
-            <select value={scenarioId} disabled={running} onChange={e => setScenario(e.target.value as ActiveId)} className="rounded border border-line2 bg-panel px-2.5 py-1.5 text-sm text-ink outline-none focus:border-cyan-400 disabled:opacity-50">
+            <select value={scenarioId} disabled={running} onChange={e => setScenario(e.target.value as ActiveId)} className="rounded border border-line2 bg-panel px-2.5 py-1.5 text-sm text-ink outline-none focus:border-zinc-400 disabled:opacity-50">
               {SCENARIO_IDS.map(id => <option key={id} value={id}>{getScenario(id).title}</option>)}{custom && <option value="custom">Your dataset: {custom.profile.name}</option>}</select></label>
           <Btn variant="primary" size="sm" disabled={running} onClick={() => run()}><Play size={13} />{started ? 'Re-run investigation' : 'Run investigation'}</Btn>
           <Btn size="sm" disabled={!started && !running} onClick={reset}><RotateCcw size={13} />Reset</Btn>
-          <label className="flex cursor-pointer items-center gap-1.5 text-xs text-mute"><input type="checkbox" className="accent-cyan-400" checked={fast} onChange={e => setFast(e.target.checked)} /><Zap size={12} />Fast</label>
+          <label className="flex cursor-pointer items-center gap-1.5 text-xs text-mute"><input type="checkbox" className="accent-zinc-300" checked={fast} onChange={e => setFast(e.target.checked)} /><Zap size={12} />Fast</label>
           </> : <span className="text-sm text-mute">Merchant portfolio review</span>}
           <div className="ml-auto flex items-center gap-2">{started && <Badge tone={allDone ? 'ok' : 'info'}>{allDone ? 'All layers complete' : `${doneCount} of 7 layers`}</Badge>}<Badge tone="warn">{scenarioId === 'custom' ? 'Uploaded dataset' : 'Synthetic data'}</Badge></div>
-          <nav className="flex w-full gap-1 overflow-x-auto lg:hidden" aria-label="Demo mobile">{NAV.map(n => <NavLink key={n.to} to={n.to} end={n.end} className={({ isActive }) => cx('whitespace-nowrap rounded px-2.5 py-1 text-xs', isActive ? 'bg-cyan-400/10 text-cyan-200' : 'text-mute')}>{n.label}</NavLink>)}</nav>
+          <nav className="flex w-full gap-1 overflow-x-auto lg:hidden" aria-label="Demo mobile">{NAV.map(n => <NavLink key={n.to} to={n.to} end={n.end} className={({ isActive }) => cx('whitespace-nowrap rounded px-2.5 py-1 text-xs', isActive ? 'bg-zinc-400/10 text-zinc-200' : 'text-mute')}>{n.label}</NavLink>)}</nav>
         </header>
         <main className="mx-auto max-w-[1280px] space-y-6 px-5 py-6"><Outlet /></main>
       </div>

@@ -35,7 +35,7 @@ export function PortfolioPage() {
       </div>
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        {[['Merchants reviewed', entries.length, 'text-ink', loading ? 'loading more…' : 'synthetic portfolio'], ['Suspicious', sus.length, 'text-red-300', 'case opened for analyst review'], ['Cleared', clear.length, 'text-emerald-300', 'no case opened'], ['Asked to explain', ask, 'text-amber-300', 'volume changed; Context Passport sent']].map(([l, v, c, s]) => (
+        {[['Merchants reviewed', entries.length, 'text-ink', loading ? 'loading more…' : 'synthetic portfolio'], ['Suspicious', sus.length, 'text-neutral-300', 'case opened for analyst review'], ['Cleared', clear.length, 'text-gray-300', 'no case opened'], ['Asked to explain', ask, 'text-stone-300', 'volume changed; Context Passport sent']].map(([l, v, c, s]) => (
           <div key={l as string} className="rounded-md border border-line bg-panel px-4 py-3"><div className="text-xs text-mute">{l}</div><div className={cx('mt-1 text-2xl font-semibold tabular-nums', c as string)}>{v}</div><div className="text-[11px] text-dim">{s}</div></div>))}
       </div>
 
@@ -48,13 +48,13 @@ export function PortfolioPage() {
           <tbody>{rows.map(e => {
             const v = verdictOf(e), p = e.scenario.profile, step = LADDER.find(l => l.id === e.pack.ladder)!;
             return (
-              <tr key={e.key} onClick={() => nav(`/demo/portfolio/${e.key}`)} className={cx('cursor-pointer border-t border-line transition-colors hover:bg-panel2/70', e.suspicious && 'bg-red-400/[0.03]')}>
-                <td className="px-4 py-3"><div className="flex items-center gap-2.5">{e.suspicious ? <ShieldAlert size={17} className="shrink-0 text-red-300" /> : <ShieldCheck size={17} className="shrink-0 text-emerald-300" />}
-                  <div><div className="font-medium">{p.name}</div><div className="text-xs text-mute">{p.city.split(',')[0]} · <span className="font-mono">{p.id}</span>{e.source === 'uploaded' && <span className="ml-1.5 text-cyan-300">uploaded</span>}</div></div></div></td>
+              <tr key={e.key} onClick={() => nav(`/demo/portfolio/${e.key}`)} className={cx('cursor-pointer border-t border-line transition-colors hover:bg-panel2/70', e.suspicious && 'bg-neutral-400/[0.03]')}>
+                <td className="px-4 py-3"><div className="flex items-center gap-2.5">{e.suspicious ? <ShieldAlert size={17} className="shrink-0 text-neutral-300" /> : <ShieldCheck size={17} className="shrink-0 text-gray-300" />}
+                  <div><div className="font-medium">{p.name}</div><div className="text-xs text-mute">{p.city.split(',')[0]} · <span className="font-mono">{p.id}</span>{e.source === 'uploaded' && <span className="ml-1.5 text-zinc-300">uploaded</span>}</div></div></div></td>
                 <td className="px-4 py-3"><div>{p.category}</div><div className="text-xs text-mute">MCC {p.mcc}</div></td>
                 <td className="px-4 py-3"><Badge tone={v.tone}>{v.label}{e.suspicious ? ` · ${v.priority}` : ''}</Badge></td>
                 <td className="px-4 py-3 text-[13px]">{v.reason}</td>
-                <td className="px-4 py-3 tabular-nums"><span className={e.coreFlags + e.patternFlags ? 'text-red-300' : 'text-mute'}>{e.coreFlags + e.patternFlags}</span><span className="text-xs text-dim"> / {e.result.evidence.length + e.pack.results.length - 1}</span></td>
+                <td className="px-4 py-3 tabular-nums"><span className={e.coreFlags + e.patternFlags ? 'text-neutral-300' : 'text-mute'}>{e.coreFlags + e.patternFlags}</span><span className="text-xs text-dim"> / {e.result.evidence.length + e.pack.results.length - 1}</span></td>
                 <td className="px-4 py-3 text-xs text-mute">{step.name}: {step.action.split(';')[0]}</td>
                 <td className="px-3 py-3 text-mute"><ChevronRight size={16} /></td>
               </tr>);

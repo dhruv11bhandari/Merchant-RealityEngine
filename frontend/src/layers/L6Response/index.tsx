@@ -16,29 +16,29 @@ export function L6View() {
       <Panel title="Six response levels" subtitle="The smallest action that addresses the evidence. Higher levels need more.">
         <div className="grid gap-2 md:grid-cols-3 xl:grid-cols-6">
           {LEVEL_ORDER.map(id => { const l = RESPONSE_LEVELS.find(x => x.id === id)!, on = plan.level === id; return (
-            <button key={id} onClick={() => setLevel(id)} aria-pressed={on} className={cx('rounded border p-3 text-left transition-colors', on ? 'border-cyan-400 bg-cyan-400/5' : 'border-line bg-panel2 hover:border-line2')}>
-              <div className="flex items-center justify-between"><span className="font-mono text-sm font-semibold text-cyan-300">{id}</span>{id === plan.recommended && <Badge tone="info">Suggested</Badge>}</div>
+            <button key={id} onClick={() => setLevel(id)} aria-pressed={on} className={cx('rounded border p-3 text-left transition-colors', on ? 'border-zinc-400 bg-zinc-400/5' : 'border-line bg-panel2 hover:border-line2')}>
+              <div className="flex items-center justify-between"><span className="font-mono text-sm font-semibold text-zinc-300">{id}</span>{id === plan.recommended && <Badge tone="info">Suggested</Badge>}</div>
               <div className="mt-1 text-[13px] font-medium leading-tight">{l.name}</div><div className="mt-1 text-[11px] text-mute">{l.blurb}</div>
-              {l.needsAuthority && <div className="mt-2 flex items-center gap-1 text-[10px] text-amber-300"><Lock size={10} />Needs authority check</div>}</button>); })}
+              {l.needsAuthority && <div className="mt-2 flex items-center gap-1 text-[10px] text-stone-300"><Lock size={10} />Needs authority check</div>}</button>); })}
         </div>
       </Panel>
       <div className="grid gap-4 lg:grid-cols-2">
         <Panel title="Legal-authority verification" subtitle="A separate step from the risk decision.">
           {plan.authorityRequired ? (
             <div className="space-y-3 text-sm">
-              <label className="flex items-start gap-3"><input type="checkbox" className="mt-1 accent-cyan-400" checked={user.legalVerified} onChange={e => patch({ legalVerified: e.target.checked, executed: false })} /><span><span className="block">Legal authority verified (simulated)</span><span className="text-xs text-mute">In practice: confirmation from legal or compliance that the action rests on a valid order, regulation or contract term.</span></span></label>
-              {plan.level === 'L4' && <label className="flex items-start gap-3"><input type="checkbox" className="mt-1 accent-cyan-400" checked={user.escrowConfirmed} onChange={e => patch({ escrowConfirmed: e.target.checked, executed: false })} /><span><span className="block">Escrow or reserve clause confirmed (simulated)</span><span className="text-xs text-mute">The merchant agreement permits holding the identified funds.</span></span></label>}
-              {plan.blocked.map(b => <div key={b} className="flex gap-2 rounded border border-amber-400/30 bg-amber-400/5 px-3 py-2 text-xs text-amber-200"><AlertTriangle size={14} className="mt-0.5 shrink-0" />{b}</div>)}
+              <label className="flex items-start gap-3"><input type="checkbox" className="mt-1 accent-zinc-300" checked={user.legalVerified} onChange={e => patch({ legalVerified: e.target.checked, executed: false })} /><span><span className="block">Legal authority verified (simulated)</span><span className="text-xs text-mute">In practice: confirmation from legal or compliance that the action rests on a valid order, regulation or contract term.</span></span></label>
+              {plan.level === 'L4' && <label className="flex items-start gap-3"><input type="checkbox" className="mt-1 accent-zinc-300" checked={user.escrowConfirmed} onChange={e => patch({ escrowConfirmed: e.target.checked, executed: false })} /><span><span className="block">Escrow or reserve clause confirmed (simulated)</span><span className="text-xs text-mute">The merchant agreement permits holding the identified funds.</span></span></label>}
+              {plan.blocked.map(b => <div key={b} className="flex gap-2 rounded border border-stone-400/30 bg-stone-400/5 px-3 py-2 text-xs text-stone-200"><AlertTriangle size={14} className="mt-0.5 shrink-0" />{b}</div>)}
             </div>) : <div className="text-sm text-mute">{plan.level} does not restrict funds, so no legal-authority gate applies. L4 and L5 always require it.</div>}
         </Panel>
         <Panel title={`Proposed response: ${plan.level}`} subtitle={meta.blurb}>
-          <ul className="space-y-2 text-[13px]">{plan.actions.map(a => <li key={a} className="flex gap-2"><Power size={14} className="mt-0.5 shrink-0 text-cyan-300" />{a}</li>)}</ul>
+          <ul className="space-y-2 text-[13px]">{plan.actions.map(a => <li key={a} className="flex gap-2"><Power size={14} className="mt-0.5 shrink-0 text-zinc-300" />{a}</li>)}</ul>
           {isFlow && plan.keepsRunning.length > 0 && (
-            <div className="mt-4 rounded border border-emerald-400/30 bg-emerald-400/5 p-3"><div className="flex items-center gap-2 text-sm font-medium text-emerald-300"><Store size={15} />Stays operational</div>
+            <div className="mt-4 rounded border border-gray-400/30 bg-gray-400/5 p-3"><div className="flex items-center gap-2 text-sm font-medium text-gray-300"><Store size={15} />Stays operational</div>
               <div className="mt-1 text-xs text-mute">{plan.keepsRunning.map(k => <Mono key={k} className="mr-2">{k}</Mono>)}The legitimate part of the business keeps trading. Only the identified flow {plan.suspectLinks.map(k => <Mono key={k} className="ml-1">{k}</Mono>)} is restricted.</div></div>)}
           <div className="mt-4 flex items-center gap-3">
             <Btn variant="primary" disabled={plan.blocked.length > 0 || user.executed} onClick={execute}>{user.executed ? 'Executed' : `Execute ${plan.level}`}</Btn>
-            {user.executed && <span className="flex items-center gap-1.5 text-sm text-emerald-300"><CheckCircle2 size={15} />Logged below</span>}
+            {user.executed && <span className="flex items-center gap-1.5 text-sm text-gray-300"><CheckCircle2 size={15} />Logged below</span>}
           </div>
         </Panel>
       </div>

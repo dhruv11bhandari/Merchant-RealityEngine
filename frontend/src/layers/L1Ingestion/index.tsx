@@ -50,7 +50,7 @@ export function L1View() {
           <p className="mt-3 text-xs text-mute">Three clocks stay separate so timing detectors use when the payer paid, not when the data arrived.</p>
         </Panel>
         <Panel title="Identifier hashing" subtitle="Raw payer identifiers never enter the store.">
-          <div className="space-y-1.5">{l1.hashSamples.map(h => <div key={h.raw} className="flex items-center gap-2 text-[12px]"><Mono className="text-mute">{h.raw}</Mono><ArrowRight size={12} className="text-dim" /><Fingerprint size={12} className="text-cyan-400" /><Mono>{h.hash}</Mono></div>)}</div>
+          <div className="space-y-1.5">{l1.hashSamples.map(h => <div key={h.raw} className="flex items-center gap-2 text-[12px]"><Mono className="text-mute">{h.raw}</Mono><ArrowRight size={12} className="text-dim" /><Fingerprint size={12} className="text-zinc-400" /><Mono>{h.hash}</Mono></div>)}</div>
           <p className="mt-3 text-xs text-dim">Demo uses a simple hash. Production design: salted HMAC-SHA256 with managed keys.</p>
         </Panel>
       </div>
@@ -67,7 +67,7 @@ export function L1View() {
           <tbody>{rows.slice(0, Math.min(shown, limit)).map(e => (
             <tr key={e.id} className={rowCls}><Td><Mono>{e.id}</Mono></Td><Td><Badge tone={typeTone[e.type]}>{e.type[0] + e.type.slice(1).toLowerCase()}</Badge></Td><Td className="tabular-nums">{inr(e.amount)}</Td><Td className="font-mono text-xs">{fmtDateTime(e.eventTime)}</Td>
               <Td><Mono className="text-mute">{e.payerHash}</Mono></Td><Td>{e.payerState}</Td><Td className="text-mute">{e.channel}</Td><Td>{e.type === 'REFUND' ? (e.linkedSaleId ? <Mono>{e.linkedSaleId}</Mono> : <Badge tone="bad">none</Badge>) : '—'}</Td><Td className="text-xs text-dim">{e.source}</Td></tr>))}</tbody></table>
-        <div className="flex items-center justify-between border-t border-line px-4 py-2.5 text-xs text-mute"><span>Showing {Math.min(shown, limit, rows.length)} of {rows.length}{shown < limit && <span className="blink ml-2 text-cyan-300">streaming…</span>}</span>
+        <div className="flex items-center justify-between border-t border-line px-4 py-2.5 text-xs text-mute"><span>Showing {Math.min(shown, limit, rows.length)} of {rows.length}{shown < limit && <span className="blink ml-2 text-zinc-300">streaming…</span>}</span>
           {limit < rows.length && <Btn size="sm" onClick={() => setLimit(l => l + 20)}>Show 20 more</Btn>}</div>
       </Panel>
       <div className="text-xs text-dim">Lineage: {Array.from(new Set(r.events.map(e => e.source))).join(' · ')}. {pct(r.events.filter(e => e.type === 'SALE').length / r.events.length)} of stored events are sales.</div>

@@ -25,10 +25,10 @@ export function InvestigationPage() {
       <div className="grid gap-6 lg:grid-cols-[250px_1fr]">
         <ol className="space-y-1.5 lg:sticky lg:top-24 lg:self-start" aria-label="Layer progress">
           {LAYERS.map(l => { const st = status[l.n], sel = selectedLayer === l.n; return (
-            <li key={l.n}><button onClick={() => selectLayer(l.n)} aria-current={sel} className={cx('flex w-full items-center gap-3 rounded-md border px-3 py-2.5 text-left transition-colors', sel ? 'border-cyan-400/60 bg-cyan-400/5' : 'border-line bg-panel hover:border-line2')}>
-              <span className={cx('flex h-7 w-9 shrink-0 items-center justify-center rounded font-mono text-xs font-semibold', st === 'done' ? 'bg-emerald-400/15 text-emerald-300' : st === 'running' ? 'bg-cyan-400/15 text-cyan-300' : 'bg-panel2 text-dim')}>{l.code}</span>
+            <li key={l.n}><button onClick={() => selectLayer(l.n)} aria-current={sel} className={cx('flex w-full items-center gap-3 rounded-md border px-3 py-2.5 text-left transition-colors', sel ? 'border-zinc-400/60 bg-zinc-400/5' : 'border-line bg-panel hover:border-line2')}>
+              <span className={cx('flex h-7 w-9 shrink-0 items-center justify-center rounded font-mono text-xs font-semibold', st === 'done' ? 'bg-gray-400/15 text-gray-300' : st === 'running' ? 'bg-zinc-400/15 text-zinc-300' : 'bg-panel2 text-dim')}>{l.code}</span>
               <span className="min-w-0 flex-1"><span className="block truncate text-[13px] font-medium">{l.name}</span>{st === 'running' ? <span className="scanbar mt-1.5 block h-1 rounded-full bg-line" /> : <span className="block text-[11px] text-dim">{st === 'done' ? 'Complete' : 'Pending'}</span>}</span>
-              {st === 'done' ? <Check size={14} className="text-emerald-300" /> : st === 'running' ? <Loader2 size={14} className="animate-spin text-cyan-300" /> : null}</button></li>); })}
+              {st === 'done' ? <Check size={14} className="text-gray-300" /> : st === 'running' ? <Loader2 size={14} className="animate-spin text-zinc-300" /> : null}</button></li>); })}
           <li className="pt-2 text-[11px] text-dim">Select a completed layer to inspect its inputs, processing, output and results.</li>
         </ol>
         <div className="min-w-0"><View /></div>

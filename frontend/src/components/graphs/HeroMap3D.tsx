@@ -47,7 +47,7 @@ function inside(poly: [number, number][], x: number, y: number) {
   return c;
 }
 
-const CYAN = new THREE.Color('#22d3ee'), AMBER = new THREE.Color('#f59e0b'), RED = new THREE.Color('#f87171'), DOT = new THREE.Color('#2f7aa3'), HOME = new THREE.Color('#2dd4bf');
+const CYAN = new THREE.Color('#afafaf'), AMBER = new THREE.Color('#a6a6a6'), RED = new THREE.Color('#8e8e8e'), DOT = new THREE.Color('#6d6d6d'), HOME = new THREE.Color('#afafaf');
 
 function useFacts() {
   return useMemo(() => {
@@ -76,13 +76,13 @@ export default function HeroMap3D() {
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
-    renderer.setClearColor('#05080f', 1);
+    renderer.setClearColor('#080808', 1);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     el.prepend(renderer.domElement);
     Object.assign(renderer.domElement.style, { position: 'absolute', inset: '0', width: '100%', height: '100%' });
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2('#05080f', 0.022);
+    scene.fog = new THREE.FogExp2('#080808', 0.022);
     const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 200);
     const world = new THREE.Group(); scene.add(world);
     const disposables: { dispose: () => void }[] = [];
@@ -134,7 +134,7 @@ export default function HeroMap3D() {
     /* ---- glow texture ---- */
     const cv = document.createElement('canvas'); cv.width = cv.height = 64;
     const g = cv.getContext('2d')!, grd = g.createRadialGradient(32, 32, 0, 32, 32, 32);
-    grd.addColorStop(0, '#fff'); grd.addColorStop(0.3, 'rgba(255,255,255,.5)'); grd.addColorStop(1, 'rgba(255,255,255,0)');
+    grd.addColorStop(0, '#ffffff'); grd.addColorStop(0.3, 'rgba(255, 255, 255,.5)'); grd.addColorStop(1, 'rgba(255, 255, 255,0)');
     g.fillStyle = grd; g.fillRect(0, 0, 64, 64);
     const glow = T(new THREE.CanvasTexture(cv));
 
@@ -174,7 +174,7 @@ export default function HeroMap3D() {
       const m = new THREE.Mesh(ringGeo, T(new THREE.MeshBasicMaterial({ color: CYAN, transparent: true, opacity: 0, side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false })));
       m.rotation.x = -Math.PI / 2; m.position.copy(merchant).setY(0.01); world.add(m); return { m, t: i / 3 };
     });
-    const scanRing = new THREE.Mesh(T(new THREE.RingGeometry(0.96, 1, 160)), T(new THREE.MeshBasicMaterial({ color: '#67e8f9', transparent: true, opacity: 0, side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false })));
+    const scanRing = new THREE.Mesh(T(new THREE.RingGeometry(0.96, 1, 160)), T(new THREE.MeshBasicMaterial({ color: '#cecece', transparent: true, opacity: 0, side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false })));
     scanRing.rotation.x = -Math.PI / 2; scanRing.position.copy(merchant).setY(0.02); world.add(scanRing);
 
     /* ---- post-processing ---- */
@@ -293,31 +293,31 @@ export default function HeroMap3D() {
   const pct = (x: number) => (x * 100).toFixed(0);
   return (
     <div ref={host} className="absolute inset-0 select-none" aria-hidden="true">
-      <div ref={merchantTag} className="pointer-events-none absolute left-0 top-0 whitespace-nowrap rounded-md border border-cyan-300/40 bg-[#05080f]/80 px-2.5 py-1 text-center backdrop-blur">
-        <div className="text-[11px] font-semibold text-cyan-100">{f.name}</div>
-        <div className="text-[10px] text-cyan-300/80">declared: bakery · Bengaluru</div>
+      <div ref={merchantTag} className="pointer-events-none absolute left-0 top-0 whitespace-nowrap rounded-md border border-zinc-300/40 bg-[#080808]/80 px-2.5 py-1 text-center backdrop-blur">
+        <div className="text-[11px] font-semibold text-zinc-100">{f.name}</div>
+        <div className="text-[10px] text-zinc-300/80">declared: bakery · Bengaluru</div>
       </div>
       {OUTSIDE.map((o, i) => (
-        <div key={o.name} ref={x => { chips.current[i] = x; }} className="pointer-events-none absolute left-0 top-0 whitespace-nowrap rounded border border-amber-400/50 bg-[#05080f]/75 px-1.5 py-0.5 font-mono text-[10px] text-amber-200 opacity-0">
-          {o.amt} <span className="text-amber-400/70">· {o.name}</span>
+        <div key={o.name} ref={x => { chips.current[i] = x; }} className="pointer-events-none absolute left-0 top-0 whitespace-nowrap rounded border border-stone-400/50 bg-[#080808]/75 px-1.5 py-0.5 font-mono text-[10px] text-stone-200 opacity-0">
+          {o.amt} <span className="text-stone-400/70">· {o.name}</span>
         </div>))}
 
-      <div ref={hud} className="pointer-events-none absolute bottom-8 right-6 w-[300px] rounded-xl border border-cyan-300/20 bg-[#070d18]/80 p-4 shadow-[0_0_40px_rgba(34,211,238,0.08)] backdrop-blur-md xl:right-10">
-        <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.16em] text-cyan-300">
-          <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 animate-pulse rounded-full bg-red-400" />Live scan</span><span className="text-dim">{f.id}</span>
+      <div ref={hud} className="pointer-events-none absolute bottom-8 right-6 w-[300px] rounded-xl border border-zinc-300/20 bg-[#0d0d0d]/80 p-4 shadow-[0_0_40px_rgba(175, 175, 175,0.08)] backdrop-blur-md xl:right-10">
+        <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.16em] text-zinc-300">
+          <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 animate-pulse rounded-full bg-neutral-400" />Live scan</span><span className="text-dim">{f.id}</span>
         </div>
         <div className="mt-2 text-sm font-semibold text-ink">{f.name}</div>
         <div className="text-[11px] text-mute">Declared: Bakery, Bengaluru · MCC {f.mcc}</div>
         <div className="mt-3 space-y-2 font-mono text-[12px]">
           <div data-row className="flex justify-between"><span className="text-mute">Payments scanned</span><span className="text-ink"><span data-count={f.sales}>0</span></span></div>
-          <div data-row className="flex justify-between"><span className="text-mute">Payer states outside KA</span><span className="text-amber-300"><span data-count={f.states}>0</span></span></div>
-          <div data-row className="flex justify-between"><span className="text-mute">Payers from other states</span><span className="text-amber-300"><span data-count={pct(f.out)}>0</span>%</span></div>
-          <div data-row className="flex justify-between"><span className="text-mute">Round ₹500 / 1k / 2k bills</span><span className="text-red-300"><span data-count={pct(f.round)}>0</span>%</span></div>
-          <div data-row className="flex justify-between"><span className="text-mute">Funding before match start</span><span className="text-red-300"><span data-count={f.lift}>0</span>×</span></div>
+          <div data-row className="flex justify-between"><span className="text-mute">Payer states outside KA</span><span className="text-stone-300"><span data-count={f.states}>0</span></span></div>
+          <div data-row className="flex justify-between"><span className="text-mute">Payers from other states</span><span className="text-stone-300"><span data-count={pct(f.out)}>0</span>%</span></div>
+          <div data-row className="flex justify-between"><span className="text-mute">Round ₹500 / 1k / 2k bills</span><span className="text-neutral-300"><span data-count={pct(f.round)}>0</span>%</span></div>
+          <div data-row className="flex justify-between"><span className="text-mute">Funding before match start</span><span className="text-neutral-300"><span data-count={f.lift}>0</span>×</span></div>
         </div>
-        <div data-verdict className="mt-3 rounded-md border border-red-400/50 bg-red-400/10 px-3 py-2">
-          <div className="text-[10.5px] font-semibold uppercase tracking-[0.14em] text-red-300">Case opened · {f.priority}</div>
-          <div className="text-[12px] text-red-100">{f.verdict}</div>
+        <div data-verdict className="mt-3 rounded-md border border-neutral-400/50 bg-neutral-400/10 px-3 py-2">
+          <div className="text-[10.5px] font-semibold uppercase tracking-[0.14em] text-neutral-300">Case opened · {f.priority}</div>
+          <div className="text-[12px] text-neutral-100">{f.verdict}</div>
         </div>
       </div>
     </div>

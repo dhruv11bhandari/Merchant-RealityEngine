@@ -19,7 +19,7 @@ export function L2Body({ r }: { r: InvestigationResult }) {
     <>
       <Panel title="Approved merchant profile" subtitle="Declared at onboarding and approved after KYC."><ProfileCard r={r} /></Panel>
       <div className="grid gap-4 lg:grid-cols-3">
-        {[['Anchored baseline', 'The declared level of business, fixed at onboarding. Catches long, slow drift.', 'bg-slate-500'], ['Seasonal expectation', `The anchored level × a seasonal multiplier (${p.seasonalPeak.toFixed(1)}× at peak). Stops festivals looking like fraud.`, 'bg-amber-400'], ['Rolling challenger', 'Mean of the previous four weeks. Adapts quickly, so a slow ramp can hide inside it.', 'bg-violet-400']].map(([t, d, c]) => (
+        {[['Anchored baseline', 'The declared level of business, fixed at onboarding. Catches long, slow drift.', 'bg-slate-500'], ['Seasonal expectation', `The anchored level × a seasonal multiplier (${p.seasonalPeak.toFixed(1)}× at peak). Stops festivals looking like fraud.`, 'bg-stone-400'], ['Rolling challenger', 'Mean of the previous four weeks. Adapts quickly, so a slow ramp can hide inside it.', 'bg-zinc-400']].map(([t, d, c]) => (
           <div key={t} className="rounded-md border border-line bg-panel p-4"><div className="flex items-center gap-2 text-sm font-semibold"><span className={`h-2 w-2 rounded-full ${c}`} />{t}</div><p className="mt-1.5 text-[13px] text-mute">{d}</p></div>))}
       </div>
       <Panel title="Expected versus actual weekly collections" subtitle="Synthetic weekly totals aggregated from the event store.">
@@ -34,7 +34,7 @@ export function L2Body({ r }: { r: InvestigationResult }) {
       <Panel title="Residuals by week" bodyClass="p-0 overflow-x-auto">
         <table className={tableCls}><thead><tr><Th>Week</Th><Th>Actual</Th><Th>Anchored E</Th><Th>Seasonal E</Th><Th>Rolling E</Th><Th>R (anchored)</Th><Th>R (seasonal)</Th><Th>R (rolling)</Th></tr></thead>
           <tbody>{rows.slice(-6).map(w => <tr key={w.week} className={rowCls}><Td>{w.week}</Td><Td className="tabular-nums">{w.actual === null ? <span className="text-dim">not active</span> : inrK(w.actual)}</Td><Td className="tabular-nums">{inrK(w.anchored)}</Td><Td className="tabular-nums">{inrK(w.seasonal)}</Td><Td className="tabular-nums">{inrK(w.rolling)}</Td>
-            {[w.rAnchored, w.rSeasonal, w.rRolling].map((x, i) => <Td key={i} className="tabular-nums">{x === null ? '—' : <span className={Math.abs(x) > 0.3 ? 'text-amber-300' : ''}>{pct(x)}</span>}</Td>)}</tr>)}</tbody></table>
+            {[w.rAnchored, w.rSeasonal, w.rRolling].map((x, i) => <Td key={i} className="tabular-nums">{x === null ? '—' : <span className={Math.abs(x) > 0.3 ? 'text-stone-300' : ''}>{pct(x)}</span>}</Td>)}</tr>)}</tbody></table>
       </Panel>
       <Callout tone="info" title="Why seasonal growth is not automatically suspicious">
         A bakery is expected to do roughly {p.seasonalPeak.toFixed(1)}× its normal business in the festival weeks, so a rise in volume alone is not a finding. MRE asks how far the merchant is beyond what the season explains{alarm ? `, and the CUSUM drift tracker first alarms in ${alarm.week}` : ''}. Even then, volume is only one weak signal; it needs independent evidence from other families before any case opens.

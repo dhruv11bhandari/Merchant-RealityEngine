@@ -14,7 +14,7 @@ export function MerchantPage() {
       <Panel title="Monitored merchants" subtitle="Four are demo scenarios; the rest are synthetic portfolio fillers." bodyClass="p-0 overflow-x-auto">
         <table className={tableCls}><thead><tr><Th>Merchant</Th><Th>ID</Th><Th>Category</Th><Th>Monitoring status</Th></tr></thead>
           <tbody>{SCENARIO_IDS.map(id => { const s = getScenario(id), on = id === scenarioId; return (
-            <tr key={id} className={cx(rowCls, on && 'bg-cyan-400/5')}><Td><button disabled={running} onClick={() => setScenario(id)} className="font-medium text-cyan-200 hover:underline disabled:opacity-50">{s.profile.name}</button></Td><Td><Mono>{s.profile.id}</Mono></Td><Td className="text-mute">{s.profile.category}</Td>
+            <tr key={id} className={cx(rowCls, on && 'bg-zinc-400/5')}><Td><button disabled={running} onClick={() => setScenario(id)} className="font-medium text-zinc-200 hover:underline disabled:opacity-50">{s.profile.name}</button></Td><Td><Mono>{s.profile.id}</Mono></Td><Td className="text-mute">{s.profile.category}</Td>
               <Td>{on ? (decision ? <Badge tone={decision === 'OPEN_CASE' ? 'bad' : 'ok'}>{decision === 'OPEN_CASE' ? 'Case open' : 'No case'}</Badge> : <Badge tone="info">Active scenario</Badge>) : <Badge>Normal</Badge>}</Td></tr>); })}
             {FILLER.map(f => <tr key={f[0]} className={cx(rowCls, 'text-mute')}><Td>{f[1]}</Td><Td><Mono>{f[0]}</Mono></Td><Td>{f[2]}</Td><Td><Badge tone={f[3] === 'Normal' ? 'mute' : 'warn'}>{f[3]}</Badge></Td></tr>)}</tbody></table>
       </Panel>
