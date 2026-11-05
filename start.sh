@@ -15,9 +15,11 @@ if (( NODE_MAJOR < 20 )); then
   exit 1
 fi
 
-if [[ ! -d node_modules ]]; then
-  echo "Dependencies are missing; installing from package-lock.json..."
-  npm ci
+if [[ ! -x node_modules/.bin/vite \
+  || ! -f node_modules/gsap/package.json \
+  || ! -f node_modules/three/package.json ]]; then
+  echo "Dependencies are missing or incomplete; installing from package-lock.json..."
+  npm ci --cache "${TMPDIR:-/tmp}/merchant-reality-engine-npm-cache"
 fi
 
 echo "Starting Merchant Reality Engine at http://localhost:5173"
