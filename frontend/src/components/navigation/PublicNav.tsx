@@ -13,8 +13,21 @@ export function useScrollTo() {
 }
 const ITEMS = [['Platform', 'platform'], ['How It Works', 'how'], ['Technology', 'technology'], ['Use Cases', 'use-cases']] as const;
 
-export function PublicNav() {
+export function PublicNav({ landing = false }: { landing?: boolean }) {
   const go = useScrollTo(), [open, setOpen] = useState(false);
+  if (landing) return (
+    <header className="relative z-40 bg-black px-5 pt-3 md:px-8">
+      <nav className="mx-auto grid h-12 max-w-[1440px] grid-cols-[1fr_auto_1fr] items-center md:grid-cols-5" aria-label="Primary">
+        <Link to="/demo" className="hidden justify-self-start text-[11px] font-semibold tracking-[.18em] text-white/85 transition hover:text-white md:block">DEMO</Link>
+        <button onClick={() => go('technology')} className="hidden justify-self-center text-[11px] font-semibold tracking-[.18em] text-white/85 transition hover:text-white md:block">INTELLIGENCE</button>
+        <Link to="/" aria-label="Merchant Reality Engine home" className="col-start-2 justify-self-center text-[27px] font-black leading-none tracking-[-.07em] md:col-start-3">MRE.</Link>
+        <button onClick={() => go('how')} className="hidden justify-self-center text-[11px] font-semibold tracking-[.18em] text-white/85 transition hover:text-white md:block">HOW IT WORKS</button>
+        <Link to="/architecture" className="hidden justify-self-end text-[11px] font-semibold tracking-[.18em] text-white/85 transition hover:text-white md:block">FLOWCHART</Link>
+        <button className="col-start-3 row-start-1 justify-self-end rounded p-2 text-white md:hidden" onClick={() => setOpen(v => !v)} aria-label="Toggle navigation" aria-expanded={open}>{open ? <X size={20} /> : <Menu size={20} />}</button>
+      </nav>
+      {open && <div className="absolute inset-x-0 top-full z-50 grid gap-4 border-y border-white/15 bg-black px-6 py-5 text-xs font-semibold tracking-[.18em] md:hidden"><Link onClick={() => setOpen(false)} to="/demo">DEMO</Link><button className="text-left" onClick={() => { setOpen(false); go('technology'); }}>INTELLIGENCE</button><button className="text-left" onClick={() => { setOpen(false); go('how'); }}>HOW IT WORKS</button><Link onClick={() => setOpen(false)} to="/architecture">FLOWCHART</Link></div>}
+    </header>
+  );
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-bg/85 backdrop-blur">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-5">
@@ -37,7 +50,7 @@ export function PublicNav() {
 export function Footer() {
   const go = useScrollTo();
   return (
-    <footer className="border-t border-line bg-panel/40">
+    <footer className="border-t border-line bg-black">
       <div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 md:grid-cols-4">
         <div className="md:col-span-2"><Logo small /><p className="mt-3 max-w-sm text-sm text-mute">Does a merchant’s declared business match its financial, operational and digital behaviour?</p></div>
         <div className="text-sm"><div className="mb-2 font-medium">Product</div><div className="space-y-1.5 text-mute"><button onClick={() => go('platform')} className="block hover:text-ink">Platform</button><Link to="/architecture" className="block hover:text-ink">Architecture</Link><Link to="/demo" className="block hover:text-ink">Demo</Link></div></div>
