@@ -1,0 +1,21 @@
+merchant_id,name,category,mcc,city,state,ticket_min,ticket_max,declared_site,feed_refunds,feed_settlements,feed_payer_state,feed_referrer
+M001,Sharma Bakery & Cakes,bakery,5462,Pune,MH,40,3000,sharmabakes.in,True,True,True,True
+M002,Royal Crust Bakery,bakery,5462,Pune,MH,40,1500,royalcrust.in,True,True,True,True
+M003,Tiffin Tales Cloud Kitchen,restaurant,5812,Bengaluru,KA,90,900,tiffintales.in,True,True,True,True
+M004,Lakshmi Kirana Stores,grocery,5411,Chennai,TN,10,4000,,False,False,False,False
+M005,Bright Minds Tuition,education,8299,Jaipur,RJ,500,8000,brightminds.in,True,True,True,True
+M006,Annapurna Sweets,sweets,5441,Lucknow,UP,30,3500,,True,True,True,True
+M007,Fresh Basket Grocery,grocery,5411,Hyderabad,TG,20,5000,freshbasket.in,True,True,True,True
+M008,MedPlus Corner Chemist,pharmacy,5912,Kolkata,WB,20,3000,,True,True,True,True
+M009,Glow Unisex Salon,salon,7230,Ahmedabad,GJ,100,4000,,True,True,True,True
+M010,Trendz Apparel,apparel,5651,Indore,MP,250,6000,trendz.in,True,True,True,True
+M011,QuickFix Mobile Repair,electronics,5732,Delhi,DL,150,6000,,True,True,True,True
+M012,Spice Route Restaurant,restaurant,5812,Kochi,KL,150,3000,spiceroute.in,True,True,True,True
+M013,Pen & Paper Stationery,stationery,5943,Patna,BR,10,1500,,True,True,True,True
+M014,Bloom Florist,florist,5992,Chandigarh,PB,100,3500,bloomflorist.in,True,True,True,True
+M015,Iron Den Gym,fitness,7997,Gurugram,HR,500,6000,,True,True,True,True
+M016,Stitch Perfect Tailors,tailoring,5697,Bhubaneswar,OR,200,5000,,True,True,True,True
+M017,Brew Corner Cafe,restaurant,5812,Mumbai,MH,60,1200,brewcorner.in,True,True,True,True
+M018,BuildRight Hardware,hardware,5251,Surat,GJ,50,15000,,True,True,True,True
+M019,GiftBox Studio,gifts,5947,Nagpur,MH,150,5000,giftbox.in,True,True,True,True
+M020,Gadget Hub Accessories,electronics,5732,Vijayawada,AP,100,5000,gadgethub.in,True,True,True,True
