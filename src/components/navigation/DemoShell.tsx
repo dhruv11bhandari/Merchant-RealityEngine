@@ -21,7 +21,7 @@ export function DemoShell() {
       <aside className="sticky top-0 hidden h-screen w-60 shrink-0 flex-col border-r border-line bg-panel/60 lg:flex">
         <Link to="/" className="flex h-14 items-center border-b border-line px-4" aria-label="Back to site"><Logo small /></Link>
         <nav className="flex-1 space-y-0.5 p-2" aria-label="Demo">{NAV.map(n => <NavLink key={n.to} to={n.to} end={n.end} className={({ isActive }) => cx('flex items-center gap-2.5 rounded px-3 py-2 text-sm transition-colors', isActive ? 'bg-cyan-400/10 text-cyan-200' : 'text-mute hover:bg-panel2 hover:text-ink')}><n.icon size={16} />{n.label}</NavLink>)}</nav>
-        <div className="border-t border-line p-4 text-xs text-dim">Synthetic data only. No real merchants, payments or evidence.</div>
+          <div className="border-t border-line p-4"><Link to="/simulation" className="text-sm text-cyan-300 hover:underline">Open Real Model Simulation →</Link><p className="mt-2 text-xs text-dim">This demo uses separate, browser-based scenarios.</p></div>
       </aside>
       <div className="min-w-0 flex-1">
         <header className="sticky top-0 z-30 flex flex-wrap items-center gap-3 border-b border-line bg-bg/90 px-5 py-2.5 backdrop-blur">

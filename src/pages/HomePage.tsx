@@ -64,8 +64,8 @@ export function HomePage() {
         <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-5 py-16 lg:grid-cols-[1.05fr_1fr] lg:py-24">
           <div><h1 className="text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl">Your merchant’s identity is not its reality.</h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-mute">Merchant Reality Engine connects financial, operational and digital evidence to uncover disguised merchant activity, detect transaction laundering and distinguish legitimate businesses from fraudulent fronts.</p>
-            <div className="mt-8 flex flex-wrap gap-3"><Link to="/demo"><Btn variant="primary" size="lg">Run Live Investigation <ArrowRight size={16} /></Btn></Link><Link to="/architecture"><Btn size="lg">Explore Architecture</Btn></Link></div>
-            <p className="mt-5 text-xs text-dim">The demo runs entirely on synthetic data in your browser.</p></div>
+            <div className="mt-8 flex flex-wrap gap-3"><Link to="/demo"><Btn variant="primary" size="lg">Open Guided Demo <ArrowRight size={16} /></Btn></Link><Link to="/simulation"><Btn size="lg">Run Real Model</Btn></Link><Link to="/architecture"><Btn size="lg">Explore Architecture</Btn></Link></div>
+            <p className="mt-5 text-xs text-dim">Choose the guided browser demo or run the separate Python model simulation.</p></div>
           <div className="h-[380px] lg:h-[460px]"><HeroGraphic /></div>
         </div></section>
 

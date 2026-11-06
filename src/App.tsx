@@ -11,6 +11,7 @@ import { DetectionPage } from './pages/DetectionPage';
 import { AnalystPage } from './pages/AnalystPage';
 import { ResponsePage } from './pages/ResponsePage';
 import { AuditPage } from './pages/AuditPage';
+import { SimulationPage } from './pages/SimulationPage';
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/architecture" element={<ArchitecturePage />} />
+        <Route path="/simulation" element={<SimulationPage />} />
         <Route path="/demo" element={<InvestigationProvider><DemoShell /></InvestigationProvider>}>
           <Route index element={<DemoPage />} />
           <Route path="merchant" element={<MerchantPage />} />

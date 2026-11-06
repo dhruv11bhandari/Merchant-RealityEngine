@@ -3,16 +3,17 @@
 An interactive prototype of a merchant-intelligence platform for Payment Aggregators and payment-risk teams.
 It asks one question: **does this merchant behave like the business it claims to be?**
 
-The project has two parts:
+The project has three connected experiences:
 
 - **Public website** (`/`, `/architecture`): the product story, the seven-layer architecture and the technology.
-- **Live demo** (`/demo/*`): a working simulation. Pick a scenario, run all seven layers, inspect every layer's input, processing and output, review the case as an analyst, apply a governed response and see the learning feedback.
+- **Guided demo** (`/demo/*`): browser-based walkthroughs using four deterministic scenarios. Pick a case, inspect the seven layers, review the simulated response and learning feedback.
+- **Real model simulation** (`/simulation`): the separate Python engine added in the latest model commit, run against the committed merchant, transaction, refund and settlement datasets. Its dashboard shows the model's generated results.
 
 > **Everything is synthetic.** Merchants, transactions, websites, crawler snapshots and portfolio figures are fabricated and deterministic. Nothing is verified real-world evidence. There are no customers, partners or performance claims. The response design is a product proposal, not a statement of legal or regulatory requirements, and nothing freezes real money.
 
 ## Run it
 
-use start.sh for everyone in the team 
+Use `./start.sh` to refresh the Python model dashboard and start the app. The launcher needs Node.js 20+, Python 3.9+, pandas and numpy. Install the Python packages with `python3 -m pip install -r prototype/requirements.txt`.
 
 for chaman chelesani ( windows user ) :
 
@@ -34,7 +35,7 @@ No API keys, accounts or network services are needed.
 |---|---|
 | `/` | Homepage: problem, approach, seven-layer explorer, technology, use cases, differentiation |
 | `/architecture` | Architecture, design principles, prototype scope versus production |
-| `/demo` | Overview and scenario launcher |
+| `/demo` | Guided demo overview and scenario launcher |
 | `/demo/investigations` | Orchestrated run of L1–L7 with per-layer inspection |
 | `/demo/merchant` | Merchant intelligence: profile and three baselines |
 | `/demo/graph` | Evidence relationship graph |
@@ -42,6 +43,7 @@ No API keys, accounts or network services are needed.
 | `/demo/analyst` | L5 analyst workbench |
 | `/demo/response` | L6 response centre |
 | `/demo/audit` | L7 audit and learning |
+| `/simulation` | Latest Python engine's results and model dashboard |
 
 ## Scenarios
 
@@ -52,15 +54,16 @@ No API keys, accounts or network services are needed.
 | Fabricated commercial substance | Online store that cannot substantiate sales | Case opened on four independent families; outcome stays unresolved |
 | Legitimate Diwali growth | Real 3× festival surge | **No case opened.** The volume alarm is explained |
 
-Use the **Fast** toggle in the demo header to shorten the simulated processing time.
+The guided demo uses the **Fast** toggle to shorten its simulated processing time. The Python model simulation runs the separate `prototype/engine.py` implementation against the committed datasets and builds the dashboard shown at `/simulation`.
 
 ## How it works in brief
 
-1. Deterministic generators (`frontend/src/data/transactions.ts`) create event stores from fixed seeds.
-2. `runInvestigation` (`frontend/src/engines/investigationEngine.ts`) is a pure function: same scenario in, same result out.
+1. In the guided demo, deterministic generators (`src/data/transactions.ts`) create event stores from fixed seeds.
+2. `runInvestigation` (`src/engines/investigationEngine.ts`) is a pure function: same scenario in, same result out.
 3. Detectors compute their results from the records (residuals, CUSUM, round-number heaping, geographic mismatch, pre-match funding lift against a same-clock-time control, refund reconciliation, beneficiary changes, cohort continuity and more). Nothing about the final verdict is hard-coded.
 4. Fusion collapses correlated signals, excludes UNKNOWN, weights by reliability and fake difficulty, applies the two-independent-family gate and ranks four mechanism hypotheses.
 5. The UI reveals layer results progressively; the analyst, response and learning steps respond to your inputs.
+6. The real model simulation is the separate Python pipeline in `prototype/`: it loads the CSV feeds, applies its evidence-family rules and renders results into an offline dashboard.
 
 ## Project layout
 
