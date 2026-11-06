@@ -1,0 +1,311 @@
+<title>Merchant Reality Engine</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: risk-ops console. Sticky tab bar, then one working view at a time:
+   the two-bakery demo, the merchant portfolio, a merchant case file, and how it works. */
+:root {
+  --bg: #F2F4F3; --surface: #FFFFFF; --ink: #17201E; --muted: #5B6966; --line: #D8DFDC;
+  --accent: #33389A; --accent-soft: #E6E7F6;
+  --ok: #1E7A4C; --ok-soft: #E2F2E9; --watch: #9A6A00; --watch-soft: #FBF0D4;
+  --review: #B4501A; --review-soft: #FBE6DA; --act: #B3261E; --act-soft: #F9E0DE;
+  --unk: #6B7471; --unk-soft: #ECEFEE; --band: rgba(51,56,154,.08); --fest: rgba(201,122,20,.14);
+  --f-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --f-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #111615; --surface: #19201E; --ink: #E5ECE9; --muted: #9AA8A4; --line: #2C3633;
+  --accent: #9CA2F2; --accent-soft: #262A4D;
+  --ok: #5CC88E; --ok-soft: #173326; --watch: #E2B54B; --watch-soft: #352B12; --review: #F08C55; --review-soft: #3A2316;
+  --act: #F2756C; --act-soft: #3D1C1A; --unk: #9AA3A0; --unk-soft: #252D2B; --band: rgba(156,162,242,.10); --fest: rgba(226,170,80,.16);
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #111615; --surface: #19201E; --ink: #E5ECE9; --muted: #9AA8A4; --line: #2C3633;
+  --accent: #9CA2F2; --accent-soft: #262A4D;
+  --ok: #5CC88E; --ok-soft: #173326; --watch: #E2B54B; --watch-soft: #352B12; --review: #F08C55; --review-soft: #3A2316;
+  --act: #F2756C; --act-soft: #3D1C1A; --unk: #9AA3A0; --unk-soft: #252D2B; --band: rgba(156,162,242,.10); --fest: rgba(226,170,80,.16);
+  color-scheme: dark }
+
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 400 15px/1.5 var(--f-body); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface) }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header.top { background: var(--surface); border-bottom: 1px solid var(--line); position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5 }
+.top .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; padding-block: 12px }
+.brand { font: 700 18px/1.2 var(--f-display); letter-spacing: -.01em }
+.brand small { display: block; font: 400 12px/1.3 var(--f-body); color: var(--muted); letter-spacing: 0 }
+nav { display: flex; gap: 4px; flex-wrap: wrap; margin-left: auto }
+nav a { font: 600 14px var(--f-body); color: var(--muted); text-decoration: none; padding: 6px 12px; border-radius: 6px }
+nav a:hover { color: var(--ink); background: var(--bg) }
+nav a[aria-current="page"] { color: var(--accent); background: var(--accent-soft) }
+a:focus-visible, button:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+main .wrap { padding-block: 24px 48px; display: grid; gap: 20px }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; letter-spacing: -.01em }
+h1 { font-size: 26px; line-height: 1.2 } h2 { font-size: 19px } h3 { font-size: 15px }
+p { margin: 0 } .lede { color: var(--muted); max-width: 70ch }
+.eyebrow { font: 500 11px var(--f-data); text-transform: uppercase; letter-spacing: .08em; color: var(--muted) }
+.mono, .num { font-family: var(--f-data); font-variant-numeric: tabular-nums }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 18px; min-width: 0 }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 20px }
+
+/* level pill: L0 ok, L1 watch, L2 review, L3+ act */
+.pill { display: inline-flex; align-items: center; gap: 6px; font: 600 12px var(--f-data); padding: 3px 9px; border-radius: 999px; white-space: nowrap }
+.pill::before { content: ""; width: 7px; height: 7px; border-radius: 50% ; background: currentColor }
+.L0 { color: var(--ok); background: var(--ok-soft) } .L1 { color: var(--watch); background: var(--watch-soft) }
+.L2 { color: var(--review); background: var(--review-soft) } .L3, .L4, .L5 { color: var(--act); background: var(--act-soft) }
+.fam { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 5px; font: 600 12px var(--f-data) }
+.s-ILL { color: var(--act); background: var(--act-soft) } .s-BEN { color: var(--ok); background: var(--ok-soft) }
+.s-UNK { color: var(--unk); background: var(--unk-soft); outline: 1px dashed var(--unk); outline-offset: -1px }
+
+/* demo compare */
+.case-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap }
+.verdict { border-left: 3px solid var(--line); padding: 2px 0 2px 12px; }
+.verdict.v0 { border-color: var(--ok) } .verdict.v1 { border-color: var(--watch) } .verdict.v2 { border-color: var(--review) } .verdict.v3 { border-color: var(--act) }
+.mech { font-weight: 600 }
+.chart { width: 100%; height: auto; display: block }
+.chart text { fill: var(--muted); font: 10px var(--f-data) }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: var(--muted) }
+.legend i { display: inline-block; width: 14px; height: 3px; vertical-align: middle; margin-right: 5px; background: var(--accent) }
+.legend i.exp { background: none; border-top: 2px dashed var(--muted); height: 0 }
+.legend i.fest { height: 10px; background: var(--fest) } .legend i.rev { height: 10px; background: var(--band) }
+.legend i.match { width: 2px; height: 10px; background: var(--review) }
+
+.ev { display: grid; gap: 0 }
+.ev-row { display: grid; grid-template-columns: 28px minmax(0,1fr) auto; gap: 4px 12px; padding: 10px 0; border-top: 1px solid var(--line); align-items: start }
+.ev-row:first-child { border-top: 0 }
+.ev-row .what { font-weight: 600 }
+.ev-row .why { color: var(--muted); font-size: 14px }
+.ev-row .val { font: 12px/1.45 var(--f-data); color: var(--ink); grid-column: 2 / 4 }
+.ev-row .val span { color: var(--muted) }
+.state { font: 600 11px var(--f-data); text-transform: uppercase; letter-spacing: .04em; padding: 2px 7px; border-radius: 4px; white-space: nowrap }
+.tag { font: 500 10px var(--f-data); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 1px 5px; margin-left: 6px; font-weight: 500 }
+
+/* portfolio */
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px }
+.tile { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: grid; gap: 2px }
+.tile b { font: 600 26px var(--f-display) }
+.tile span { color: var(--muted); font-size: 13px }
+.tablebox { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 8px }
+table { border-collapse: collapse; width: 100%; min-width: 760px }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 14px }
+th { font: 500 11px var(--f-data); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); background: var(--surface); position: sticky; top: 0 }
+tbody tr { cursor: pointer } tbody tr:hover { background: var(--bg) }
+tbody tr:last-child td { border-bottom: 0 }
+td .sum { color: var(--muted); font-size: 13px; max-width: 46ch }
+.fams { display: flex; gap: 3px }
+
+/* ladder */
+.ladder { display: grid; gap: 6px }
+.rung { display: grid; grid-template-columns: 44px minmax(0,1fr); gap: 10px; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--line); align-items: start }
+.rung .code { font: 600 13px var(--f-data); color: var(--muted) }
+.rung p { font-size: 13px; color: var(--muted) }
+.rung.on { border-color: currentColor } .rung.on .code { color: inherit }
+.rung.locked { opacity: .7; border-style: dashed }
+.btn { font: 600 14px var(--f-body); border-radius: 6px; padding: 8px 14px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer }
+.btn:hover { border-color: var(--accent); color: var(--accent) }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--surface) }
+.btn.primary:hover { opacity: .9; color: var(--surface) }
+.note { font-size: 13px; color: var(--muted) }
+.saved { font: 500 13px var(--f-data); color: var(--ok) }
+select { font: 15px var(--f-body); padding: 7px 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); max-width: 100% }
+
+/* how it works */
+.flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; counter-reset: l }
+.step { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px; display: grid; gap: 4px; align-content: start }
+.step .eyebrow { color: var(--accent) }
+.step p { font-size: 13px; color: var(--muted) }
+.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 12px }
+.rule { padding: 14px; border-radius: 8px; background: var(--accent-soft) }
+.rule b { font-family: var(--f-display); display: block; margin-bottom: 4px }
+footer { color: var(--muted); font-size: 12px }
+@media (prefers-reduced-motion: no-preference) { .chart .actual { transition: opacity .2s } }
+@media (max-width: 520px) { h1 { font-size: 22px } nav { margin-left: 0 } }
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="brand">Merchant Reality Engine<small>Payment-aggregator merchant monitoring · prototype on synthetic data</small></div>
+  <nav aria-label="Views">
+    <a href="#compare">Two bakeries</a><a href="#portfolio">All merchants</a><a href="#case">Case file</a><a href="#how">How it works</a>
+  </nav>
+</div></header>
+<main><div class="wrap" id="view"></div></main>
+
+<script>
+const DATA = /*__DATA__*/null;
+const M = Object.fromEntries(DATA.merchants.map(m => [m.merchant.merchant_id, m]));
+const FAM = DATA.families, LAD = DATA.ladder;
+const MATCH = new Set(DATA.match_days);
+const $ = (h) => { const t = document.createElement("template"); t.innerHTML = h.trim(); return t.content; };
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const lvl = (v) => `<span class="pill L${v.level}">${LAD[v.level].code} · ${esc(LAD[v.level].name)}</span>`;
+const sCls = (s) => s === "SUPPORTS_ILLICIT" ? "s-ILL" : s === "SUPPORTS_BENIGN" ? "s-BEN" : "s-UNK";
+const sTxt = (s) => s === "SUPPORTS_ILLICIT" ? "Points to misuse" : s === "SUPPORTS_BENIGN" ? "Fits the business" : "Can't see · not counted";
+const fams = (v) => `<span class="fams">${v.evidence.map(e => `<span class="fam ${sCls(e.state)}" title="${esc(FAM[e.family].name)}: ${sTxt(e.state)}">${e.family}</span>`).join("")}</span>`;
+const store = { get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } },
+                set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch { return false; } } };
+const TRIG = { EXPLAINED: "Spike explained by the season", IN_LINE: "Volume normal", ORGANIC_GROWTH: "Gradual, organic growth",
+  UNEXPLAINED: "Unexplained jump", NEW_MERCHANT: "New merchant", INACTIVE: "No recent activity", ERROR: "Needs manual check" };
+
+function chart(v, h = 190) {
+  const s = v.series, W = 640, H = h, L = 44, R = 8, T = 10, B = 26;
+  if (!s || !s.length) return `<p class="note">No volume history.</p>`;
+  const max = Math.max(...s.map(p => Math.max(p.a, p.e))) * 1.08 || 1;
+  const x = i => L + (W - L - R) * i / (s.length - 1), y = val => T + (H - T - B) * (1 - val / max);
+  const idx = d => s.findIndex(p => p.d === d);
+  const band = (a, b, fill) => { const i = idx(a), j = idx(b); return i < 0 || j < 0 ? "" : `<rect x="${x(i)}" y="${T}" width="${x(j) - x(i)}" height="${H - T - B}" fill="${fill}"/>`; };
+  const path = k => s.map((p, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(p[k]).toFixed(1)}`).join("");
+  const ticks = [0, .5, 1].map(f => { const val = max / 1.08 * f; return `<line x1="${L}" x2="${W - R}" y1="${y(val)}" y2="${y(val)}" stroke="var(--line)"/><text x="${L - 6}" y="${y(val) + 3}" text-anchor="end">₹${Math.round(val / 1000)}k</text>`; }).join("");
+  const months = s.map((p, i) => p.d.endsWith("-01") ? `<text x="${x(i)}" y="${H - 8}" text-anchor="middle">${new Date(p.d + "T00:00").toLocaleString("en-IN", { month: "short" })}</text>` : "").join("");
+  const matches = s.map((p, i) => MATCH.has(p.d) ? `<line x1="${x(i)}" x2="${x(i)}" y1="${H - B}" y2="${H - B + 5}" stroke="var(--review)" stroke-width="1.4"/>` : "").join("");
+  const last = s.length - 1;
+  return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Daily payment value vs expected for ${esc(v.merchant.name)}">
+    ${band(DATA.windows.review[0], DATA.windows.review[1], "var(--band)")}${band(DATA.festival[0], DATA.festival[1], "var(--fest)")}
+    ${ticks}${matches}${months}
+    <path d="${path("e")}" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <path class="actual" d="${path("a")}" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linejoin="round"/>
+    <circle cx="${x(last)}" cy="${y(s[last].a)}" r="3" fill="var(--accent)"/>
+  </svg>`;
+}
+const legend = `<div class="legend"><span><i></i>Actual daily value</span><span><i class="exp"></i>Expected (similar shops that day)</span><span><i class="fest"></i>Diwali season</span><span><i class="rev"></i>30 days under review</span><span><i class="match"></i>Cricket match day</span></div>`;
+
+function evidence(v) {
+  return `<div class="ev">${v.evidence.map(e => `<div class="ev-row">
+    <span class="fam ${sCls(e.state)}">${e.family}</span>
+    <div><div class="what">${esc(FAM[e.family].name)}<span class="tag">${FAM[e.family].kind === "hard" ? "hard to fake" : "soft"}</span></div><div class="why">${esc(e.why)}</div></div>
+    <span class="state ${sCls(e.state)}">${sTxt(e.state)}</span>
+    <div class="val">${esc(e.value)}${e.baseline && e.baseline !== "–" ? ` <span>· baseline: ${esc(e.baseline)}</span>` : ""}</div>
+  </div>`).join("")}</div>`;
+}
+
+function verdictBlock(v) {
+  return `<div class="verdict v${Math.min(v.level, 3)}"><div class="row">${lvl(v)}<span class="note">${esc(TRIG[v.trigger.state] || v.trigger.state)}</span></div>
+    <p style="margin-top:6px">${esc(v.summary)}</p></div>`;
+}
+
+function viewCompare() {
+  const a = M.M001, b = M.M002;
+  const card = (v) => `<section class="panel" style="display:grid;gap:14px">
+    <div class="case-head"><div><div class="eyebrow">${esc(v.merchant.merchant_id)} · MCC ${esc(v.merchant.mcc)} · ${esc(v.merchant.city)}</div><h2>${esc(v.merchant.name)}</h2>
+    <p class="note">Declared: ${esc(v.merchant.category)}, menu ₹${v.merchant.ticket_min}–₹${v.merchant.ticket_max}</p></div></div>
+    ${chart(v, 170)}
+    ${verdictBlock(v)}
+    <div><div class="eyebrow" style="margin-bottom:4px">Evidence</div>${evidence(v)}</div>
+    <a class="btn" href="#case-${v.merchant.merchant_id}">Open case file</a>
+  </section>`;
+  return `<section style="display:grid;gap:8px"><div class="eyebrow">Demo · same city, same category, both busier in October</div>
+    <h1>Two bakeries in Pune. One is baking for Diwali. One is taking bets.</h1>
+    <p class="lede">Both are clean on paper: valid KYC, real shopfronts, sales that jumped this autumn. A volume alert would flag both or neither. The engine asks whether each shop's payments still tell the story of a bakery.</p></section>
+    ${legend}
+    <div class="grid2">${card(a)}${card(b)}</div>`;
+}
+
+function viewPortfolio() {
+  const ms = DATA.merchants.slice().sort((p, q) => q.level - p.level || p.merchant.merchant_id.localeCompare(q.merchant.merchant_id));
+  const count = l => ms.filter(m => m.level === l).length;
+  const gaps = ms.filter(m => m.unknown_families.length).length;
+  return `<section style="display:grid;gap:6px"><div class="eyebrow">Review window ${DATA.windows.review.join(" → ")} · baseline ${DATA.windows.anchor.join(" → ")}</div>
+    <h1>${ms.length} merchants, ${count(3) + count(4) + count(5)} needing action</h1>
+    <p class="lede">Sorted by response level. Each letter is one kind of evidence: red points to misuse, green fits the declared business, dashed grey means we can't see it, and it isn't counted.</p></section>
+    <div class="tiles">
+      <div class="tile"><b class="num">${count(0)}</b><span>${LAD[0].name}</span></div>
+      <div class="tile"><b class="num">${count(1)}</b><span>${LAD[1].name}</span></div>
+      <div class="tile"><b class="num">${count(2)}</b><span>${LAD[2].name}</span></div>
+      <div class="tile"><b class="num">${count(3)}</b><span>${LAD[3].name}</span></div>
+      <div class="tile"><b class="num">${gaps}</b><span>with data gaps, not penalised</span></div>
+    </div>
+    <div class="tablebox"><table><thead><tr><th>Merchant</th><th>Level</th><th>Volume check</th><th>Evidence A–G</th><th>Why</th></tr></thead><tbody>
+    ${ms.map(m => `<tr data-id="${m.merchant.merchant_id}" tabindex="0"><td><b>${esc(m.merchant.name)}</b><div class="note mono">${m.merchant.merchant_id} · ${esc(m.merchant.category)} · ${esc(m.merchant.city || "")}</div></td>
+      <td>${lvl(m)}</td><td class="note">${esc(TRIG[m.trigger.state] || m.trigger.state)}</td><td>${fams(m)}</td><td><div class="sum">${esc(m.summary)}</div></td></tr>`).join("")}
+    </tbody></table></div>
+    ${DATA.data_issues && DATA.data_issues.length ? `<div class="panel"><h3>Data issues found while loading</h3><ul class="note">${DATA.data_issues.map(d => `<li>${esc(d)}</li>`).join("")}</ul></div>` : ""}`;
+}
+
+function viewCase(id) {
+  const v = M[id] || M.M002;
+  const key = "mre-label-" + v.merchant.merchant_id;
+  const label = store.get(key);
+  const opts = DATA.merchants.map(m => `<option value="${m.merchant.merchant_id}" ${m === v ? "selected" : ""}>${m.merchant.merchant_id} · ${esc(m.merchant.name)} (${LAD[m.level].code})</option>`).join("");
+  const gaps = v.evidence.filter(e => e.state === "UNKNOWN");
+  return `<div class="row" style="justify-content:space-between"><label class="note" for="pick">Merchant</label><select id="pick" style="flex:1;min-width:0">${opts}</select></div>
+    <section class="panel" style="display:grid;gap:14px">
+      <div><div class="eyebrow">${esc(v.merchant.merchant_id)} · MCC ${esc(v.merchant.mcc)} · ${esc(v.merchant.city)}, ${esc(v.merchant.state)}${v.merchant.declared_site ? " · " + esc(v.merchant.declared_site) : ""}</div>
+      <h1>${esc(v.merchant.name)}</h1>
+      <p class="note">Declared as ${esc(v.merchant.category)}, ticket range ₹${v.merchant.ticket_min}–₹${v.merchant.ticket_max}</p></div>
+      ${verdictBlock(v)}
+      ${v.mechanism && v.mechanism !== "None" ? `<p><span class="eyebrow">Suspected mechanism</span><br><span class="mech">${esc(v.mechanism)}</span></p>` : ""}
+    </section>
+    <div class="grid2">
+      <section class="panel" style="display:grid;gap:10px"><h2>Volume against expectation</h2>${chart(v)}${legend}
+        <p class="note">${esc(v.trigger.why)} Expected line: ${esc(v.trigger.baseline_source || "")}.</p></section>
+      <section class="panel" style="display:grid;gap:10px"><h2>Response ladder</h2>
+        <div class="ladder">${Object.entries(LAD).map(([k, r]) => `<div class="rung ${+k === v.level ? "on L" + k : ""} ${+k === 4 ? "locked" : ""}"><span class="code">${r.code}</span><div><b>${esc(r.name)}</b><p>${esc(r.detail)}</p></div></div>`).join("")}</div>
+      </section>
+    </div>
+    <section class="panel" style="display:grid;gap:10px"><h2>Evidence by family</h2>
+      <p class="note">Correlated signals are grouped into one family and counted once. Escalation needs two or more independent families; a restriction needs three, including one that's hard to fake.</p>
+      ${evidence(v)}
+      ${gaps.length ? `<p class="note"><b>Data gaps (${gaps.length}):</b> ${gaps.map(e => esc(FAM[e.family].name)).join(", ")}. Shown so an analyst knows what wasn't checked. They add nothing to suspicion.</p>` : ""}
+    </section>
+    <section class="panel" style="display:grid;gap:10px"><h2>Analyst review</h2>
+      <p class="note">The engine proposes; a person decides. The label feeds back into the next model review (L7). In this demo it's saved only in your browser.</p>
+      <div class="row">
+        <button class="btn primary" data-label="Confirmed misuse">Confirm misuse</button>
+        <button class="btn" data-label="Genuine business, dismissed">Dismiss as genuine</button>
+        <button class="btn" data-label="Asked merchant for information">Ask merchant to explain</button>
+      </div>
+      <p class="saved" id="saved" ${label ? "" : "hidden"}>${label ? "Labelled: " + esc(label.label) + " · " + esc(label.at) : ""}</p>
+    </section>`;
+}
+
+function viewHow() {
+  const steps = [
+    ["L1", "Ingest", "Load payments, refunds, settlements and the merchant's declared profile. Record which feeds we can actually see."],
+    ["L2", "Profile", "July–August is the approved baseline. Expected volume moves with the median of similar shops on the same day."],
+    ["L3", "Detect", "Six evidence families each say: points to misuse, fits the business, or can't see."],
+    ["L4", "Fuse", "Group correlated signals, drop the unknowns, count independent families, name the likely mechanism."],
+    ["L5", "Review", "An analyst sees the case file with the reasons and the raw numbers behind every claim."],
+    ["L6", "Respond", "Map to a graduated ladder. Settlement holds stay locked behind a legal gate."],
+    ["L7", "Learn", "Analyst labels and appeals feed the next threshold review."]];
+  return `<section style="display:grid;gap:6px"><div class="eyebrow">How it works</div><h1>Check whether the merchant's story adds up</h1>
+    <p class="lede">A betting front doesn't have to look abnormal on any single measure. It shows up when its payments, customers, refunds, cash-outs and checkout pages stop telling one consistent story about the business it claims to be.</p></section>
+    <div class="flow">${steps.map(s => `<div class="step"><span class="eyebrow">${s[0]}</span><h3>${s[1]}</h3><p>${s[2]}</p></div>`).join("")}</div>
+    <div class="rules">
+      <div class="rule"><b>Missing data is never evidence</b>If we can't see a feed, that check says "can't see" and is left out of the count. Small merchants with thin data aren't punished for it.</div>
+      <div class="rule"><b>One signal never acts</b>A single change, like a tuition centre going online, only puts the merchant on silent watch. Escalation needs independent kinds of evidence.</div>
+      <div class="rule"><b>Detect separately, act separately</b>The engine proposes a response. Restrictions need an analyst's sign-off, and holding money needs a legal basis first.</div>
+    </div>
+    <section class="panel"><h2>The six evidence families</h2><div class="ev" style="margin-top:8px">${Object.entries(FAM).map(([k, f]) => `<div class="ev-row"><span class="fam s-UNK" style="outline:0">${k}</span><div><div class="what">${esc(f.name)}<span class="tag">${f.kind === "hard" ? "hard to fake" : "soft"}</span></div></div><span></span></div>`).join("")}</div></section>
+    <footer>${esc(DATA.generated)}. Merchant names, payers and websites are invented.</footer>`;
+}
+
+function render() {
+  const h = (location.hash || "#compare").slice(1);
+  const view = document.getElementById("view");
+  let html, tab = h;
+  if (h === "portfolio") html = viewPortfolio();
+  else if (h === "how") html = viewHow();
+  else if (h === "case" || h.startsWith("case-")) { html = viewCase(h.slice(5) || "M002"); tab = "case"; }
+  else { html = viewCompare(); tab = "compare"; }
+  view.replaceChildren($(html));
+  document.querySelectorAll("nav a").forEach(a => { if (a.getAttribute("href") === "#" + tab) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  view.querySelectorAll("tr[data-id]").forEach(tr => {
+    const go = () => location.hash = "case-" + tr.dataset.id;
+    tr.addEventListener("click", go); tr.addEventListener("keydown", e => { if (e.key === "Enter") go(); });
+  });
+  const pick = view.querySelector("#pick");
+  if (pick) pick.addEventListener("change", () => location.hash = "case-" + pick.value);
+  view.querySelectorAll("[data-label]").forEach(b => b.addEventListener("click", () => {
+    const id = (location.hash.slice(6) || "M002");
+    const rec = { label: b.dataset.label, at: new Date().toLocaleString("en-IN") };
+    const ok = store.set("mre-label-" + id, rec);
+    const s = view.querySelector("#saved"); s.hidden = false;
+    s.textContent = "Labelled: " + rec.label + " · " + rec.at + (ok ? "" : " (not saved: browser storage is off)");
+  }));
+  window.scrollTo(0, 0);
+}
+addEventListener("hashchange", render);
+render();
+</script>
