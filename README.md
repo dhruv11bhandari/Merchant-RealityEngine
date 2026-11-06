@@ -7,7 +7,7 @@ The project has three connected experiences:
 
 - **Public website** (`/`, `/architecture`): the product story, the seven-layer architecture and the technology.
 - **Guided demo** (`/demo/*`): browser-based walkthroughs using four deterministic scenarios. Pick a case, inspect the seven layers, review the simulated response and learning feedback.
-- **Real model simulation** (`/simulation`): the separate Python engine added in the latest model commit, run against the committed merchant, transaction, refund and settlement datasets. Its dashboard shows the model's generated results.
+- **Python engine** (`/engine`): the separate model added in the latest model commit, run against its merchant, transaction, refund and settlement datasets. Its dashboard shows the model's generated results. `/simulation` remains an alias to this page.
 
 > **Everything is synthetic.** Merchants, transactions, websites, crawler snapshots and portfolio figures are fabricated and deterministic. Nothing is verified real-world evidence. There are no customers, partners or performance claims. The response design is a product proposal, not a statement of legal or regulatory requirements, and nothing freezes real money.
 
@@ -43,7 +43,7 @@ No API keys, accounts or network services are needed.
 | `/demo/analyst` | L5 analyst workbench |
 | `/demo/response` | L6 response centre |
 | `/demo/audit` | L7 audit and learning |
-| `/simulation` | Latest Python engine's results and model dashboard |
+| `/engine` | Python engine results and model dashboard |
 
 ## Scenarios
 

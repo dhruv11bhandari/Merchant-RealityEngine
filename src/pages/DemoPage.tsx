@@ -21,7 +21,7 @@ export function DemoPage() {
   const launch = (id: typeof scenarioId) => { run(id); nav('/demo/investigations'); };
   return (
     <>
-      <div><h1 className="text-2xl font-semibold tracking-tight">Investigation console</h1><p className="mt-1 text-sm text-mute">Choose a scenario and run all seven layers. Every figure on these pages is synthetic.</p></div>
+      <div><h1 className="text-2xl font-semibold tracking-tight">Demo · investigation console</h1><p className="mt-1 text-sm text-mute">Choose an illustrative scenario and run the seven-layer demo. All merchants, events, history and figures here are synthetic demo data.</p></div>
       <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-6">
         <Stat label="Merchants monitored" value={k.merchants.toLocaleString('en-IN')} sub="synthetic portfolio" /><Stat label="Investigations generated" value={k.investigations} /><Stat label="Awaiting review" value={k.awaiting} tone="warn" /><Stat label="Confirmed cases" value={k.confirmed} tone="bad" /><Stat label="Benign cases" value={k.benign} tone="ok" /><Stat label="Unresolved" value={k.unresolved} />
       </div>

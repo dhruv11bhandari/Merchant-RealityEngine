@@ -19,7 +19,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/architecture" element={<ArchitecturePage />} />
-        <Route path="/simulation" element={<SimulationPage />} />
+        <Route path="/engine" element={<SimulationPage />} />
+        <Route path="/simulation" element={<Navigate to="/engine" replace />} />
         <Route path="/demo" element={<InvestigationProvider><DemoShell /></InvestigationProvider>}>
           <Route index element={<DemoPage />} />
           <Route path="merchant" element={<MerchantPage />} />
