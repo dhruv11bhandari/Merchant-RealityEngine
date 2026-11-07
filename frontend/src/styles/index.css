@@ -32,13 +32,12 @@ body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; lette
 .glow { background: radial-gradient(60% 60% at 50% 0%, rgba(255,255,255,.08), transparent 70%); }
 
 .mre-hero { background: #000; perspective: 1400px; }
-.mre-title { display: flex; flex-direction: column; font-size: clamp(3.7rem, 10.8vw, 10.4rem); font-weight: 900; line-height: .82; letter-spacing: -.075em; white-space: nowrap; }
-.mre-title span:first-child { align-self: center; }
-.mre-title span:last-child { align-self: center; }
-.mre-note { position: absolute; z-index: 0; width: min(34vw, 490px); top: 0%; right: 10%; rotate: -3deg; transform-style: preserve-3d; will-change: transform; filter: drop-shadow(0 18px 24px #000b); }
-.mre-coin { position: absolute; z-index: 20; width: clamp(140px, 19vw, 260px); left: clamp(72px, 9vw, 145px); top: 52%; rotate: -13deg; transform-style: preserve-3d; will-change: transform; filter: drop-shadow(0 12px 20px #000c); pointer-events: none; }
-.mre-tagline { margin: 28px auto 0; transform: translateX(clamp(30px, 7vw, 96px)); text-align: center; font-size: clamp(.64rem, 1.2vw, .92rem); font-weight: 600; letter-spacing: .22em; color: #d6d6d6; }
-.mre-cta { display: flex; width: fit-content; align-items: center; justify-content: center; gap: 9px; margin: 48px auto 0; border: 1.5px solid #f4f4f4; border-radius: 999px; padding: 13px 30px; font-size: .8rem; font-weight: 700; letter-spacing: .2em; transition: background .2s, color .2s, transform .2s; }
+.mre-title { position: relative; display: flex; flex-direction: column; font-size: clamp(1.6rem, 7vw, 6.25rem); font-weight: 900; line-height: .86; letter-spacing: -.075em; white-space: nowrap; }
+.mre-title span { align-self: center; }
+.mre-note { position: absolute; z-index: 0; width: min(34vw, 490px); top: 5%; right: 10%; rotate: -3deg; transform-style: preserve-3d; will-change: transform; filter: drop-shadow(0 18px 24px #000b); }
+.mre-coin { position: absolute; z-index: 20; width: 240px; left: calc(50% - 315px); top: calc(100% - .4em + 10px); rotate: -13deg; transform-style: preserve-3d; will-change: transform; filter: drop-shadow(0 12px 20px #000c); pointer-events: none; }
+.mre-tagline { position: relative; z-index: 30; width: max-content; margin: 24px 0 0; left: calc(50% - 89px); transform: none; text-align: left; font-size: clamp(.64rem, 1.2vw, .92rem); font-weight: 600; letter-spacing: .22em; color: #d6d6d6; text-shadow: 0 1px 5px #000; }
+.mre-cta { position: relative; z-index: 30; display: flex; width: fit-content; align-items: center; justify-content: center; gap: 9px; margin: 48px auto 0; border: 1.5px solid #f4f4f4; border-radius: 999px; background: #000; padding: 13px 30px; font-size: .8rem; font-weight: 700; letter-spacing: .2em; transition: background .2s, color .2s, transform .2s; }
 .mre-cta:hover { background: #fff; color: #000; transform: translateY(-2px); }
 .mre-page [class*="text-cyan-300"], .mre-page [class*="text-sky-300"], .mre-page [class*="text-emerald-300"], .mre-page [class*="text-red-300"] { color: #f2f2f2 !important; }
 .mre-page [class*="border-red-400/30"] { border-color: rgba(255,255,255,.2) !important; }
@@ -50,13 +49,12 @@ body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; lette
 .mre-footer-left, .mre-footer-right { position: absolute; bottom: 26px; font-size: .65rem; font-weight: 700; letter-spacing: .15em; }
 .mre-footer-left { left: 4%; }
 .mre-footer-right { right: 4%; }
-@media (min-width: 1500px) { .mre-title { font-size: 10.4rem; } }
 @media (max-width: 767px) {
   .mre-hero { min-height: calc(100svh - 60px); padding-bottom: 100px; }
-  .mre-title { font-size: clamp(3.15rem, 12.6vw, 6rem); line-height: .88; }
-  .mre-note { width: 74vw; top: 12%; right: -2%; opacity: .86; }
-  .mre-coin { width: clamp(108px, 31vw, 190px); left: -3%; top: 48%; }
-  .mre-tagline { max-width: 92%; margin-top: 24px; transform: none; line-height: 1.8; letter-spacing: .16em; }
+  .mre-title { font-size: clamp(1.6rem, 8vw, 3.5rem); line-height: .88; }
+  .mre-note { width: 74vw; top: 15%; right: -2%; opacity: .86; }
+  .mre-coin { width: clamp(136px, 24vw, 176px); left: calc(50% - 2.4em - 107px); top: calc(100% - .35em + 10px); }
+  .mre-tagline { max-width: 92%; margin: 24px auto 0; transform: translateX(clamp(51px, calc(10vw - 19px), 71px)); line-height: 1.8; font-size: .58rem; letter-spacing: .12em; }
   .mre-cta { margin-top: 34px; padding: 12px 23px; font-size: .7rem; }
   .mre-metric { top: auto; bottom: 68px; font-size: .52rem; }
   .mre-metric-left { left: 5%; }

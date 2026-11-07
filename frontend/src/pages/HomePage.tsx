@@ -5,6 +5,7 @@ import { MathUtils, Vector2 } from 'three';
 import { ArrowUpRight, ArrowRight, Activity, Boxes, Fingerprint, GitBranch, Layers, Network, Radar, Scale, SearchCheck, ShieldCheck, Waypoints } from 'lucide-react';
 import { PublicNav, Footer } from '../components/navigation/PublicNav';
 import { ArchitectureExplorer } from '../components/common/ArchitectureExplorer';
+import { FlowchartExperience } from '../components/common/FlowchartExperience';
 import { Btn } from '../components/ui/ui';
 import { FAMILIES, TOTAL_PATTERNS } from '../data/evidence';
 
@@ -99,24 +100,29 @@ export function HomePage() {
         <div className="mre-metric mre-metric-right"><span>MERCHANTS</span><strong>2.1M+</strong></div>
         <img ref={noteRef} className="mre-note" src="/images/rupee-500-note.png" alt="Floating Indian five hundred rupee note" />
         <div className="relative z-10 mx-auto w-full max-w-[1080px]">
-          <h1 className="mre-title"><span>FOLLOW THE</span><span>MONEY.</span></h1>
-          <img ref={coinRef} className="mre-coin" src="/images/rupee-10-coin.png" alt="Gold and silver ten rupee coin" />
-          <p className="mre-tagline">DISCOVER THE REALITY BEHIND EVERY MERCHANT.</p>
-          <Link to="/demo" className="mre-cta">ENTER THE ENGINE <ArrowUpRight size={18} strokeWidth={2.5} /></Link>
+          <h1 className="mre-title"><span>SEE THE BUSINESS</span><span>BEHIND EVERY</span><span>PAYMENT.</span><img ref={coinRef} className="mre-coin" src="/images/rupee-10-coin.png" alt="" aria-hidden="true" /></h1>
+          <p className="mre-tagline">MERCHANT REALITY ENGINE</p>
+          <Link to="/demo" className="mre-cta">TRY DEMO <ArrowUpRight size={18} strokeWidth={2.5} /></Link>
         </div>
-        <div className="mre-footer-left">TRANSACTION INTELLIGENCE / 001</div>
+        <div className="mre-footer-left">MERCHANT REALITY / 001</div>
         <div className="mre-footer-right">MERCHANT REALITY ENGINE</div>
       </section>
 
       <Section id="platform" title="A merchant can pass KYC and still be someone else’s front." lead="Onboarding checks who a merchant is. They do not check whether the payments flowing through it look like the business it declared. Transaction monitoring sees single payments; the contradiction lives in the whole picture."><Problem /></Section>
 
-      <Section id="approach" title="From transaction monitoring to merchant reality intelligence." lead="MRE does not ask whether one payment looks fraudulent. It asks whether the merchant behaves like the business it claims to be.">
+      <Section id="approach" title="From transaction monitoring to merchant reality." lead="MRE does not ask whether one payment looks fraudulent. It asks whether the merchant behaves like the business it claims to be.">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{[['Financial behaviour', 'Volume, ticket shape, refunds and settlement against the profile.'], ['Customer composition', 'Who pays, from where, and whether they come back.'], ['Commercial authenticity', 'Orders, fulfilment and independent purchaser confirmation.'], ['Digital provenance', 'Where payment links and checkouts actually live on the web.'], ['Network relationships', 'Shared infrastructure, cohorts and beneficiaries across merchants.'], ['Operational consistency', 'Hours, timing, seasonality and lifecycle against the declared business.']].map(([t, d], i) => (
           <div key={t} className="rounded-md border border-line bg-panel p-5"><div className="font-mono text-xs text-cyan-300">0{i + 1}</div><div className="mt-2 text-base font-medium">{t}</div><p className="mt-1 text-sm text-mute">{d}</p></div>))}</div>
       </Section>
 
       <Section id="how" title="Seven layers, from raw events to governed action." lead="Select a layer to see its inputs, processes, outputs and how it hands off to the next."><ArchitectureExplorer />
-        <div className="mt-6"><Link to="/demo"><Btn variant="primary">Watch all seven layers run <ArrowRight size={15} /></Btn></Link></div></Section>
+        <div id="workflow" className="mt-12">
+          <div className="mb-7 rounded-lg border border-white/25 bg-white/[.04] px-5 py-5 text-center md:py-6">
+            <h3 className="text-xl font-bold tracking-tight text-white md:text-3xl">Click a layer below to open its detailed flowchart</h3>
+          </div>
+          <FlowchartExperience mode="workflow" />
+        </div>
+        <div className="mt-6"><Link to="/demo"><Btn variant="primary">Watch a seven-layer demo <ArrowRight size={15} /></Btn></Link></div></Section>
 
       <Section id="technology" title="Transparent methods, not a black-box score.">
         <div className="grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">{TECH.map(([I, t, d]) => (
@@ -141,6 +147,7 @@ export function HomePage() {
           <tbody>{[['Flags individual anomalies', 'Finds joint patterns: round amount, far-away payer and match-time funding in the same payments'], ['Adds up scores, so correlated signals inflate risk', 'Collapses correlated signals and requires independent evidence families'], ['Checks identity and documents', 'Checks commercial reality: orders, fulfilment, provenance and settlement'], ['Automatic holds from a score', 'A human reviews competing explanations before any action'], ['Restricts the whole merchant', 'Narrowest effective action, such as one payment link']].map(([a, b]) => <tr key={a} className="border-t border-line"><td className="px-4 py-3.5 text-mute">{a}</td><td className="px-4 py-3.5">{b}</td></tr>)}</tbody></table></div>
         <div className="mt-8 flex flex-wrap items-center gap-4 rounded-md border border-line bg-panel p-6"><ShieldCheck className="text-emerald-300" /><p className="max-w-2xl flex-1 text-sm text-mute">One of the four demo scenarios is a legitimate Diwali surge. MRE sees the same volume alarm, finds verified orders and local customers, and opens no case.</p><Link to="/demo"><Btn variant="primary">Try all four scenarios <Waypoints size={15} /></Btn></Link></div>
       </Section>
+      <section id="company-influences" className="border-t border-line py-16"><div className="mx-auto max-w-7xl px-5"><FlowchartExperience mode="studies" /></div></section>
       <Footer />
     </div>
   );

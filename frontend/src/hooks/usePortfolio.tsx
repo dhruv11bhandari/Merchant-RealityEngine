@@ -1,15 +1,14 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from 'react';
 import type { Scenario, ScenarioId } from '../types/merchant';
 import type { InvestigationResult } from '../types/investigation';
 import { SCENARIO_IDS, getScenario } from '../data/scenarios';
-import { datasetToScenario } from '../data/dataset';
 import { runInvestigation } from '../engines/investigationEngine';
 import { runPatternPack, type PatternPack } from '../engines/patternPack';
 
 /** A merchant in the reviewed portfolio, already analysed by the engine. */
 export interface PortfolioEntry {
   key: string;
-  source: 'built-in' | 'sample' | 'uploaded';
+  source: 'built-in' | 'uploaded';
   builtInId?: ScenarioId;
   scenario: Scenario;
   result: InvestigationResult;
@@ -20,10 +19,6 @@ export interface PortfolioEntry {
   patternFlags: number;
 }
 
-// Extra synthetic merchants shipped as dataset files (the built-in four are loaded from code).
-export const EXTRA_SAMPLES = ['05-chai-corner-night-betting.json', '06-shree-ganesh-sweets-genuine.json', '07-udupi-tiffin-steady.json', '08-nandi-kirana-genuine.json'];
-const BASE = import.meta.env.BASE_URL;
-
 export function analyse(key: string, source: PortfolioEntry['source'], scenario: Scenario, builtInId?: ScenarioId): PortfolioEntry {
   const result = runInvestigation(scenario), pack = runPatternPack(result), f = result.fusion;
   const coreFlags = result.evidence.filter(e => e.status === 'ILLICIT').length;
@@ -33,33 +28,22 @@ export function analyse(key: string, source: PortfolioEntry['source'], scenario:
   return { key, source, builtInId, scenario, result, pack, suspicious, risk, coreFlags, patternFlags };
 }
 
-interface Ctx { entries: PortfolioEntry[]; loading: boolean; get: (key: string) => PortfolioEntry | undefined; addUploaded: (sc: Scenario) => string }
+export type PortfolioMode = 'demo' | 'user';
+interface Ctx { entries: PortfolioEntry[]; loading: boolean; mode: PortfolioMode; get: (key: string) => PortfolioEntry | undefined; addUploaded: (sc: Scenario) => string; clearUploaded: () => void }
 const C = createContext<Ctx | null>(null);
 export const usePortfolio = () => { const c = useContext(C); if (!c) throw new Error('PortfolioProvider missing'); return c; };
 
-export function PortfolioProvider({ children }: { children: ReactNode }) {
-  const builtIns = useMemo(() => SCENARIO_IDS.map(id => analyse(id, 'built-in', getScenario(id), id)), []);
-  const [extra, setExtra] = useState<PortfolioEntry[]>([]);
+export function PortfolioProvider({ children, mode }: { children: ReactNode; mode: PortfolioMode }) {
+  const builtIns = useMemo(() => mode === 'demo' ? SCENARIO_IDS.map(id => analyse(id, 'built-in', getScenario(id), id)) : [], [mode]);
   const [uploaded, setUploaded] = useState<PortfolioEntry[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    let live = true;
-    Promise.all(EXTRA_SAMPLES.map(async f => {
-      try {
-        const p = datasetToScenario(await (await fetch(`${BASE}samples/${f}`)).json());
-        return p.ok && p.scenario ? analyse(f.replace('.json', ''), 'sample', p.scenario) : null;
-      } catch { return null; }
-    })).then(list => { if (live) { setExtra(list.filter((x): x is PortfolioEntry => !!x)); setLoading(false); } });
-    return () => { live = false; };
-  }, []);
-
-  const entries = useMemo(() => [...uploaded, ...builtIns, ...extra].sort((a, b) => b.risk - a.risk), [uploaded, builtIns, extra]);
+  const entries = useMemo(() => [...uploaded, ...builtIns].sort((a, b) => b.risk - a.risk), [uploaded, builtIns]);
   const get = useCallback((key: string) => entries.find(e => e.key === key), [entries]);
   const addUploaded = useCallback((sc: Scenario) => {
     const key = `upload-${sc.profile.id}-${Date.now().toString(36)}`;
-    setUploaded(u => [analyse(key, 'uploaded', sc), ...u.filter(x => x.scenario.profile.id !== sc.profile.id)]);
+    const entry = analyse(key, 'uploaded', sc);
+    setUploaded(u => mode === 'user' ? [entry] : [entry, ...u.filter(x => x.scenario.profile.id !== sc.profile.id)]);
     return key;
-  }, []);
-  return <C.Provider value={{ entries, loading, get, addUploaded }}>{children}</C.Provider>;
+  }, [mode]);
+  const clearUploaded = useCallback(() => setUploaded([]), []);
+  return <C.Provider value={{ entries, loading: false, mode, get, addUploaded, clearUploaded }}>{children}</C.Provider>;
 }

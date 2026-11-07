@@ -50,7 +50,7 @@ const THEMES: Theme[] = [
         </ChartBox>
       </div>) },
   { id: 'geo', title: 'Customers come from the wrong places', plain: 'A local business is being paid by people from all over the country.', ids: ['B6'],
-    proof: e => <ChartBox title="Sales by payer state (amber = outside the merchant’s home state)" note={`Home state: ${e.scenario.profile.localStates.join(', ')}`}><StateBars sales={sales(e)} local={e.scenario.profile.localStates} height={240} /></ChartBox> },
+    proof: e => <ChartBox title="Sales by payer state (red = outside the merchant’s home state)" note={`Home state: ${e.scenario.profile.localStates.join(', ')}`}><StateBars sales={sales(e)} local={e.scenario.profile.localStates} height={240} /></ChartBox> },
   { id: 'time', title: 'Money arrives at the wrong times', plain: 'Payments cluster before match start times or late at night, outside normal trading.', ids: ['C5', 'C2', 'N2'],
     proof: e => <ChartBox title="Sales by hour of day, IST (red = in the 45 minutes before a match starts; green lines = declared opening hours)"><HourChart sales={sales(e)} fixtures={e.scenario.fixtures} profile={e.scenario.profile} height={250} /></ChartBox> },
   { id: 'volume', title: 'Volume jumped beyond what the season explains', plain: 'Weekly collections rose well above the merchant’s own normal and its seasonal expectation.', ids: ['H1', 'S2'],
@@ -181,23 +181,25 @@ function Cleared({ e }: { e: PortfolioEntry }) {
 
 export function CasePage() {
   const { key = '' } = useParams();
-  const { get, loading } = usePortfolio();
+  const { get, loading, mode } = usePortfolio();
   const { run, loadCustom } = useInvestigation();
   const nav = useNavigate();
   const [showAll, setShowAll] = useState(false);
   const e = get(key);
-  if (!e) return <div className="py-16 text-center text-mute">{loading ? 'Loading merchant…' : <>Merchant not found. <Link to="/demo/portfolio" className="text-zinc-300">Back to the portfolio</Link></>}</div>;
+  const portfolioPath = mode === 'user' ? '/ai-engine/portfolio' : '/demo/portfolio';
+  const investigationPath = mode === 'user' ? '/ai-engine/investigations' : '/demo/investigations';
+  if (!e) return <div className="py-16 text-center text-mute">{loading ? 'Loading merchant…' : <>Merchant not found. <Link to={portfolioPath} className="text-zinc-300">Back to the portfolio</Link></>}</div>;
 
   const p = e.scenario.profile, f = e.result.fusion, v = verdictOf(e);
   const reasons = THEMES.filter(t => items(e, t.ids).some(i => i.flagged));
   const level = RESPONSE_LEVELS.find(l => l.id === e.result.review.recommended)!;
   const plan = planResponse(e.result, NO_USER);
   const sl = e.result.events.filter(x => x.type === 'SALE');
-  const open7 = () => { if (e.builtInId) run(e.builtInId); else loadCustom(e.scenario, true); nav('/demo/investigations'); };
+  const open7 = () => { if (e.builtInId) run(e.builtInId); else loadCustom(e.scenario, true); nav(investigationPath); };
 
   return (
     <>
-      <Link to="/demo/portfolio" className="inline-flex items-center gap-1.5 text-sm text-mute hover:text-ink"><ArrowLeft size={15} />Portfolio</Link>
+      <Link to={portfolioPath} className="inline-flex items-center gap-1.5 text-sm text-mute hover:text-ink"><ArrowLeft size={15} />Portfolio</Link>
 
       <div className={cx('rounded-lg border p-5', e.suspicious ? 'border-neutral-400/50 bg-neutral-400/[0.05]' : 'border-gray-400/50 bg-gray-400/[0.05]')}>
         <div className="flex flex-wrap items-start gap-4">

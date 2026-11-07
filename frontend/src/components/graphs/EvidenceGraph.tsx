@@ -8,15 +8,15 @@ import { Badge, Btn, Callout, StatusBadge } from '../ui/ui';
 import { cx } from '../../utils/format';
 
 export const EDGE_STYLE: Record<EdgeType, { color: string; dash?: string; label: string; blurb: string }> = {
-  ENTITY_RESOLUTION: { color: '#999999', label: 'Entity resolution', blurb: 'Deterministic identifier match, such as a link issued to a merchant.' },
-  BEHAVIOURAL_SIMILARITY: { color: '#a6a6a6', dash: '6 4', label: 'Behavioural similarity', blurb: 'Statistical resemblance. Not proof of common ownership or identity.' },
-  PAYMENT_FLOW: { color: '#afafaf', label: 'Payment flow', blurb: 'Money moving between parties.' },
-  SHARED_INFRASTRUCTURE: { color: '#939393', dash: '2 4', label: 'Shared infrastructure', blurb: 'Common hosting, device, template or asset.' },
-  WEBSITE_LINK: { color: '#9c9c9c', dash: '10 3 2 3', label: 'Website link', blurb: 'A payment link or checkout embedded on a page.' },
-  SETTLEMENT_RELATIONSHIP: { color: '#adadad', label: 'Settlement relationship', blurb: 'Where collected funds are paid out.' },
+  ENTITY_RESOLUTION: { color: '#22c55e', label: 'Entity resolution', blurb: 'Deterministic identifier match, such as a link issued to a merchant.' },
+  BEHAVIOURAL_SIMILARITY: { color: '#f59e0b', dash: '6 4', label: 'Behavioural similarity', blurb: 'Statistical resemblance. Not proof of common ownership or identity.' },
+  PAYMENT_FLOW: { color: '#ef4444', label: 'Payment flow', blurb: 'Money moving between parties.' },
+  SHARED_INFRASTRUCTURE: { color: '#a855f7', dash: '2 4', label: 'Shared infrastructure', blurb: 'Common hosting, device, template or asset.' },
+  WEBSITE_LINK: { color: '#3b82f6', dash: '10 3 2 3', label: 'Website link', blurb: 'A payment link or checkout embedded on a page.' },
+  SETTLEMENT_RELATIONSHIP: { color: '#06b6d4', label: 'Settlement relationship', blurb: 'Where collected funds are paid out.' },
 };
 const ICON = { merchant: Building2, payer: Users, account: Wallet, link: Link2, website: Globe, device: Cpu, beneficiary: Landmark, peer: Store };
-const NCOL: Record<GraphNodeSpec['type'], string> = { merchant: '#afafaf', payer: '#a1a1a1', account: '#999999', link: '#9c9c9c', website: '#a6a6a6', device: '#939393', beneficiary: '#adadad', peer: '#a2a2a2' };
+const NCOL: Record<GraphNodeSpec['type'], string> = { merchant: '#38bdf8', payer: '#22c55e', account: '#f97316', link: '#ef4444', website: '#3b82f6', device: '#a855f7', beneficiary: '#f59e0b', peer: '#14b8a6' };
 
 type NData = { spec: GraphNodeSpec; dim: boolean; sel: boolean; path: boolean };
 function MreNode({ data }: NodeProps) {

@@ -13,8 +13,8 @@ const freshUser = (): UserState => ({ notes: '', clarification: '', chosenLevel:
 
 export type ActiveId = ScenarioId | 'custom';
 interface Ctx {
-  scenarioId: ActiveId; scenario: Scenario; custom: Scenario | null; loadCustom: (sc: Scenario, runNow?: boolean) => void; result: InvestigationResult;
-  status: Record<LayerId, LayerStatus>; started: boolean; running: boolean; allDone: boolean; fast: boolean; setFast: (b: boolean) => void;
+  scenarioId: ActiveId; scenario: Scenario; custom: Scenario | null; loadCustom: (sc: Scenario, runNow?: boolean) => void; clearCustom: () => void; result: InvestigationResult;
+  status: Record<LayerId, LayerStatus>; started: boolean; running: boolean; allDone: boolean; fast: boolean; setFast: (b: boolean) => void; detailsOpen: boolean; setDetailsOpen: (open: boolean) => void;
   selectedLayer: LayerId; selectLayer: (n: LayerId) => void;
   setScenario: (id: ActiveId) => void; run: (id?: ActiveId) => void; reset: () => void;
   done: (n: LayerId) => boolean;
@@ -31,6 +31,7 @@ export function InvestigationProvider({ children }: { children: ReactNode }) {
   const [status, setStatus] = useState(idle());
   const [started, setStarted] = useState(false);
   const [fast, setFast] = useState(false);
+  const [detailsOpen, setDetailsOpen] = useState(false);
   const [selectedLayer, selectLayer] = useState<LayerId>(1);
   const [user, setUser] = useState<UserState>(freshUser());
   const token = useRef(0);
@@ -40,11 +41,11 @@ export function InvestigationProvider({ children }: { children: ReactNode }) {
   const running = IDS.some(n => status[n] === 'running');
   const allDone = IDS.every(n => status[n] === 'done');
 
-  const reset = useCallback(() => { token.current++; setStatus(idle()); setStarted(false); setUser(freshUser()); selectLayer(1); }, []);
-  const setScenario = useCallback((id: ActiveId) => { token.current++; setScenarioId(id); setStatus(idle()); setStarted(false); setUser(freshUser()); selectLayer(1); }, []);
+  const reset = useCallback(() => { token.current++; setStatus(idle()); setStarted(false); setDetailsOpen(false); setUser(freshUser()); selectLayer(1); }, []);
+  const setScenario = useCallback((id: ActiveId) => { token.current++; setScenarioId(id); setStatus(idle()); setStarted(false); setDetailsOpen(false); setUser(freshUser()); selectLayer(1); }, []);
   const start = useCallback((res: InvestigationResult) => {
     const my = ++token.current;
-    setUser(freshUser()); setStatus(idle()); setStarted(true); selectLayer(1);
+    setUser(freshUser()); setStatus(idle()); setStarted(true); setDetailsOpen(false); selectLayer(1);
     (async () => {
       for (const n of IDS) {
         if (token.current !== my) return;
@@ -58,9 +59,12 @@ export function InvestigationProvider({ children }: { children: ReactNode }) {
   }, [fast]);
   const run = useCallback((id?: ActiveId) => { if (id) setScenarioId(id); start(id ? runInvestigation(pick(id)) : result); }, [result, pick, start]);
   const loadCustom = useCallback((sc: Scenario, runNow = true) => {
-    token.current++; setCustom(sc); setScenarioId('custom'); setUser(freshUser()); setStatus(idle()); setStarted(false); selectLayer(1);
+    token.current++; setCustom(sc); setScenarioId('custom'); setUser(freshUser()); setStatus(idle()); setStarted(false); setDetailsOpen(false); selectLayer(1);
     if (runNow) start(runInvestigation(sc));
   }, [start]);
+  const clearCustom = useCallback(() => {
+    token.current++; setCustom(null); setScenarioId('bakery'); setStatus(idle()); setStarted(false); setDetailsOpen(false); setUser(freshUser()); selectLayer(1);
+  }, []);
   useEffect(() => () => { token.current++; }, []);
 
   const patch = useCallback((p: Partial<UserState>) => setUser(u => ({ ...u, ...p })), []);
@@ -79,6 +83,6 @@ export function InvestigationProvider({ children }: { children: ReactNode }) {
     return [...sys, ...user.audit].map((a, i) => ({ ...a, seq: i + 1 }));
   }, [status, user.audit, t0]);
 
-  const v: Ctx = { scenarioId, scenario, custom, loadCustom, result, status, started, running, allDone, fast, setFast, selectedLayer, selectLayer, setScenario, run, reset, done: n => status[n] === 'done', user, patch, note, setLevel, execute, setLabel, audit };
+  const v: Ctx = { scenarioId, scenario, custom, loadCustom, clearCustom, result, status, started, running, allDone, fast, setFast, detailsOpen, setDetailsOpen, selectedLayer, selectLayer, setScenario, run, reset, done: n => status[n] === 'done', user, patch, note, setLevel, execute, setLabel, audit };
   return <C.Provider value={v}>{children}</C.Provider>;
 }

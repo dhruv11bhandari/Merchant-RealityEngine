@@ -1,6 +1,6 @@
 # MRE dataset format (`mre-dataset/v1`)
 
-One JSON file per merchant under review. Upload it on **Analyze your data** (`/demo/upload`).
+One JSON file per merchant under review. Upload it on **Analyze your data** (`/ai-engine/analyze`).
 It is converted into the same scenario the built-in cases use and runs through all seven
 layers. Everything is processed in the browser.
 
@@ -31,7 +31,7 @@ optional. A missing section is shown as **UNKNOWN**, never as clean.
 
 ```json
 {
-  "id": "M-SCB-001", "name": "Sweet Crumbs Bakery", "city": "Bengaluru, India",
+  "id": "M-0001", "name": "Your Bakery", "city": "City, India",
   "mcc": "5462", "category": "Bakeries",
   "products": ["Breads", "Cakes"],
   "ticketMin": 150, "ticketMax": 1200,
@@ -67,7 +67,7 @@ expected seasonal lift (2 = festival weeks are normally twice a normal week).
 | `channel` | yes | `POS`, `UPI_LINK`, `UPI_COLLECT`, `ONLINE`, `PAYOUT`, `BANK` |
 | `payerId` | for sales | VPA, card token or customer ref; hashed on import |
 | `payerState` | for sales | Two-letter state code |
-| `paymentLinkId` | no | Payment link or terminal used (e.g. `PL-SCB-07`, `TERM-01`) |
+| `paymentLinkId` | no | Payment link or terminal used (e.g. `PL-01`, `TERM-01`) |
 | `settledAt` | no | When a sale settled |
 | `orderId` | no | Order id; `null` means "checked, no order found" |
 | `refundOfTransactionId` | refunds | The original sale |
@@ -80,12 +80,12 @@ expected seasonal lift (2 = festival weeks are normally twice a normal week).
 "matchFixtures": ["2026-10-18T19:30:00+05:30"],
 "dataAvailability": { "acquiring": "AVAILABLE", "website": "AVAILABLE", "orders": "MISSING", "bank": "MISSING", "fulfillment": "MISSING", "calendar": "AVAILABLE", "verification": "MISSING" },
 "website": {
-  "embeds": [{ "id": "EMB-002", "merchantId": "M-SCB-001", "linkId": "PL-SCB-07", "host": "stakearena.example", "path": "/wallet/deposit", "category": "gambling", "pageType": "deposit page", "firstSeen": "2026-10-09" }],
+  "embeds": [{ "id": "EMB-002", "merchantId": "M-0001", "linkId": "PL-01", "host": "merchant-directory.example", "path": "/payments", "category": "business directory", "pageType": "directory page", "firstSeen": "2026-10-09" }],
   "catalogue": [{ "sku": "BR-01", "name": "Sourdough loaf", "price": 220, "inCategory": true, "dupImage": false }]
 },
 "orders": [{ "orderId": "ORD-9000", "saleId": "TX0042", "status": "DELIVERED", "trackingId": "TRK-1" }],
 "bankCredits": [{ "amount": 41250, "beneficiaryAccount": "BEN-001" }],
-"externalSightings": [{ "source": "Telegram", "place": "public channel name", "paymentRef": "PL-SCB-07", "seenAt": "2026-10-21", "note": "deposit here" }]
+"externalSightings": [{ "source": "public listing", "place": "directory page", "paymentRef": "PL-01", "seenAt": "2026-10-21", "note": "merchant payment link" }]
 ```
 `website.embeds[].category`: `own`, `gambling`, `resale`, `marketplace`, `unknown`.
 

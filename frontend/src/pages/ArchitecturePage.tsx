@@ -26,7 +26,7 @@ export function ArchitecturePage() {
         <p className="mt-2 max-w-2xl text-sm text-mute">What the demo implements today, and what a production system would add. See docs/FUTURE_BACKEND.md in the source.</p>
         <div className="mt-6 overflow-x-auto rounded-md border border-line"><table className="w-full text-left text-sm"><thead className="bg-panel2 text-xs text-mute"><tr><th className="px-4 py-3 font-medium">Layer</th><th className="px-4 py-3 font-medium">In this prototype</th><th className="px-4 py-3 font-medium">For production</th></tr></thead>
           <tbody>{IMPL.map(([a, b, c], i) => <tr key={a} className="border-t border-line align-top"><td className="px-4 py-3 font-medium">{LAYERS[i].code} <span className="text-mute">{a.slice(3)}</span></td><td className="px-4 py-3 text-mute">{b}</td><td className="px-4 py-3 text-mute">{c}</td></tr>)}</tbody></table></div>
-        <div className="mt-10"><Link to="/demo"><Btn variant="primary" size="lg">Run the live investigation</Btn></Link></div>
+        <div className="mt-10"><Link to="/demo"><Btn variant="primary" size="lg">Try a guided investigation</Btn></Link></div>
       </div><Footer /></div>
   );
 }
