@@ -20,4 +20,4 @@ Coverage keys: `acquiring, website, orders, bank, fulfillment, calendar, verific
 `InvestigationResult` holds layer outputs (L1 counts and coverage, L2 weekly rows and CUSUM, evidence, cohort matches, fusion result, analyst review, per-layer timelines). `UserState` holds the analyst's notes, chosen response level, authority checks, label and audit entries.
 
 ## Synthetic generators
-`src/data/transactions.ts` uses a seeded PRNG (mulberry32). Seeds: bakery 1103, rotation 2207, fabricated 3319, Diwali 4421. Event ids are assigned `TX0001…` after chronological sorting.
+`frontend/src/data/transactions.ts` uses a seeded PRNG (mulberry32). Seeds: bakery 1103, rotation 2207, fabricated 3319, Diwali 4421. Event ids are assigned `TX0001…` after chronological sorting.

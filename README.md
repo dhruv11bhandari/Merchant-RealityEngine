@@ -62,8 +62,8 @@ The demo and AI Engine use separate state. Demo pages show only their four built
 
 ## How it works in brief
 
-1. In the guided demo, deterministic generators (`src/data/transactions.ts`) create event stores from fixed seeds.
-2. `runInvestigation` (`src/engines/investigationEngine.ts`) is a pure function: same scenario in, same result out.
+1. In the guided demo, deterministic generators (`frontend/src/data/transactions.ts`) create event stores from fixed seeds.
+2. `runInvestigation` (`frontend/src/engines/investigationEngine.ts`) is a pure function: same scenario in, same result out.
 3. Detectors compute their results from the records (residuals, CUSUM, round-number heaping, geographic mismatch, pre-match funding lift against a same-clock-time control, refund reconciliation, beneficiary changes, cohort continuity and more). Nothing about the final verdict is hard-coded.
 4. Fusion collapses correlated signals, excludes UNKNOWN, weights by reliability and fake difficulty, applies the two-independent-family gate and ranks four mechanism hypotheses.
 5. The UI reveals layer results progressively; the analyst, response and learning steps respond to your inputs.
@@ -71,23 +71,27 @@ The demo and AI Engine use separate state. Demo pages show only their four built
 
 ## Project layout
 
-```
+```text
+package.json, package-lock.json, vite.config.ts, tsconfig.json, start.sh
 frontend/
   index.html
-  public/       static assets
+  public/       static assets, sample datasets and flowchart assets
   src/
-  data/        merchants, scenarios, graphs, synthetic transaction generators, layer metadata
-  engines/     residual, CUSUM, cohort continuity, detectors, fusion, analyst, response, learning
-  layers/      L1–L7 views
-  pages/       public and demo pages
-  components/  ui, charts, graphs (React Flow), navigation, common
-  hooks/       investigation context (orchestration and user state)
-  types/       payment, merchant, evidence, investigation
-backend/       reserved for a future API; this prototype has no backend
-docs/          ARCHITECTURE, DEMO_GUIDE, DATA_MODEL, FUTURE_BACKEND
-scripts/       selftest.ts
+    components/
+    data/
+    engines/
+    hooks/
+    layers/
+    pages/
+    styles/
+    types/
+    utils/
+backend/        reserved for a future API
+docs/           project and data documentation
+prototype/      separate offline Python experiment and generated output
+scripts/        sample export and engine self-test
+archive/legacy-frontend/  preserved, inactive root-level frontend copy
 ```
-
 Stack: React 18, TypeScript, Vite, Tailwind CSS v4, Recharts, React Flow (`@xyflow/react`), Lucide, React Router.
 
 ## Known limitations
