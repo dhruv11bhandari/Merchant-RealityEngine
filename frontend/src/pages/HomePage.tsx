@@ -116,7 +116,7 @@ export function HomePage() {
       </Section>
 
       <Section id="how" title="Seven layers, from raw events to governed action." lead="Select a layer to see its inputs, processes, outputs and how it hands off to the next."><ArchitectureExplorer />
-        <div id="workflow" className="mt-12">
+        <div id="workflow" className="mt-12 scroll-mt-16">
           <div className="mb-7 rounded-lg border border-white/25 bg-white/[.04] px-5 py-5 text-center md:py-6">
             <h3 className="text-xl font-bold tracking-tight text-white md:text-3xl">Click a layer below to open its detailed flowchart</h3>
           </div>
