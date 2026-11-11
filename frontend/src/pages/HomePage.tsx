@@ -61,7 +61,10 @@ export function HomePage() {
   const heroRef = useRef<HTMLElement>(null);
   const noteRef = useRef<HTMLImageElement>(null);
   const coinRef = useRef<HTMLImageElement>(null);
-  useEffect(() => { const id = (loc.state as { scroll?: string } | null)?.scroll; if (id) setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }), 50); }, [loc]);
+  useEffect(() => {
+    const id = loc.hash.slice(1) || (loc.state as { scroll?: string } | null)?.scroll;
+    if (id) setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  }, [loc]);
   useEffect(() => {
     const hero = heroRef.current, note = noteRef.current, coin = coinRef.current;
     if (!hero || !note || !coin || !window.matchMedia('(hover: hover) and (pointer: fine)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;

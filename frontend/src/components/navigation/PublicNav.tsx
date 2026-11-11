@@ -7,8 +7,11 @@ import { Btn } from '../ui/ui';
 export function useScrollTo() {
   const nav = useNavigate(), loc = useLocation();
   return (id: string) => {
-    if (loc.pathname === '/') document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    else nav('/', { state: { scroll: id } });
+    if (loc.pathname === '/' && loc.hash === `#${id}`) {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+    nav({ pathname: '/', hash: `#${id}` }, { state: { scroll: id }, preventScrollReset: true });
   };
 }
 const ITEMS = [['Platform', 'platform'], ['How It Works', 'how'], ['Technology', 'technology'], ['Use Cases', 'use-cases']] as const;
