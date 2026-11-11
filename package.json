@@ -8,6 +8,7 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "selftest": "tsx scripts/selftest.ts",
+    "test:dataset": "node --import tsx scripts/test-dataset-import.ts",
     "samples": "tsx scripts/export-samples.ts"
   },
   "dependencies": {

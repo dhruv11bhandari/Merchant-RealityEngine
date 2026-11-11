@@ -110,6 +110,14 @@ export interface DatasetSummary {
 
 const TYPES: EventType[] = ['SALE', 'REFUND', 'TRANSFER', 'SETTLEMENT', 'CHARGEBACK'];
 const CHANNELS: Channel[] = ['POS', 'UPI_LINK', 'UPI_COLLECT', 'ONLINE', 'PAYOUT', 'BANK'];
+/** Accept common input formatting and the legacy generic UPI value, but keep the
+ * internal event channel restricted to the canonical Channel enum. */
+function normalizeChannel(value: unknown): Channel | undefined {
+  if (typeof value !== 'string') return undefined;
+  const key = value.trim().toUpperCase().replace(/[\s-]+/g, '_');
+  const canonical = key === 'UPI' ? 'UPI_LINK' : key;
+  return CHANNELS.includes(canonical as Channel) ? canonical as Channel : undefined;
+}
 const COVERAGE: CoverageKey[] = ['acquiring', 'website', 'orders', 'bank', 'fulfillment', 'calendar', 'verification'];
 const STATES: CoverageState[] = ['AVAILABLE', 'PARTIAL', 'MISSING'];
 const isNum = (x: unknown): x is number => typeof x === 'number' && Number.isFinite(x);
@@ -171,7 +179,8 @@ export function datasetToScenario(raw: unknown): ParseResult {
     if (!isStr(t.id)) errors.push(`${at}: "id" is required.`); else if (ids.has(t.id)) errors.push(`${at}: duplicate id.`); else ids.add(t.id);
     if (!TYPES.includes(t.type)) errors.push(`${at}: "type" must be one of ${TYPES.join(', ')}.`);
     if (!isNum(t.amount) || t.amount < 0) errors.push(`${at}: "amount" must be a positive number in rupees.`);
-    if (!CHANNELS.includes(t.channel)) errors.push(`${at}: "channel" must be one of ${CHANNELS.join(', ')}.`);
+    const channel = normalizeChannel(t.channel);
+    if (!channel) errors.push(`${at}: "channel" must be one of ${CHANNELS.join(', ')} (UPI is also accepted as UPI_LINK).`);
     if (!isStr(t.merchantId)) errors.push(`${at}: "merchantId" is required.`);
     const time = Date.parse(t.time);
     if (!isStr(t.time) || Number.isNaN(time)) errors.push(`${at}: "time" must be an ISO date-time, e.g. 2026-10-18T19:42:10+05:30.`);
@@ -181,7 +190,7 @@ export function datasetToScenario(raw: unknown): ParseResult {
     const ev: PaymentEvent = {
       id: t.id, merchantId: t.merchantId, type: t.type, amount: t.amount, eventTime: time,
       ingestTime: time + 30000, payerRef, payerHash, destHash: t.paidTo ? hashId(t.paidTo) : payerHash,
-      payerState: t.payerState ?? '—', channel: t.channel, source: t.sourceFeed ?? defaultSource(t),
+      payerState: t.payerState ?? '—', channel: channel ?? t.channel, source: t.sourceFeed ?? defaultSource(t),
     };
     if (settle !== undefined && !Number.isNaN(settle)) ev.settleTime = settle;
     if (t.type === 'SETTLEMENT') ev.settleTime = time;

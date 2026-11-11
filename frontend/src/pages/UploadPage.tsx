@@ -13,6 +13,8 @@ import { cx } from '../utils/format';
 
 const BASE = import.meta.env.BASE_URL;
 const TEST_DATASETS = [
+  { file: 'random-ai-engine-test.json', title: 'Juniper Lane Stationery · new synthetic dataset' },
+  { file: 'demo-ai-engine-test.json', title: 'AI Engine upload test · Sweet Crumbs Bakery' },
   { file: '01-sweet-crumbs-betting-front.json', title: 'Sweet Crumbs Bakery · suspected betting collections' },
   { file: '02-merchant-rotation.json', title: 'Nova Gift Emporium · merchant rotation' },
   { file: '03-fabricated-online-store.json', title: 'Aarav Home Decor Online · fabricated commercial activity' },

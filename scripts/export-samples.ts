@@ -36,6 +36,10 @@ const write = (file: string, ds: MreDataset) => { writeFileSync(`${OUT}/${file}`
 
 // 1–4: built-in cases
 write('01-sweet-crumbs-betting-front.json', scenarioToDataset(getScenario('bakery'), { title: 'Sweet Crumbs Bakery — suspected betting collections' }));
+write('demo-ai-engine-test.json', scenarioToDataset(getScenario('bakery'), {
+  title: 'AI Engine Upload Test — Sweet Crumbs Bakery',
+  description: 'Synthetic end-to-end test dataset for the Merchant Reality Engine. Includes a bakery profile, 16 weeks of sales, payment transactions, payment-link context and supporting evidence. It is designed to exercise the upload and analysis flow; all records are fictional.',
+}));
 write('02-merchant-rotation.json', scenarioToDataset(getScenario('rotation'), { title: 'Nova Gift Emporium — merchant rotation' }));
 write('03-fabricated-online-store.json', scenarioToDataset(getScenario('fabricated'), { title: 'Aarav Home Decor Online — fabricated commercial substance' }));
 write('04-anand-sweets-diwali-genuine.json', scenarioToDataset(getScenario('diwali'), { title: 'Anand Sweets & Bakes — genuine Diwali growth' }));
@@ -129,6 +133,45 @@ function perturb(ds: MreDataset, seed: number, o: { scale: number; drop: number;
   d.title = 'Nandi Kirana & General — genuine festive lift (new synthetic dataset)';
   d.description = 'A Chennai grocery store with a real festive lift, local customers and supplier spend in line with sales.';
   write('08-nandi-kirana-genuine.json', d);
+}
+
+// 9: a new, independent upload fixture following the empty template's schema.
+// Its deterministic seed keeps the sample stable when the sample exporter runs.
+{
+  const r = mulberry32(110926), id = 'M-RND-926', base = Date.parse('2026-09-01T00:00:00+05:30');
+  const states = ['MH', 'KA', 'GJ', 'MP', 'RJ', 'UP', 'DL'];
+  const transactions: DatasetTransaction[] = [];
+  const weeklyActual = Array(8).fill(0) as number[];
+  const pick = <T,>(xs: T[]) => xs[Math.floor(r() * xs.length)];
+  for (let i = 0; i < 96; i++) {
+    const week = Math.floor(i / 12), unusual = week >= 6;
+    const day = week * 7 + Math.floor(r() * 7), hour = unusual && r() < 0.3 ? 22 + r() * 2 : 8 + r() * 13;
+    const amount = unusual ? pick([500, 750, 1000, 1500, 2000]) : pick([90, 140, 180, 240, 320, 450, 600]);
+    const channel: DatasetTransaction['channel'] = !unusual && r() < 0.28 ? 'POS' : 'UPI_LINK';
+    const payer = `buyer${String(1 + Math.floor(r() * (unusual ? 18 : 64))).padStart(3, '0')}@upi`;
+    const time = toIst(base + day * 24 * H + hour * H + Math.floor(r() * 3600000));
+    transactions.push({ id: `RND-${String(i + 1).padStart(3, '0')}`, merchantId: id, type: 'SALE', amount, time, payerId: payer, payerState: unusual && r() < 0.55 ? pick(states) : 'MH', channel, paymentLinkId: channel === 'POS' ? 'TERM-RND-01' : 'PL-RND-04', sourceFeed: channel === 'POS' ? 'acquirer.pos' : 'acquirer.upi' });
+    weeklyActual[week] += amount;
+  }
+  const sales = [...transactions];
+  sales.filter((_, i) => i % 17 === 4).forEach((sale, i) => transactions.push({ id: `RND-R${String(i + 1).padStart(2, '0')}`, merchantId: id, type: 'REFUND', amount: sale.amount, time: toIst(Date.parse(sale.time) + (2 + r() * 20) * H), payerId: sale.payerId, payerState: sale.payerState, channel: sale.channel, paymentLinkId: sale.paymentLinkId, refundOfTransactionId: sale.id, sourceFeed: 'acquirer.refund' }));
+  const merchant: MreDataset['merchant'] = {
+    id, name: 'Juniper Lane Stationery', city: 'Pune, India', mcc: '5943', category: 'Stationery and office supplies',
+    products: ['Notebooks', 'Pens', 'Art supplies', 'Greeting cards'], ticketMin: 50, ticketMax: 1200, hours: [8, 21] as [number, number],
+    catchment: 'LOCAL', localStates: ['MH'], expectedRoundShare: 0.08, seasonalPeak: 1.25, baselineWeekly: 7000, accountAgeDays: 420,
+    declaredDomains: ['juniperlane.example'], declaredChannels: ['In-store POS', 'UPI at counter'], declaredActivity: ['Stationery retail', 'School and office supplies'],
+  };
+  const weeks = Array.from({ length: 16 }, (_, i) => ({
+    week: `W${i + 1}`, actual: i < 8 ? 6200 + Math.round(r() * 900) : i < 14 ? 6500 + Math.round(r() * 1000) : weeklyActual[i - 8],
+    seasonalMultiplier: i === 14 ? 1.15 : i === 15 ? 1.3 : 1,
+  }));
+  const generated: MreDataset = {
+    format: 'mre-dataset/v1', title: 'Juniper Lane Stationery — random AI Engine test',
+    description: 'New synthetic upload fixture. A Pune stationery shop has ordinary counter sales followed by a short period of larger, repetitive UPI-link payments from a wider set of states. All merchants and transactions are fictional.',
+    merchant, weeklySales: weeks, transactions: transactions.sort((a, b) => Date.parse(a.time) - Date.parse(b.time)), matchFixtures: [],
+    dataAvailability: { acquiring: 'AVAILABLE', website: 'MISSING', orders: 'MISSING', bank: 'MISSING', fulfillment: 'MISSING', calendar: 'MISSING', verification: 'MISSING' },
+  };
+  write('random-ai-engine-test.json', generated);
 }
 
 // Format guide and an empty template next to the samples

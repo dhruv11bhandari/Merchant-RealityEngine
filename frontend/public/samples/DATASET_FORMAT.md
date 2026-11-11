@@ -64,7 +64,7 @@ expected seasonal lift (2 = festival weeks are normally twice a normal week).
 | `type` | yes | `SALE`, `REFUND`, `TRANSFER`, `SETTLEMENT`, `CHARGEBACK` |
 | `amount` | yes | Rupees |
 | `time` | yes | ISO 8601 with offset, e.g. `2026-10-18T19:42:10+05:30` |
-| `channel` | yes | `POS`, `UPI_LINK`, `UPI_COLLECT`, `ONLINE`, `PAYOUT`, `BANK` |
+| `channel` | yes | `POS`, `UPI_LINK`, `UPI_COLLECT`, `ONLINE`, `PAYOUT`, `BANK`; legacy `UPI` is read as `UPI_LINK`. Values are case-insensitive and spaces or hyphens are normalized to underscores. |
 | `payerId` | for sales | VPA, card token or customer ref; hashed on import |
 | `payerState` | for sales | Two-letter state code |
 | `paymentLinkId` | no | Payment link or terminal used (e.g. `PL-01`, `TERM-01`) |
