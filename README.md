@@ -9,7 +9,6 @@ The project has three connected experiences:
 - **Guided demo** (`/demo/*`): four deterministic, prebuilt merchant scenarios. Run one and inspect all seven layers and its final result inside the demo.
 - **AI Engine** (`/ai-engine/*`): a user workspace that starts empty. Upload one JSON dataset and run it to see only that dataset's findings. Choosing a new file clears the previous result.
 - **Offline Python prototype** (`./start.sh prototype`): a separate synthetic-data experiment; its multi-merchant report is not part of the web app.
-
 > **Everything is synthetic.** Merchants, transactions, websites, crawler snapshots and portfolio figures are fabricated and deterministic. Nothing is verified real-world evidence. There are no customers, partners or performance claims. The response design is a product proposal, not a statement of legal or regulatory requirements, and nothing freezes real money.
 
 ## Run it
