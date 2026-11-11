@@ -38,8 +38,12 @@ ensure_node() {
 case "${1:-web}" in
   web|--web)
     ensure_node
+    echo "Starting the investigation API at http://127.0.0.1:8787"
+    node --import tsx backend/server.ts &
+    API_PID=$!
+    trap 'kill "$API_PID" 2>/dev/null || true' EXIT
     echo "Starting Merchant Reality Engine at http://localhost:5173"
-    exec npm run dev -- --host 127.0.0.1
+    npm run dev -- --host 127.0.0.1
     ;;
   prototype)
     python3 prototype/run.py

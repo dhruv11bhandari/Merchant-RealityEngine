@@ -2,7 +2,7 @@
 
 One JSON file per merchant under review. Upload it on **Analyze your data** (`/ai-engine/analyze`).
 It is converted into the same scenario the built-in cases use and runs through all seven
-layers. Everything is processed in the browser.
+layers. Analyze sends the file to the investigation API, which runs those layers and stores the case.
 
 Only `merchant`, `weeklySales` and `transactions` are required. Every other section is
 optional. A missing section is shown as **UNKNOWN**, never as clean.

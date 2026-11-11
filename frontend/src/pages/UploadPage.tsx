@@ -12,6 +12,13 @@ import { Badge, Btn, Callout, Panel } from '../components/ui/ui';
 import { cx } from '../utils/format';
 
 const BASE = import.meta.env.BASE_URL;
+type ServerStep = { layer: number; code: string; name: string; state: 'done' | 'waiting' | 'blocked'; summary: string };
+type ServerCase = {
+  id: string;
+  workflow: ServerStep[];
+  result: { recommended: string };
+  user: { notes: string; clarification: string; chosenLevel: string | null; legalVerified: boolean; escrowConfirmed: boolean; executed: boolean; label: string | null };
+};
 const TEST_DATASETS = [
   { file: 'random-ai-engine-test.json', title: 'Juniper Lane Stationery · new synthetic dataset' },
   { file: 'demo-ai-engine-test.json', title: 'AI Engine upload test · Sweet Crumbs Bakery' },
@@ -31,6 +38,12 @@ export function UploadPage() {
   const [analysed, setAnalysed] = useState(false);
   const [sampleFile, setSampleFile] = useState('');
   const [loadingSample, setLoadingSample] = useState(false);
+  const [raw, setRaw] = useState('');
+  const [serverCase, setServerCase] = useState<ServerCase | null>(null);
+  const [serverError, setServerError] = useState('');
+  const [posting, setPosting] = useState(false);
+  const [legalVerified, setLegalVerified] = useState(false);
+  const [escrowConfirmed, setEscrowConfirmed] = useState(false);
   const input = useRef<HTMLInputElement>(null);
 
   useEffect(() => { clearCustom(); clearUploaded(); setCaseKey(null); }, [clearCustom, clearUploaded]);
@@ -39,6 +52,7 @@ export function UploadPage() {
     clearCustom();
     clearUploaded();
     setCaseKey(null);
+    setRaw(text); setServerCase(null); setServerError(''); setLegalVerified(false); setEscrowConfirmed(false);
     setFileName(name); setAnalysed(false);
     try { setParsed(datasetToScenario(JSON.parse(text))); }
     catch (e) { setParsed({ ok: false, errors: [`Could not read the file as JSON: ${(e as Error).message}`], warnings: [] }); }
@@ -63,9 +77,37 @@ export function UploadPage() {
       setLoadingSample(false);
     }
   };
-  const analyse = () => { if (parsed?.scenario) { setDetailsOpen(false); loadCustom(parsed.scenario, true); setCaseKey(addUploaded(parsed.scenario)); setAnalysed(true); window.scrollTo({ top: 0, behavior: 'smooth' }); } };
+  const analyse = async () => {
+    if (!parsed?.scenario || !raw) return;
+    setPosting(true); setServerError('');
+    try {
+      const response = await fetch('/api/investigations', { method: 'POST', headers: { 'content-type': 'application/json' }, body: raw });
+      const body = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(body.error || `The investigation API rejected the file (${response.status}).`);
+      setServerCase(body);
+      setDetailsOpen(false); loadCustom(parsed.scenario, true); setCaseKey(addUploaded(parsed.scenario)); setAnalysed(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (e) {
+      setServerError(e instanceof Error ? e.message : 'The investigation API is not reachable.');
+    } finally { setPosting(false); }
+  };
+  const sendStep = async (action: 'response' | 'label', extra: object) => {
+    if (!serverCase || !raw) return;
+    setPosting(true); setServerError('');
+    try {
+      const response = await fetch('/api/investigations', {
+        method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ action, id: serverCase.id, ...extra, dataset: JSON.parse(raw), user: serverCase.user }),
+      });
+      const body = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(body.error || `The investigation API rejected that step (${response.status}).`);
+      setServerCase(body);
+    } catch (e) {
+      setServerError(e instanceof Error ? e.message : 'The investigation API is not reachable.');
+    } finally { setPosting(false); }
+  };
   const newAnalysis = () => {
-    clearCustom(); clearUploaded(); setCaseKey(null); setParsed(null); setFileName(''); setAnalysed(false); setDetailsOpen(false);
+    clearCustom(); clearUploaded(); setCaseKey(null); setParsed(null); setFileName(''); setRaw(''); setServerCase(null); setServerError(''); setAnalysed(false); setDetailsOpen(false); setLegalVerified(false); setEscrowConfirmed(false);
     if (input.current) input.current.value = '';
   };
   const drop = (e: DragEvent) => { e.preventDefault(); setOver(false); onFile(e.dataTransfer.files?.[0]); };
@@ -79,7 +121,8 @@ export function UploadPage() {
   const s = parsed?.summary;
   const datasetPanel = parsed && (
     <Panel title={<span className="flex items-center gap-2"><FileJson size={15} className="text-zinc-300" />{fileName}</span>}
-      right={!analysed && parsed.ok ? <Btn variant="primary" onClick={analyse}><Play size={14} />Run all seven layers</Btn> : parsed.ok ? <Badge tone="ok">Dataset analyzed</Badge> : <Badge tone="bad">Cannot run</Badge>}>
+      right={!analysed && parsed.ok ? <Btn variant="primary" onClick={analyse} disabled={posting}><Play size={14} />{posting ? 'Running on the server…' : 'Run all seven layers'}</Btn> : parsed.ok ? <Badge tone="ok">Dataset analyzed</Badge> : <Badge tone="bad">Cannot run</Badge>}>
+      {serverError && !analysed && <div className="mb-3 flex gap-2 text-sm text-neutral-300"><X size={15} className="mt-0.5 shrink-0" />{serverError}</div>}
       {!parsed.ok && <div className="space-y-1.5">{parsed.errors.map(e => <div key={e} className="flex gap-2 text-sm text-neutral-300"><X size={15} className="mt-0.5 shrink-0" />{e}</div>)}</div>}
       {s && (
         <div className="grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-4">
@@ -109,7 +152,7 @@ export function UploadPage() {
           <div className="text-xs text-mute">or</div>
           <Btn variant="primary" onClick={() => input.current?.click()}>Choose file</Btn>
           <input ref={input} type="file" accept=".json,application/json" className="hidden" onChange={e => onFile(e.target.files?.[0])} />
-          <div className="text-[11px] text-dim">Processed in your browser. Nothing is uploaded to a server.</div>
+          <div className="text-[11px] text-dim">The file is sent to the investigation API. The server runs layers 1–5 and stores the case.</div>
         </div>
 
         <Panel title="Before you run" subtitle="The engine analyzes only the file you choose.">
@@ -135,6 +178,39 @@ export function UploadPage() {
       </>}
 
       {!analysed && datasetPanel}
+
+      {serverCase && (
+        <Panel title={`Server case ${serverCase.id}`} subtitle="Layers 1–5 already ran on the API. Response and label are the human steps.">
+          <ol className="space-y-2 text-sm">
+            {serverCase.workflow.map(step => (
+              <li key={step.layer} className="grid gap-1 sm:grid-cols-[9rem_6rem_1fr] sm:gap-3">
+                <span className="font-medium">{step.code} {step.name}</span>
+                <Badge tone={step.state === 'done' ? 'ok' : step.state === 'blocked' ? 'bad' : 'mute'}>{step.state}</Badge>
+                <span className="text-mute">{step.summary}</span>
+              </li>
+            ))}
+          </ol>
+          {serverError && <div className="mt-3 flex gap-2 text-sm text-neutral-300"><X size={15} className="mt-0.5 shrink-0" />{serverError}</div>}
+          {serverCase.workflow[5]?.state !== 'done' && (
+            <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-line pt-4 text-sm">
+              {(serverCase.result.recommended === 'L4' || serverCase.result.recommended === 'L5' || serverCase.workflow[5]?.state === 'blocked') && (
+                <>
+                  <label className="flex items-center gap-2"><input type="checkbox" checked={legalVerified} onChange={e => setLegalVerified(e.target.checked)} />Legal authority verified</label>
+                  {serverCase.result.recommended === 'L4' && <label className="flex items-center gap-2"><input type="checkbox" checked={escrowConfirmed} onChange={e => setEscrowConfirmed(e.target.checked)} />Escrow clause confirmed</label>}
+                </>
+              )}
+              <Btn variant="primary" disabled={posting} onClick={() => sendStep('response', { chosenLevel: serverCase.result.recommended, legalVerified, escrowConfirmed })}>Record {serverCase.result.recommended} response</Btn>
+            </div>
+          )}
+          {serverCase.workflow[5]?.state === 'done' && serverCase.workflow[6]?.state !== 'done' && (
+            <div className="mt-4 flex flex-wrap gap-2 border-t border-line pt-4">
+              <Btn disabled={posting} onClick={() => sendStep('label', { label: 'CONFIRMED_ILLICIT' })}>Label confirmed illicit</Btn>
+              <Btn disabled={posting} onClick={() => sendStep('label', { label: 'ADJUDICATED_BENIGN' })}>Label benign</Btn>
+              <Btn disabled={posting} onClick={() => sendStep('label', { label: 'UNRESOLVED' })}>Leave unresolved</Btn>
+            </div>
+          )}
+        </Panel>
+      )}
 
       {showSimulation && <InvestigationPage progressOnly />}
 

@@ -12,5 +12,5 @@
     "isolatedModules": true,
     "types": ["node"]
   },
-  "include": ["frontend/src", "scripts"]
+  "include": ["frontend/src", "scripts", "backend", "api"]
 }

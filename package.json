@@ -5,8 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "node backend/bundle-api.mjs && tsc --noEmit && vite build",
     "preview": "vite preview",
+    "api": "tsx backend/server.ts",
+    "check:api": "MRE_CASE_STORE=memory tsx backend/selfcheck.ts",
     "selftest": "tsx scripts/selftest.ts",
     "test:dataset": "node --import tsx scripts/test-dataset-import.ts",
     "samples": "tsx scripts/export-samples.ts"
