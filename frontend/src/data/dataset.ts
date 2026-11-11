@@ -210,6 +210,7 @@ export function datasetToScenario(raw: unknown): ParseResult {
   const fixtures = (d.matchFixtures ?? []).map(Date.parse).filter(x => !Number.isNaN(x));
   if ((d.matchFixtures ?? []).length !== fixtures.length) warnings.push('Some matchFixtures could not be read as dates and were skipped.');
 
+  
   const coverage = { acquiring: 'AVAILABLE', website: 'MISSING', orders: 'MISSING', bank: 'MISSING', fulfillment: 'MISSING', calendar: fixtures.length ? 'AVAILABLE' : 'MISSING', verification: 'MISSING', ...(d.dataAvailability ?? {}) } as Record<CoverageKey, CoverageState>;
   COVERAGE.forEach(k => { if (!STATES.includes(coverage[k])) { errors.push(`dataAvailability.${k} must be AVAILABLE, PARTIAL or MISSING.`); } });
   if (d.website && !d.dataAvailability?.website) coverage.website = 'AVAILABLE';
