@@ -150,7 +150,7 @@ export function HomePage() {
           <tbody>{[['Flags individual anomalies', 'Finds joint patterns: round amount, far-away payer and match-time funding in the same payments'], ['Adds up scores, so correlated signals inflate risk', 'Collapses correlated signals and requires independent evidence families'], ['Checks identity and documents', 'Checks commercial reality: orders, fulfilment, provenance and settlement'], ['Automatic holds from a score', 'A human reviews competing explanations before any action'], ['Restricts the whole merchant', 'Narrowest effective action, such as one payment link']].map(([a, b]) => <tr key={a} className="border-t border-line"><td className="px-4 py-3.5 text-mute">{a}</td><td className="px-4 py-3.5">{b}</td></tr>)}</tbody></table></div>
         <div className="mt-8 flex flex-wrap items-center gap-4 rounded-md border border-line bg-panel p-6"><ShieldCheck className="text-emerald-300" /><p className="max-w-2xl flex-1 text-sm text-mute">One of the four demo scenarios is a legitimate Diwali surge. MRE sees the same volume alarm, finds verified orders and local customers, and opens no case.</p><Link to="/demo"><Btn variant="primary">Try all four scenarios <Waypoints size={15} /></Btn></Link></div>
       </Section>
-      <section id="company-influences" className="border-t border-line py-16"><div className="mx-auto max-w-7xl px-5"><FlowchartExperience mode="studies" /></div></section>
+      <section id="case-studies" className="scroll-mt-16 border-t border-line py-16"><div className="mx-auto max-w-7xl px-5"><FlowchartExperience mode="studies" /></div></section>
       <Footer />
     </div>
   );
